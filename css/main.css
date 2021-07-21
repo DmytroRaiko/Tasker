@@ -13,10 +13,33 @@ body {
 }
 
 .site-header {
-  width: 100%;
+  width: auto;
   height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 30px;
   background: #565252;
-  box-shadow: 0px 1px 0px #494747;
+  border-bottom: 1px solid #494747;
+}
+.site-header div {
+  width: max-content;
+  height: 38px;
+}
+
+.control-panel .site-logo .project-list-button {
+  left: 0;
+}
+
+.profile-button {
+  right: 0;
+}
+
+.profile-button {
+  background: #F9F9F9;
+  border: 0.3px solid #383838;
+  border-radius: 13px;
 }
 
 /*# sourceMappingURL=main.css.map */

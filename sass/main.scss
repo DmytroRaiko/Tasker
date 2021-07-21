@@ -1,6 +1,6 @@
 @import "color.scss";
 
-*{
+* {
     padding: 0;
     margin: 0;
 }
@@ -14,6 +14,7 @@ body {
     background: $background-light;
     
 }
+
 
 @import "components/header.scss";
 
