@@ -11,7 +11,7 @@
         </svg>
     </div>
     <div class="control-panel">
-        First panel control
+
     </div>
 
     <div class="project-list-button">
@@ -20,11 +20,6 @@
 
     <div class="profile-button">
 
-    </div>
-
-    <div class="settingg">
-        setting block
-        sfsdfsdfdg
     </div>
 
 </header>
