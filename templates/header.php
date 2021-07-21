@@ -11,7 +11,11 @@
         </svg>
     </div>
     <div class="control-panel">
-        
+
+    </div>
+
+    <div class="project-list-button">
+
     </div>
 
 </header>
