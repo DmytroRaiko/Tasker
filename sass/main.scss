@@ -15,6 +15,68 @@ body {
     
 }
 
+.text {
+    color: $main-dark;    
+    font-family: 'Roboto', sans-serif;
+}
+
+.text-12 {
+    font-size: 12px;
+}
+
+.text-14 {
+    font-size: 14px;
+}
+
+.text-16 {
+    font-size: 16px;
+}
+
+.text-18 {
+    font-size: 18px;
+}
+
+.text-19 {
+    font-size: 19px;
+}
+
+.text-20 {
+    font-size: 20px;
+}
+
+.text-21 {
+    font-size: 21px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:active, a:focus { outline: none; }
+
+input,
+textarea,
+button {
+    outline:none;
+}
+
+button:active, button:focus {
+    outline: none;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+}
+
+input:active, 
+textarea:active,
+button:active {
+    outline:none;
+}
 
 @import "components/header.scss";
 
