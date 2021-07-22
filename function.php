@@ -16,4 +16,12 @@ function site_header ($postfix = NULL) {
     }
 }
 
+function sign_form ($postfix = NULL) {
+    if ($postfix == NULL) {
+        include "templates/sign_form.php";
+    } else {
+        include "templates/sign_form-" . $postfix . ".php";
+    }
+}
+
 ?>
