@@ -4,20 +4,14 @@
 <html lang="en">
 <?php
     head();
-
-    if(!empty($_GET["action"])){
-        $action = $_GET["action"];
-    }
-    else {
-        $action = 'signup';
-    }
 ?>
 <body>
-    <?php
-        site_header();
-        
-        sign_form();
-    ?>
+    
+    <div id="log-page-main-block">
+        <?php
+            sign_form();
+        ?>
+    </div>
 </body>
 
 </html>
