@@ -72,7 +72,7 @@
 
                             <input type="password" id="signup-password" name="signup-password" placeholder="Password">
 
-                            <img href="#" data-open="open" class="eye-svg" src="/images/eye-icon.svg">
+                            <img href="#" data-open="open" class="eye-svg" src="./images/eye-icon.svg">
                         </div>
                         <div id="repeat-password-block" class="input-block">
                             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +82,7 @@
 
                             <input type="password" id="signup-repeat-password" name="signup-repeat-password" placeholder="Repeat your password">
 
-                            <img href="#" data-open="open" class="eye-svg" src="/images/eye-icon.svg">
+                            <img href="#" data-open="open" class="eye-svg" src="./images/eye-icon.svg">
                         </div>
                         <button id="signup-btn">Register</button>
                     </form>
@@ -103,9 +103,9 @@
             </div>
 
             <div class="log-image-side-block">
-                <img src="/images/signup_img.png" alt="signup-img">
+                <img src="./images/signup_img.png" alt="signup-img">
                 <div class="next-sign-form">
-                    <a href="/log_page.php?action=signin">I`m already member</a>
+                    <a href="./log_page.php?action=signin">I`m already member</a>
                 </div>
             </div>
         </div>
@@ -155,9 +155,9 @@
         </div>
         <div class="log-form-wrapper">
             <div class="log-image-side-block">
-                <img src="/images/signin_img.png" alt="signin-img">
+                <img src="./images/signin_img.png" alt="signin-img">
                 <div class="next-sign-form">
-                    <a href="/log_page.php?action=signup">Create an account</a>
+                    <a href="./log_page.php?action=signup">Create an account</a>
                 </div>
             </div>
 
@@ -179,7 +179,7 @@
 
                             <input type="password" id="signup-password" name="signup-password" placeholder="Password">
 
-                            <img href="#" data-open="open" class="eye-svg" src="/images/eye-icon.svg">
+                            <img href="#" data-open="open" class="eye-svg" src="./images/eye-icon.svg">
                             
                         </div>
                         <div id="remember-block">
