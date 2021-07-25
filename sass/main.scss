@@ -48,6 +48,10 @@ body {
     font-size: 21px;
 }
 
+.text-24 {
+    font-size: 24px;
+}
+
 .text-center {
     text-align: center;
 }
@@ -79,4 +83,4 @@ button:active {
 }
 
 @import "components/header.scss";
-
+@import "components/modal.scss";
