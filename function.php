@@ -16,4 +16,12 @@ function site_header ($postfix = NULL) {
     }
 }
 
+function site_footer ($postfix = NULL) {
+    if ($postfix == NULL) {
+        include "templates/footer.php";
+    } else {
+        include "templates/footer-" . $postfix . ".php";
+    }
+}
+
 ?>
