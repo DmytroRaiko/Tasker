@@ -225,12 +225,12 @@
        console.log(input);
        if( $(this).data('open') == 'open'){
            $(this).data('open', 'close');
-           $(this).attr('src', '/images/close-eye-icon.svg')
+           $(this).attr('src', './images/close-eye-icon.svg')
            input.attr('type', 'text');
        }
        else{
            $(this).data('open', 'open');
-           $(this).attr('src', '/images/eye-icon.svg')
+           $(this).attr('src', './images/eye-icon.svg')
            input.attr('type', 'password');
        }
    })
