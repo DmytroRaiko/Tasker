@@ -503,7 +503,7 @@ input:checked + .slider:before {
   box-shadow: 10px 10px 29px 0px rgba(0, 0, 0, 0.25);
 }
 .sign-form * {
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
 }
 
 #form-header {

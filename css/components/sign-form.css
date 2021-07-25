@@ -1,9 +1,16 @@
 /* Error: Undefined variable.
  *    ,
+<<<<<<< HEAD
  * 20 |     color: $main-dark;
  *    |            ^^^^^^^^^^
  *    '
  *   sass/components/sign-form.scss 20:12  root stylesheet */
+=======
+ * 14 |         font-family: $font-family;
+ *    |                      ^^^^^^^^^^^^
+ *    '
+ *   sass/components/sign-form.scss 14:22  root stylesheet */
+>>>>>>> main
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -13,5 +20,9 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
+<<<<<<< HEAD
   content: "Error: Undefined variable.\a    \2577 \a 20 \2502      color: $main-dark;\a    \2502             ^^^^^^^^^^\a    \2575 \a   sass/components/sign-form.scss 20:12  root stylesheet";
+=======
+  content: "Error: Undefined variable.\a    \2577 \a 14 \2502          font-family: $font-family;\a    \2502                       ^^^^^^^^^^^^\a    \2575 \a   sass/components/sign-form.scss 14:22  root stylesheet";
+>>>>>>> main
 }
