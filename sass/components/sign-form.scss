@@ -1,0 +1,177 @@
+#log-page-main-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f8fc;
+}
+.sign-form{
+    width: 50%;
+    background-color: #ffffff;
+    padding: 40px 70px;
+    box-shadow: 10px 10px 29px 0px rgba(0, 0, 0, 0.25);
+    *{
+        font-family: Roboto;
+    }
+}
+#form-header{
+    display: flex;
+    justify-content: space-between;
+    color: $main-dark;
+    h1{
+        font-size: 48pt;
+
+    }
+    .site-logo{
+        svg{
+            width: 250px;
+            height: 90px;
+        }
+
+    }
+}
+
+.log-form-wrapper{
+    display: flex;
+    justify-content: space-between;
+
+
+
+    .log-form-side-block{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+
+        .input-block{
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid #565252;
+        width: 65%;
+        margin: 30px 0px;
+            input{
+                font-size: 16pt;
+                border: 0;
+                width: 90%;
+                background-color: inherit;
+                margin-left: 5px;
+            }
+        }
+        #signup-btn{
+            width: 40%;
+            padding: 20px;
+            background-color: #65c8f3;
+            border-radius: 15px;
+            border: 1px solid #0D78B4;
+            color: #f9f9f9;
+            font-size: 18pt;
+        }
+        #alt-login{
+            font-size: 12pt;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+
+    .log-image-side-block{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            width: 80%;
+        }
+
+        .next-sign-form{
+            text-align: center;
+
+            a{
+                font-size: 14pt;
+                text-decoration: underline;
+                color: $main-dark;
+
+                &:hover{
+                    font-size: 15pt;
+                }
+            }
+        }
+
+    }
+
+}
+#signin-form{
+    #login-form{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    #alt-login{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+#remember-block{
+    display: flex;
+    align-items: center;
+    width: 65%;
+    margin: 30px 0px;
+
+    span{
+        margin-left: 25px;
+    }
+
+    input[type="checkbox"] {
+  visibility: hidden;
+}
+ 
+.checkbox-block{
+    
+    position: relative;
+}
+/* стили для метки */
+label {
+    cursor: pointer;
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    top: -3px;
+    left: 0;
+    background: inherit;
+    border:2px solid #565252;
+    border-radius: 7px;
+}
+ 
+.checkbox-block label:after {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 6px;
+    left: 6px;
+    border: 3px solid #333;
+    border-top: none;
+    border-right: none;
+
+    transform: rotate(-45deg);
+}
+.checkbox-block label:hover::after {
+    opacity: 0.5;
+}
+
+/**
+ * Create the checkbox state for the tick
+ */
+.checkbox-block input[type=checkbox]:checked + label:after {
+    opacity: 1;
+}
+}
+
+
+
+
