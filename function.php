@@ -24,6 +24,7 @@ function sign_form ($postfix = NULL) {
         include "templates/sign_form-" . $postfix . ".php";
     }
 }
+
 function site_footer ($postfix = NULL) {
     if ($postfix == NULL) {
         include "templates/footer.php";
