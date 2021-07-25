@@ -35,6 +35,10 @@ body {
 .text-21 {
   font-size: 21px; }
 
+.text-24 {
+  font-size: 24px;
+}
+
 .text-center {
   text-align: center; }
 
@@ -72,6 +76,39 @@ button:active {
   border-bottom: 1px solid #494747; }
   .site-header div {
     width: max-content; }
+  border-bottom: 1px solid #494747;
+}
+.site-header div {
+  width: max-content;
+}
+.site-header .notification-list {
+  position: fixed;
+  padding: 15px;
+  background-color: #F9F9F9;
+  width: 400px;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.25));
+}
+.site-header .notification-list .no-notifications {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.site-header .notification-list .no-notifications svg {
+  width: 75%;
+}
+.site-header .notification-list .no-notifications svg path {
+  fill: #565252 !important;
+}
+.site-header .notification-list .text {
+  margin-top: 40px;
+  font-weight: 200;
+}
 
 .profile-button {
   cursor: pointer;
@@ -496,5 +533,70 @@ input:checked + .slider:before {
     opacity: 0.5; }
   #remember-block .checkbox-block input[type=checkbox]:checked + label:after {
     opacity: 1; }
+
+.modal-of {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #C4C4C466;
+  width: 100% !important;
+  height: 100vh;
+  z-index: 100;
+  transition: 1s;
+  opacity: 1;
+  visibility: hidden;
+}
+.modal-of .modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  transition: 1s;
+}
+.modal-of .modal .modal-header {
+  height: 38px;
+  border-bottom: 1px solid #A7A7A728;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.modal-of .modal .modal-header .title-header {
+  transition: 1s;
+}
+.modal-of .modal .modal-header .x-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  padding: 10px 15px;
+  font-size: 25px;
+  font-weight: 300 !important;
+  line-height: 0;
+  border-left: 1px solid #A7A7A728;
+  transition: 1s;
+}
+.modal-of .modal .modal-header .x-close:hover svg path {
+  fill: #989191;
+}
+.modal-of .modal .modal-header,
+.modal-of .modal .modal-header .text {
+  font-weight: 600;
+  margin: 0;
+}
+.modal-of .modal .modal-body {
+  width: 100%;
+  height: calc(100% - 38px);
+  transition: 0.5s;
+}
+
+.modal-of-show {
+  display: block;
+  visibility: visible;
+  transition: 0.55s opacity, 0.55s visibility;
+  opacity: 1;
+}
 
 /*# sourceMappingURL=main.css.map */

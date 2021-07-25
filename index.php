@@ -9,6 +9,10 @@
     <?php
         site_header();
     ?>
+
+    <?php
+        site_footer();
+    ?>
 </body>
 
 </html>
