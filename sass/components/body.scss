@@ -1,0 +1,108 @@
+$body-color: #f3f3f3;
+$body-font-family: 'Roboto', sans-serif;
+$head-text-weight:500;
+$text-letter-spacing: 0.18em;
+
+.body-main {
+    margin-top: 50px;
+    margin-left: 89px;
+    background-color: $body-color;
+    font-family: $body-font-family;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-column-gap: 20px;
+    color: white;
+
+    .card-body{
+        background-image: url(../images/forest.jpg);
+        background-size: auto;
+        border-radius: 3px;
+    }
+    .blurr{
+        background: rgba(85, 85, 85, 0.6);
+        border-radius: 3px;
+        height: 100%;
+    }
+    .body-cards{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-row-gap: 20px;
+        grid-column-gap: 20px;
+    }
+    
+    .card-header{
+        display: grid;
+        grid-template-columns: 2fr 25px 0.1fr;
+        grid-column-gap: 5px;
+
+        .card-name{
+            font-family: $body-font-family;
+            font-weight: $head-text-weight;
+            font-size: 22px;
+            letter-spacing: $text-letter-spacing;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .date-icon{
+            display: flex;
+            margin: auto;
+        }
+
+        .date-start{
+            font-family: $body-font-family;
+            font-size: 10px;
+            margin: auto;
+            letter-spacing: $text-letter-spacing;
+            text-align: right;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        .date-end{
+            font-family: $body-font-family;
+            font-size: 10px;
+            margin: auto;
+            letter-spacing: $text-letter-spacing;
+            text-align: right;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+    }
+
+    hr{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .card-description{
+        width: 80%;
+        margin-left: 10px;
+        margin-top: 10px;
+        p{
+            font-family: $body-font-family;
+            font-size: 13px;  
+            letter-spacing: $text-letter-spacing;
+        }
+    }
+
+    .card-footer{
+        width: 80%;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        margin-top: 100px;
+        font-size: 9px;
+        letter-spacing: $text-letter-spacing;
+        text-transform: capitalize;
+        display: flex;
+        align-items: flex-end;
+
+    }
+
+    .body-filter {
+        margin-right: 89px;
+        font-weight: $head-text-weight;
+        color: rgba(86, 82, 82, 1);
+    }
+}
