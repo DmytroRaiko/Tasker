@@ -42,29 +42,42 @@
         flex-direction: column;
         width: 50%;
 
-        .input-block{
-        display: flex;
-        align-items: center;
-        border-bottom: 2px solid #565252;
-        width: 65%;
-        margin: 30px 0px;
-            input{
-                font-size: 16pt;
-                border: 0;
-                width: 90%;
-                background-color: inherit;
-                margin-left: 5px;
+        #register-form, #login-form{
+            display: flex;
+            flex-direction: column;
+
+            .input-block{
+                display: flex;
+                align-items: center;
+                border-bottom: 2px solid #565252;
+                width: 65%;
+                margin: 30px 0px;
+                    input{
+                        font-size: 16pt;
+                        border: 0;
+                        width: 90%;
+                        background-color: inherit;
+                        margin-left: 5px;
+                    }
+                }
+            #signup-btn{
+                width: 40%;
+                padding: 20px;
+                background-color: #65c8f3;
+                border-radius: 15px;
+                border: 1px solid #0D78B4;
+                color: #f9f9f9;
+                font-size: 18pt;
+                margin-top: 15px;
+            }
+            .error-msg{
+                font-size: 9pt;
+                color: red;
+                margin-top: -20px;
             }
         }
-        #signup-btn{
-            width: 40%;
-            padding: 20px;
-            background-color: #65c8f3;
-            border-radius: 15px;
-            border: 1px solid #0D78B4;
-            color: #f9f9f9;
-            font-size: 18pt;
-        }
+
+        
         #alt-login{
             font-size: 12pt;
             margin-top: 20px;

@@ -57,20 +57,20 @@
                             <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.5 5.5C19.5387 5.5 22 7.96125 22 11C22 14.0387 19.5387 16.5 16.5 16.5C13.4612 16.5 11 14.0387 11 11C11 7.96125 13.4612 5.5 16.5 5.5ZM16.5 27.5C16.5 27.5 27.5 27.5 27.5 24.75C27.5 21.45 22.1375 17.875 16.5 17.875C10.8625 17.875 5.5 21.45 5.5 24.75C5.5 27.5 16.5 27.5 16.5 27.5Z" fill="#565252"/>
                             </svg>
-                            <input type="text" id="signup-login" name="signup-login" placeholder="Login">
+                            <input type="text" id="signup-login" name="signup-login" placeholder="Login" required value="login">
                         </div>
                         <div id="email-block" class="input-block">
                             <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M29.9062 5.15625H3.09375C2.52334 5.15625 2.0625 5.61709 2.0625 6.1875V26.8125C2.0625 27.3829 2.52334 27.8438 3.09375 27.8438H29.9062C30.4767 27.8438 30.9375 27.3829 30.9375 26.8125V6.1875C30.9375 5.61709 30.4767 5.15625 29.9062 5.15625ZM27.3023 8.66572L17.1349 16.5773C16.8835 16.7739 16.5322 16.7739 16.2809 16.5773L6.11016 8.66572C6.07182 8.63613 6.0437 8.59529 6.02973 8.54892C6.01577 8.50254 6.01667 8.45296 6.03231 8.40713C6.04794 8.36129 6.07753 8.32149 6.11692 8.29332C6.15631 8.26514 6.20352 8.24999 6.25195 8.25H27.1605C27.209 8.24999 27.2562 8.26514 27.2956 8.29332C27.335 8.32149 27.3646 8.36129 27.3802 8.40713C27.3958 8.45296 27.3967 8.50254 27.3828 8.54892C27.3688 8.59529 27.3407 8.63613 27.3023 8.66572V8.66572Z" fill="#565252"/>
                             </svg>
-                            <input type="email" id="signup-mail" name="signup-mail" placeholder="Email">
+                            <input type="email" id="signup-email" name="signup-email" placeholder="Email" required>
                         </div>
                         <div id="password-block" class="input-block">
                             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17 2.83331C13.0942 2.83331 9.91663 6.0109 9.91663 9.91665V14.1666H8.49996C7.74851 14.1666 7.02784 14.4652 6.49649 14.9965C5.96514 15.5279 5.66663 16.2485 5.66663 17V28.3333C5.66663 29.0848 5.96514 29.8054 6.49649 30.3368C7.02784 30.8681 7.74851 31.1666 8.49996 31.1666H25.5C26.2514 31.1666 26.9721 30.8681 27.5034 30.3368C28.0348 29.8054 28.3333 29.0848 28.3333 28.3333V17C28.3333 16.2485 28.0348 15.5279 27.5034 14.9965C26.9721 14.4652 26.2514 14.1666 25.5 14.1666H24.0833V9.91665C24.0833 6.0109 20.9057 2.83331 17 2.83331ZM12.75 9.91665C12.75 7.57348 14.6568 5.66665 17 5.66665C19.3431 5.66665 21.25 7.57348 21.25 9.91665V14.1666H12.75V9.91665ZM18.4166 25.1076V28.3333H15.5833V25.1076C15.088 24.8239 14.6903 24.3969 14.4426 23.8826C14.195 23.3684 14.1089 22.7912 14.1959 22.2272C14.2829 21.6631 14.5388 21.1386 14.9299 20.7229C15.3209 20.3072 15.8288 20.0197 16.3865 19.8985C16.8008 19.8069 17.2303 19.8094 17.6435 19.906C18.0566 20.0025 18.4428 20.1905 18.7736 20.4562C19.1044 20.7218 19.3713 21.0584 19.5547 21.4409C19.7381 21.8235 19.8333 22.2424 19.8333 22.6666C19.8325 23.1621 19.7011 23.6486 19.4524 24.0771C19.2037 24.5057 18.8464 24.8611 18.4166 25.1076V25.1076Z" fill="#565252"/>
                             </svg>
 
-                            <input type="password" id="signup-password" name="signup-password" placeholder="Password">
+                            <input type="password" id="signup-password" name="signup-password" placeholder="Password" required>
 
                             <img href="#" data-open="open" class="eye-svg" src="./images/eye-icon.svg">
                         </div>
@@ -80,7 +80,7 @@
                             </svg>
 
 
-                            <input type="password" id="signup-repeat-password" name="signup-repeat-password" placeholder="Repeat your password">
+                            <input type="password" id="signup-repeat-password" name="signup-repeat-password" placeholder="Repeat your password" required>
 
                             <img href="#" data-open="open" class="eye-svg" src="./images/eye-icon.svg">
                         </div>
@@ -233,5 +233,31 @@
            $(this).attr('src', './images/eye-icon.svg')
            input.attr('type', 'password');
        }
-   })
+   });
+
+   $('#register-form').submit(function(event){
+       event.preventDefault();
+       $('.error-msg').remove();
+       $.ajax({
+            type: "POST",
+            url: '/authenticate/register.php', 
+            data: {'form-data' : $(this).serialize()}, 
+            success: function(data) {
+                console.log(data);
+                if(data != "OK"){
+                    errors = JSON.parse(data);
+                    console.log(errors.hasOwnProperty('email_error'));
+                    if(errors.hasOwnProperty('email_error')){
+                        $('#register-form #email-block').after('<span class="error-msg">'+errors.email_error+'</span>')
+                    }
+                    if(errors.hasOwnProperty('pass_error')){
+                        $('#register-form #password-block').after('<span class="error-msg">'+errors.pass_error+'</span>')
+                    }
+                    if(errors.hasOwnProperty('rep_pass_error')){
+                        $('#register-form #repeat-password-block').after('<span class="error-msg">'+errors.rep_pass_error+'</span>')
+                    }
+                }
+            }
+       });
+   });
 </script>
