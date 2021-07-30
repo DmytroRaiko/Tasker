@@ -240,7 +240,7 @@
        $('.error-msg').remove();
        $.ajax({
             type: "POST",
-            url: '/authenticate/register.php', 
+            url: './authenticate/register.php', 
             data: {'form-data' : $(this).serialize()}, 
             success: function(data) {
                 console.log(data);
