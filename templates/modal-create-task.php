@@ -137,7 +137,7 @@
                         </div>
                     </div>
                     <div class="calendar">
-                        <input class="calendar__input" value="2017/08/03 to 2017/08/13">
+                        <input class="calendar__input" >
                     </div>
                     
 
@@ -240,3 +240,6 @@
         </div>
     </div>
 </div>
+<script>
+
+</script>

@@ -73,14 +73,8 @@ function calendarRangeDays(selectedDates, instance) {
     var date2 = new Date(selectedDates[1]);
     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-  /*
-    if (!$parent.find('.calendar__days').length) {
-      $parent.append('<div class="calendar__days"></div>')
-    }
-    
-    if (!isNaN(diffDays)) {
-      $parent.find('.calendar__days').text(diffDays + 1 + ' days');
-    }*/
+
+    console.log(date1 + " " + date2);
   }
   
   $('.calendar__input').flatpickr({
@@ -93,5 +87,7 @@ function calendarRangeDays(selectedDates, instance) {
       calendarRangeDays(selectedDates, instance);
     },
   });
+
+  
   
 

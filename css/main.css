@@ -650,6 +650,7 @@ input:checked + .slider:before {
   width: 920px;
   min-height: 750px;
   max-height: 800px;
+  border-radius: 4px;
 }
 .modal-of .modal .modal-header {
   height: 38px;
@@ -1138,6 +1139,13 @@ input:checked + .slider:before {
 .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange, .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, .flatpickr-day.endRange.nextMonthDay {
   background: #65C8F3 !important;
   border-color: #65C8F3 !important;
+}
+
+.flatpickr-weekday {
+  border-right: 1px solid #a7a7a738;
+}
+.flatpickr-weekday:last-child {
+  border-right: none;
 }
 
 /*# sourceMappingURL=main.css.map */
