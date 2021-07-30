@@ -8,7 +8,6 @@
 <body>
     <?php
         site_header();
-        include "templates/modal-create-task.php";
     ?>
 
     
