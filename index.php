@@ -10,7 +10,9 @@
         site_header();
         include "templates/modal-create-task.php";
     ?>
-
+    <?php
+        site_body();
+    ?>
     
 
     <?php

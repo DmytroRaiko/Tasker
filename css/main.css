@@ -1068,4 +1068,151 @@ input:checked + .slider:before {
   border-right: none;
 }
 
+.body-main {
+  margin: auto;
+  margin-top: 40px;
+  background-color: #F3F3F3;
+  font-family: "Roboto", sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-column-gap: 30px;
+  color: white;
+  width: 1275px;
+}
+.body-main .body-cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+  align-self: center;
+}
+.body-main .body-cards .card-body {
+  overflow: hidden;
+  transition: 0.5s;
+  background-image: url(../images/forest.jpg);
+  background-size: auto;
+  border-radius: 3px;
+  -webkit-box-shadow: 10px 7px 13px 4px rgba(0, 0, 0, 0.22);
+  box-shadow: 10px 7px 13px 4px rgba(0, 0, 0, 0.22);
+}
+.body-main .body-cards .card-body:hover {
+  transform: scale(0.98);
+  -webkit-box-shadow: 4px 4px 19px 0px #000000;
+  box-shadow: 4px 4px 19px 0px #000000;
+}
+.body-main .body-cards .blurr {
+  background: rgba(85, 85, 85, 0.6);
+  border-radius: 3px;
+  height: 100%;
+}
+.body-main .body-cards .card-header {
+  display: grid;
+  grid-template-columns: 2fr 25px 0.1fr;
+  grid-column-gap: 5px;
+}
+.body-main .body-cards .card-header .card-name {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: 0.18em;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.body-main .body-cards .card-header .date-icon {
+  display: flex;
+  margin: auto;
+}
+.body-main .body-cards .card-header .card-time .date-start {
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  margin: auto;
+  letter-spacing: 0.18em;
+  text-align: right;
+  margin-right: 10px;
+  margin-top: 7px;
+}
+.body-main .body-cards .card-header .card-time .date-end {
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  margin: auto;
+  letter-spacing: 0.18em;
+  text-align: right;
+  margin-right: 10px;
+}
+.body-main .body-cards hr {
+  margin-left: 10px;
+  margin-right: 10px;
+  border-color: #d6d2d28f;
+  border-style: solid;
+  border-width: 1px;
+}
+.body-main .body-cards .card-description {
+  width: 80%;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.body-main .body-cards .card-description p {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+}
+.body-main .body-cards .card-footer {
+  width: 80%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 100px;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: capitalize;
+  display: flex;
+  align-items: flex-end;
+}
+.body-main .body-filter {
+  margin-right: 89px;
+  font-weight: 500;
+  color: #565252;
+  display: grid;
+  grid-template-columns: 0.8fr 1fr 0.9fr 1.3fr;
+  grid-template-rows: none;
+  width: 300px;
+  font-size: 15px;
+  position: relative;
+  height: 35px;
+}
+.body-main .body-filter .sorting-by {
+  font-weight: bold;
+}
+.body-main .filter {
+  display: flex;
+  justify-content: flex-end;
+}
+.body-main .filter:hover .checker {
+  display: block;
+  position: absolute;
+  z-index: 9999;
+  margin-left: -140px;
+  margin-top: 25px;
+  border-radius: 5px;
+  border: 1px solid #E4E4E4;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+.body-main .checker {
+  display: none;
+  width: 250px;
+  height: 170px;
+  background-color: #f9f9f9;
+  margin-right: 30px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.body-main .checker .pop {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+.body-main .checker .pop-text {
+  margin-left: 8px;
+  display: unset;
+}
+
 /*# sourceMappingURL=main.css.map */

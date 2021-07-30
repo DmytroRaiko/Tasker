@@ -83,5 +83,5 @@ body:before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a    \2577 \a 14 \2502          font-family: $font-family;\a    \2502                       ^^^^^^^^^^^^\a    \2575 \a   sass/components/sign-form.scss 14:22  root stylesheet";
+  content: "Error: Undefined variable.\a    \2577 \a 14 \2502          font-family: $font-family;\d\a    \2502                       ^^^^^^^^^^^^\a    \2575 \a   sass\\components\\sign-form.scss 14:22  root stylesheet";
 }
