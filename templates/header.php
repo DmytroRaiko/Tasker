@@ -1,3 +1,17 @@
+<?php 
+session_start();
+$db = new Database();
+
+$employees_info = $db->query(
+    "SELECT * 
+    FROM `employees` 
+    INNER JOIN `user` ON `employees`.`UserID`=`user`.`UserID` 
+    WHERE `employees`.`EmployeeID` = :id ",
+    [
+        ':id' => '1'
+    ]);
+?>
+
 <header class="site-header">
     <div class="left-header">
         <div class="site-logo">
@@ -20,7 +34,43 @@
             <a id="notification-button" class="modal-open" data-modal="notification">
                 <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.5 25C12.3288 25 13.1237 24.6708 13.7097 24.0847C14.2958 23.4987 14.625 22.7038 14.625 21.875H8.375C8.375 22.7038 8.70424 23.4987 9.29029 24.0847C9.87634 24.6708 10.6712 25 11.5 25ZM13.0547 1.71718C13.0765 1.49992 13.0525 1.2805 12.9843 1.07308C12.9161 0.865651 12.8052 0.674822 12.6587 0.512897C12.5122 0.350973 12.3334 0.221548 12.1339 0.13297C11.9343 0.0443915 11.7184 -0.00137329 11.5 -0.00137329C11.2816 -0.00137329 11.0657 0.0443915 10.8661 0.13297C10.6666 0.221548 10.4878 0.350973 10.3413 0.512897C10.1948 0.674822 10.0839 0.865651 10.0157 1.07308C9.94748 1.2805 9.9235 1.49992 9.94531 1.71718C8.17925 2.0764 6.5916 3.03493 5.45119 4.43046C4.31079 5.826 3.68773 7.57277 3.6875 9.37499C3.6875 11.0906 2.90625 18.75 0.5625 20.3125H22.4375C20.0938 18.75 19.3125 11.0906 19.3125 9.37499C19.3125 5.59374 16.625 2.43749 13.0547 1.71718Z" fill="#F9F9F9"/>
-                </svg>  
+                </svg>
+                <div id="count-unread-message" class="text text-center">
+ 
+                </div>  
+                
+                <script>
+                    $( function () {
+                        $.ajax({
+                            type: "POST",
+                            url: "./templates/number-block-notification.php",
+
+                            success: function(data) {
+                                if (data == 0) {
+                                    $('#count-unread-message').css('display', 'none');
+                                } else {
+                                    $('#count-unread-message').css('display', 'flex');
+                                    $('#count-unread-message').html(data);
+                                }
+
+                            }
+                        });
+                    });
+                    
+                    /*$(document).ready( function () {
+                        /*$('body').on('click', '.header-project-search', function (e) {
+                            $.ajax({
+                                type: "POST",
+                                url: "./templates/search-project-list.php",
+                                data: 'header-project-search=' + $(this).val(),
+
+                                success: function(data) {
+                                    $('#project-list').html(data);
+                                }
+                            });
+                        });
+                    })*/
+                </script>
             </a>
 
             <div class="modal-of" id="notification-modal">
@@ -36,24 +86,41 @@
                         </div>
                     </div>
 
-                    <div class="modal-body modal-notification">
-                        <?php if (false) : ?>
-                            <!-- если есть уведомления -> выводим уведомления-->
-                        <?php else : ?>
-                            <!-- выводим иконку отстутствия уведомлений -->
-
-                            <div class="no-notifications">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 274 249"><defs><style>.a,.b,.c,.d,.e,.f,.g,.h,.i,.j,.k,.l{fill:none;stroke:#e5e4e4;stroke-miterlimit:10;stroke-width:4px;}.a{stroke-dasharray:54 5 18;}.b{stroke-dasharray:74 5 70 10;}.c{stroke-dasharray:50 5 30 4 22 10;}.d{stroke-dasharray:30 5 25 10;}.e{stroke-dasharray:10 5 30 15 80 20;}.f{stroke-dasharray:70 5 50 10 10 10;}.g{stroke-dasharray:74 5 30 5;}.h{stroke-dasharray:30 5 5 3 40;}.i{stroke-dasharray:30 5 15 60;}.j{stroke-dasharray:20 5 40 10;}.k{stroke-dasharray:37 11 15;}.l{stroke-dasharray:74 5;}.m{fill:#373433;}</style></defs><line class="a" x1="15" y1="62" x2="261" y2="62"/><line class="b" x1="7" y1="83" x2="270" y2="83"/><line class="c" x1="2" y1="103" x2="274" y2="103"/><line class="d" y1="125" x2="270" y2="125"/><line class="e" x1="2" y1="146" x2="274" y2="146"/><line class="f" x1="7" y1="165" x2="269" y2="165"/><line class="g" x1="15" y1="186" x2="261" y2="186"/><line class="h" x1="28" y1="207" x2="248" y2="207"/><line class="i" x1="46" y1="226" x2="230" y2="226"/><line class="j" x1="76" y1="247" x2="200" y2="247"/><line class="k" x1="46" y1="40" x2="249" y2="40"/><line class="l" x1="47" y1="21" x2="220" y2="21"/><line class="l" x1="73" y1="2" x2="203" y2="2"/><path class="m" d="M144,213.7c-10.51.06-13.74-9.7-13.74-9.7h27.49S154.35,213.64,144,213.7Z" transform="translate(-6 -20)"/><path class="m" d="M217.86,61.31l6.92,6.7L63.66,227.38l-6.81-6.82L85,192.73V185c31.18-1.44-2.2-59.26,27.29-84,7.76-8.69,17.82-11.6,26.71-12.81L139,68l10,0,.08,20.14s13.11-.78,27.52,13.84Z" transform="translate(-6 -20)"/><path class="m" d="M188,172.47c-.61-8.07,1.46-46.06-2-51.93L108.71,195H203v-9.33S190.9,185.69,188,172.47Z" transform="translate(-6 -20)"/></svg>
-                                <div class="text text-24">
-                                    Any notifications
-                                </div>
-                            </div>
-                        <?php endif ?>
+                    <div class="modal-body modal-notification" id="notification-list">
+                        
                     </div>
+                    <script>
+                        $( function () {
+                            $.ajax({
+                                type: "POST",
+                                url: "./templates/block-notification.php",
+
+                                success: function(data) {
+                                    $('#notification-list').html(data);
+                                }
+                            });
+                        });
+                        
+                        /*$(document).ready( function () {
+                            /*$('body').on('click', '.header-project-search', function (e) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "./templates/search-project-list.php",
+                                    data: 'header-project-search=' + $(this).val(),
+
+                                    success: function(data) {
+                                        $('#project-list').html(data);
+                                    }
+                                });
+                            });
+                        })*/
+                    </script>
                 </div>
             </div>
         </div>
 
+        
+            
         <div class="project-list-button list">
             <div class="icon">
                 <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,9 +131,8 @@
             </div>
 
             <div class="text text-18">
-                SumDU practice IT
+               Choose a project
             </div>
-
             <ul class="list-under">
                 <li class="search">
                     <div class="header-search-icon">
@@ -75,50 +141,41 @@
                         </svg>
                     </div>
 
-                    <input class="header-project-search text text-16" placeholder="Search">
+                    <input class="header-project-search text text-16" placeholder="Search" name="header-project-search" id="header-project-search">
                 </li>
 
                 <li id="project-list">
-                    <a href="" class="project-item">
-                        <div class="project-icon">
-                        </div>
-                        <div class="project-list-content">
-                            <div class="project-name-list text text-19">
-                                Life board
-                            </div>
-                            <div class="project-type-list text text-14">
-                                Life, Tasks
-                            </div>
-                        </div>
-                    </a>
-                    <hr>
-
-                    <a href="" class="project-item">
-                        
-                        <div class="project-list-content">
-                            <div class="project-name-list text text-19">
-                                Life board
-                            </div>
-                            <div class="project-type-list text text-14">
-                                Life, Tasks
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="" class="project-item">
-                        <div class="project-icon">
-                        </div>
-                        <div class="project-list-content">
-                            <div class="project-name-list text text-19">
-                                Life board
-                            </div>
-                            <div class="project-type-list text text-14">
-                                Life, Tasks
-                            </div>
-                        </div>
-                    </a>
+                    <?php require_once "./templates/search-project-list.php" ?>
                 </li>
             </ul>
+
+            <script>
+                $(document).ready( function () {
+                    $('body').on('click', '.header-search-icon', function (e) {
+                        $.ajax({
+                            type: "POST",
+                            url: "./templates/search-project-list.php",
+                            data: 'header-project-search=' + $('#header-project-search').val(),
+
+                            success: function(data) {
+                                $('#project-list').html(data);
+                            }
+                        });
+                    });
+
+                    $('body').on('input', '.header-project-search', function (e) {
+                        $.ajax({
+                            type: "POST",
+                            url: "./templates/search-project-list.php",
+                            data: 'header-project-search=' + $(this).val(),
+
+                            success: function(data) {
+                                $('#project-list').html(data);
+                            }
+                        });
+                    });
+                })
+            </script>
         </div>
     </div>
 
@@ -145,7 +202,7 @@
             
 
             <div class="profile-name text text-18">
-                Ivan Ivanov
+                <?= $employees_info[0]['Name'] . ' ' . $employees_info[0]['Surname']?>
             </div>
 
             <div class="separator-profile">
@@ -174,10 +231,10 @@
 
                     <div class="name-mail-header">
                         <div class="profile-name text text-profile text-14">
-                            Ivan Ivanov
+                            <?= $employees_info[0]['Name'] . ' ' . $employees_info[0]['Surname']?>
                         </div>
                         <div class="profile-mail text text-profile text-12">
-                            ivanovivan@gmail.com
+                           <?= $employees_info[0]['Email'] ?>
                         </div>
                     </div>
                 </li>
@@ -195,7 +252,6 @@
                     <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.28125 0.625C1.75911 0.625 1.25835 0.832421 0.889134 1.20163C0.519921 1.57085 0.3125 2.07161 0.3125 2.59375V6.53125C0.3125 7.05339 0.519921 7.55415 0.889134 7.92337C1.25835 8.29258 1.75911 8.5 2.28125 8.5H16.7188C17.2409 8.5 17.7417 8.29258 18.1109 7.92337C18.4801 7.55415 18.6875 7.05339 18.6875 6.53125V2.59375C18.6875 2.07161 18.4801 1.57085 18.1109 1.20163C17.7417 0.832421 17.2409 0.625 16.7188 0.625H2.28125ZM2.28125 11.125C1.75911 11.125 1.25835 11.3324 0.889134 11.7016C0.519921 12.0708 0.3125 12.5716 0.3125 13.0938V14.4062C0.3125 14.9284 0.519921 15.4292 0.889134 15.7984C1.25835 16.1676 1.75911 16.375 2.28125 16.375H6.21875C6.74089 16.375 7.24165 16.1676 7.61087 15.7984C7.98008 15.4292 8.1875 14.9284 8.1875 14.4062V13.0938C8.1875 12.5716 7.98008 12.0708 7.61087 11.7016C7.24165 11.3324 6.74089 11.125 6.21875 11.125H2.28125ZM12.7812 11.125C12.2591 11.125 11.7583 11.3324 11.3891 11.7016C11.0199 12.0708 10.8125 12.5716 10.8125 13.0938V14.4062C10.8125 14.9284 11.0199 15.4292 11.3891 15.7984C11.7583 16.1676 12.2591 16.375 12.7812 16.375H16.7188C17.2409 16.375 17.7417 16.1676 18.1109 15.7984C18.4801 15.4292 18.6875 14.9284 18.6875 14.4062V13.0938C18.6875 12.5716 18.4801 12.0708 18.1109 11.7016C17.7417 11.3324 17.2409 11.125 16.7188 11.125H12.7812Z" fill="#565252"/>
                     </svg>
-
                     Activity
                 </li>
                 <hr>
@@ -204,8 +260,6 @@
                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.5 0.419998C4.93291 0.419998 0.420013 4.9329 0.420013 10.5C0.420082 11.8237 0.680878 13.1345 1.18751 14.3574C1.69414 15.5803 2.43668 16.6915 3.37275 17.6275C4.30881 18.5634 5.42006 19.3059 6.64305 19.8124C7.86604 20.3189 9.17681 20.5795 10.5005 20.5795C11.8243 20.5794 13.135 20.3186 14.3579 19.812C15.5809 19.3053 16.6921 18.5628 17.628 17.6267C18.564 16.6907 19.3064 15.5794 19.8129 14.3564C20.3194 13.1334 20.5801 11.8227 20.58 10.4989C20.58 4.9329 16.0661 0.419998 10.5 0.419998ZM10.3415 16.3789H10.2879C9.46681 16.3548 8.88721 15.7489 8.91136 14.9394C8.93446 14.1435 9.52771 13.5649 10.3215 13.5649L10.3698 13.567C11.214 13.5912 11.7873 14.1907 11.7632 15.0234C11.739 15.8214 11.1563 16.3789 10.3415 16.3789ZM13.797 9.5214C13.6038 9.7944 13.1796 10.1367 12.6441 10.5535L12.054 10.9599C11.7306 11.2119 11.5353 11.4502 11.4629 11.6823C11.4041 11.865 11.3768 11.9143 11.3715 12.2871V12.3816H9.11926L9.12556 12.1905C9.15391 11.4093 9.17281 10.9473 9.49726 10.5661C10.0065 9.96975 11.13 9.24525 11.1773 9.2148C11.3314 9.1022 11.4659 8.9649 11.5752 8.80845C11.8115 8.4819 11.9154 8.2257 11.9154 7.9758C11.9154 7.6251 11.8125 7.30065 11.6078 7.014C11.4104 6.7347 11.0355 6.5961 10.4937 6.5961C9.95611 6.5961 9.58756 6.7662 9.36811 7.1169C9.14131 7.47495 9.02686 7.8519 9.02686 8.23725V8.33385H6.70531L6.70951 8.23305C6.76936 6.8124 7.27756 5.78865 8.21626 5.1912C8.80741 4.81215 9.54346 4.62 10.4013 4.62C11.5227 4.62 12.4719 4.893 13.2174 5.4306C13.9745 5.97555 14.3577 6.79245 14.3577 7.85715C14.3567 8.4525 14.1687 9.01215 13.797 9.5214Z" fill="#565252"/>
                     </svg>
-
-
                     Help
                 </li>
                 <hr>

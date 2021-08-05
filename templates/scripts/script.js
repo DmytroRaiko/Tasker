@@ -10,7 +10,26 @@ $(document).ready( function () {
         let modal = $(this).data("modal");
         
         $('#'+ modal + "-modal").toggleClass('modal-of-show');
-    })
+    });
+
+    $('body').on('click', '.project-list-button', function (e) {  
+        const target = e.target;
+
+
+        if (target !== target.closest('.list-under') && 
+                target !== target.closest('.header-project-search') && 
+                target !== target.closest('svg')) {
+                
+            $(this).toggleClass('click-target');
+        }
+
+        if (target === target.closest('.header-project-search')) {
+            if ($(this).hasClass('.click-target')) {
+            } else {
+                $(this).addClass('click-target');
+            }
+        }
+    });
 
     $('body').on('click', '.modal-of', function (e) {
 
