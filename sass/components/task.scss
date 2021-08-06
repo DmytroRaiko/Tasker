@@ -17,7 +17,7 @@
         width: 100%;
         display: grid;
         grid-template-rows: 1fr 1fr;
-        grid-row-gap: 50px;
+        grid-row-gap: 24px;
         
 
         .card-task{
@@ -94,7 +94,7 @@
 
             .executor-task{
                 margin-top: 7px;
-                margin-bottom: 11px;
+            
                 display: flex;
 
                 .ex{
@@ -140,8 +140,6 @@
                     }
                    
                 }
-
-             
             }
             hr{
                 margin-right: 40px;
@@ -150,16 +148,21 @@
             }
 
             .task-descript{
-                white-space: normal; 
-                overflow: hidden; 
-                text-overflow: ellipsis;
                 width: 80%;
                 margin-top: 14px;
                 margin-left: 14px;
-                margin-bottom: 14px;
                 letter-spacing: 0.08em;
-                line-height: 102.19%;
+                line-height: 16px;
                 font-weight: 500;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -moz-box;
+                -moz-box-orient: vertical;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                line-clamp: 3;
+                box-orient: vertical;
             }
         }
 
@@ -171,9 +174,8 @@
             box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
             border-radius: 4px;
             font-family: $body-font-family;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 0.5fr 1fr 0.5fr;
             height: 90px;
             
             .add-task-text{
@@ -183,22 +185,47 @@
                 line-height: 37px;
                 letter-spacing: 0.18em;
                 text-transform: uppercase;
-    
-                color: #F0EFEF;
-    
-                
                 display: flex;
                 justify-content: center;
+                color: #F0EFEF;
+                margin: auto;
+                -webkit-text-stroke: 2px #DADADA;
+
             }
 
-            .add-button{
+            .add-button1{
                 border: 1px dashed #DADADA;
                 border-radius: 50%;
                 width: 80px;
                 height: 80px;
                 display: flex;
-                margin-top: 7px;
-                margin-bottom: 7px;
+               justify-content: flex-start;
+                background: $white;
+                margin: auto;
+               margin-top: 3.5px;
+
+               svg{
+                   display: flex;
+                   justify-content: center;
+                   margin: auto;
+               }
+            }
+            .add-button2{
+                border: 1px dashed #DADADA;
+                border-radius: 50%;
+                width: 80px;
+                height: 80px;
+                display: flex;
+               justify-content: flex-end;
+               margin: auto;
+                background: $white;
+               margin-top: 3.5px;
+
+               svg{
+                display: flex;
+                justify-content: center;
+                margin: auto;
+            }
             }
         }
     }

@@ -67,12 +67,19 @@
         </div>
 
         <div class="add-task">
-            <div class="add-button">
+            <div class="add-button1">
+                <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.544922 19.8638H19.8959V0.125809H26.0882V19.8638H45.6972V26.0561H26.0882V45.2781H19.8959V26.0561H0.544922V19.8638Z" fill="#C4C4C4" fill-opacity="0.15"/>
+                </svg>
             </div>
             <div class="add-task-text">
             ADD TASK
             </div>
-            <div class="add-button">
+            <div class="add-button2">
+                <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.544922 19.8638H19.8959V0.125809H26.0882V19.8638H45.6972V26.0561H26.0882V45.2781H19.8959V26.0561H0.544922V19.8638Z" fill="#C4C4C4" fill-opacity="0.15"/>
+                </svg>
+
             </div>
         </div>
     </div>
