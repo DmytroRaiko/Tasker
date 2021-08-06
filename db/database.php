@@ -2,13 +2,8 @@
   class Database {
     private $link;
 
-    public function __construct($configure = "") {
-      if($configure == "student") {
+    public function __construct() {
         $this->connect(1);
-      }
-      else {
-        $this->connect(0);
-      }
     }
 
     private function connect($perm) {

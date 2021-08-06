@@ -8,10 +8,10 @@
 <body>
     <?php
         site_header();
-        include "templates/modal-create-task.php";
+        //include "templates/modal-create-task.php";
     ?>
     <?php
-        site_body();
+        site_task();
     ?>
     
 
