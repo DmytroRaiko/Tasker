@@ -2,32 +2,24 @@
   class Database {
     private $link;
 
-    public function __construct($configure = "") {
-      if($configure == "student") {
-        $this->connect(1);
-      }
-      else {
-        $this->connect(0);
-      }
+    public function __construct() {
+      $this->connect();
     }
 
-    private function connect($perm) {
+    private function connect() {
       try {
         $config = [
-          'database' => 'planning',
-          'username' => 'root',
-          'password' => 'root',
-          'host' => 'localhost',
-          'port' => '3306',
-          'charset' => 'utf8'
+          'database'  => 'planning',
+          'username'  => 'root',
+          'password'  => 'root',
+          'host'      => 'localhost',
+          'charset'   => 'utf8'
         ];
 
-        $dbh = 'mysql:host='.$config['host'].
-          ';port='.$config['port'].';dbname='.$config['database'].
-          ';charset='.$config['charset'];
+        $dbh = 'mysql:host='.$config['host'].';dbname='.$config['database'].';charset='.$config['charset'];
         $this->link = new PDO($dbh, $config['username'], $config['password']);
       } catch(Exception $e) {
-        $explain = ($perm == 1) ? '(1)' : '(2)';
+        $explain = 1;
         echo '<div class="error">
                 <h1>Error#780'.$explain.'</h1>
                 <p>Ошибка при попытке подключится к базе данных.</p>
@@ -57,4 +49,3 @@
       return $result;
     }
   }
- ?>

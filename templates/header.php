@@ -224,7 +224,7 @@
                     <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.65 0.150002V2.25H14.75V12.75H12.65V14.85H16.85V0.150002H12.65ZM12.65 8.55V6.45H4.66999L9.18499 1.935L7.71499 0.465001L0.679993 7.5L7.71499 14.535L9.18499 13.065L4.66999 8.55H12.65Z" fill="#565252"/>
                     </svg>
-                    <a href="./log_page.php?action=signin"> Log out </a>
+                    <a href="../authenticate/logout.php"> Log out </a>
                 </li>
             </ul>
         </div>

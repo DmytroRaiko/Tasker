@@ -1,4 +1,7 @@
-<?php include_once("function.php") ?>
+<?php 
+    include_once("function.php");
+    require_once './authenticate/check_auth.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
