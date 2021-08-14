@@ -1090,7 +1090,7 @@ input:checked + .slider:before {
 .body-main .body-cards .card-body {
   overflow: hidden;
   transition: 0.5s;
-  background-image: url(../images/forest.jpg);
+  background-image: url(../inc/images/forest.jpg);
   background-size: auto;
   border-radius: 3px;
   -webkit-box-shadow: 10px 7px 13px 4px rgba(0, 0, 0, 0.22);

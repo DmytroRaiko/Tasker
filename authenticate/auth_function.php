@@ -18,16 +18,6 @@ function check_reg_form_valid($form){
     
 }
 
-function check_auth_form_valid($form){
-    $error = array();
-    $passPattern = '/\w{6,40}/';
-    if(!preg_match($passPattern, $form['signin-password'])){
-        $error['pass_error'] = 'Пароль має бути не менше 6 символів і не містити спецсимволів';
-    }
-    
-    return $error;
-    
-}
 
 function check_auth_values($values){
     $result = array();

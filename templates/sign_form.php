@@ -73,7 +73,7 @@
 
                             <input type="password" id="signup-password" name="signup-password" placeholder="Password" required>
 
-                            <img href="#" data-open="open" class="eye-svg" src="./images/eye-icon.svg">
+                            <img href="#" data-open="open" class="eye-svg" src="./inc/images/eye-icon.svg">
                         </div>
                         <div id="repeat-password-block" class="input-block">
                             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +83,7 @@
 
                             <input type="password" id="signup-repeat-password" name="signup-repeat-password" placeholder="Repeat your password" required>
 
-                            <img href="#" data-open="open" class="eye-svg" src="./images/eye-icon.svg">
+                            <img href="#" data-open="open" class="eye-svg" src="./inc/images/eye-icon.svg">
                         </div>
                         <button id="signup-btn">Register</button>
                     </form>
@@ -104,7 +104,7 @@
             </div>
 
             <div class="log-image-side-block">
-                <img src="./images/signup_img.png" alt="signup-img">
+                <img src="./inc/images/signup_img.png" alt="signup-img">
                 <div class="next-sign-form">
                     <a href="./log_page.php?action=signin">I`m already member</a>
                 </div>
@@ -156,7 +156,7 @@
         </div>
         <div class="log-form-wrapper">
             <div class="log-image-side-block">
-                <img src="./images/signin_img.png" alt="signin-img">
+                <img src="./inc/images/signin_img.png" alt="signin-img">
                 <div class="next-sign-form">
                     <a href="./log_page.php?action=signup">Create an account</a>
                 </div>
@@ -180,7 +180,7 @@
 
                             <input type="password" id="signin-password" name="signin-password" placeholder="Password" required>
 
-                            <img href="#" data-open="open" class="eye-svg" src="./images/eye-icon.svg">
+                            <img href="#" data-open="open" class="eye-svg" src="./inc/images/eye-icon.svg">
                             
                         </div>
                         <div id="remember-block">
@@ -226,12 +226,12 @@
        console.log(input);
        if( $(this).data('open') == 'open'){
            $(this).data('open', 'close');
-           $(this).attr('src', './images/close-eye-icon.svg')
+           $(this).attr('src', './inc/images/close-eye-icon.svg')
            input.attr('type', 'text');
        }
        else{
            $(this).data('open', 'open');
-           $(this).attr('src', './images/eye-icon.svg')
+           $(this).attr('src', './inc/images/eye-icon.svg')
            input.attr('type', 'password');
        }
    });
@@ -280,10 +280,10 @@
                 if(data != "OK"){
                     errors = JSON.parse(data);
                     if(errors.hasOwnProperty('login_error')){
-                        $('#register-form #email-block').after('<span class="error-msg">'+errors.email_error+'</span>')
+                        $('#login-form #login-block').after('<span class="error-msg">'+errors.login_error+'</span>')
                     }
                     if(errors.hasOwnProperty('password_error')){
-                        $('#register-form #email-block').after('<span class="error-msg">'+errors.create_error+'</span>')
+                        $('#login-form #password-block').after('<span class="error-msg">'+errors.password_error+'</span>')
                     }
                 }
                 else{
