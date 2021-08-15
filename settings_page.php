@@ -12,7 +12,7 @@
         site_header();
     ?>
 
-    <div id="main-block">
+    <div id="settings-main-block">
         <h1>Account Information</h1>
 
         <div id="info-blocks-wrapper">
@@ -22,21 +22,16 @@
                 </div>
                 <div class="info-blocks-body">
                     <form action="" id="personal-info-form" class="info-block-form">
-                        <div class="info-block">
-                            <div class="info-block-component non-edit">
-                                <label for="last-name-input" class="info-block-label">Last Name</label>
-                                <p id="sett-last-name" class="info-block-value">Глуховцов</p>
-                                <input type="text" id="last-name-input" name="last-name-input">
-                            </div>
-                            <div class="info-block-component non-edit">
-                                <label for="first-name-input" class="info-block-label">First Name</label>
-                                <p id="sett-first-name" class="info-block-value">Дмитро</p>
-                                <input type="text" id="first-name-input" name="first-name-input">
-                            </div>
-                            <div class="info-form-btns non-edit">
-                                <button class="confirm-btn">Change</button>
-                                <button class="cancel-btn">Cancel</button>
-                            </div>
+                        <div class="info-block-component">
+                            <label for="last-name-input" class="info-block-label">Last Name</label>
+                            <input type="text" id="last-name-input" name="last-name-input" value="Глуховцов">
+                        </div>
+                        <div class="info-block-component">
+                            <label for="first-name-input" class="info-block-label">First Name</label>
+                            <input type="text" id="first-name-input" name="first-name-input" value="Дмитро">
+                        </div>
+                        <div class="info-form-btns">
+                            <button class="confirm-btn" >Change</button>
                         </div>
                     </form>
                 </div>
@@ -47,21 +42,16 @@
                 </div>
                 <div class="info-blocks-body">
                     <form action="" id="contact-form" class="info-block-form">
-                        <div class="info-block">
-                            <div class="info-block-component non-edit">
-                                <label for="contact-tel-input" class="info-block-label">Phone</label>
-                                <p id="sett-contact-tel" class="info-block-value">+380952211089</p>
-                                <input type="text" id="contact-tel-input" name="contact-tel-input">
-                            </div>
-                            <div class="info-block-component non-edit">
-                                <label for="contact-email-input" class="info-block-label">Email</label>
-                                <p id="sett-email" class="info-block-value">Дмитро</p>
-                                <input type="text" id="contact-email-input" name="contact-email-input">
-                            </div>
+                        <div class="info-block-component">
+                            <label for="contact-tel-input" class="info-block-label">Phone</label>
+                            <input type="text" id="contact-tel-input" name="contact-tel-input" value="+380952211089">
                         </div>
-                        <div class="info-form-btns non-edit">
+                        <div class="info-block-component">
+                            <label for="contact-email-input" class="info-block-label">Email</label>
+                            <input type="text" id="contact-email-input" name="contact-email-input" value="dmitrogluhovcov@gmail.com">
+                        </div>
+                        <div class="info-form-btns">
                             <button class="confirm-btn">Change</button>
-                            <button class="cancel-btn">Cancel</button>
                         </div>
                     </form>
                 </div>
