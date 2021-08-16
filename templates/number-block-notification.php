@@ -11,9 +11,8 @@ $project_list = [
 try {
     $project_list = $db->query(
         "SELECT count(*) 
-        FROM `notifications` INNER JOIN `tasks` ON `notifications`.`TaskID`=`tasks`.`TaskID`
-            INNER JOIN `tasklist` ON `tasklist`.`TaskID`=`tasks`.`TaskID`
-        WHERE `tasklist`.`EmployeeID` = :id AND `notifications`.`Status` LIKE 'unread'",
+        FROM `notifications` INNER JOIN `tasklist` ON `notifications`.`TasklistID`=`tasklist`.`TaskListID`
+        WHERE `tasklist`.`EmployeeID` = :id AND `notifications`.`Status` IN ('unread') ",
         [
             ':id' => 1
         ]
@@ -34,4 +33,4 @@ if (count($project_list) > 0 ) {
     $return_value = 0;
 }
 
-echo $return_value;
+//echo $return_value;

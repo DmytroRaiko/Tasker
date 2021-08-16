@@ -91,4 +91,30 @@ function date_format_custom ($date) {
         return  date('d.m.Y', strtotime($date)) . ', ' . $time;
     }
 }
+
+function upload_documents ($file, $tmp, $dir_type, $recording_id, $index){
+
+    $path = '../../../documents';
+    if (!is_dir($path)) {
+        mkdir($path, 0777, true);
+    }
+
+    $path = '../../../documents/' . $dir_type;
+    if (!is_dir($path)) {
+        mkdir($path, 0777, true);
+    }
+
+    $path = '../../../documents/' . $dir_type . '/' . $recording_id;
+    if (!is_dir($path)) {
+        mkdir($path, 0777, true);
+    }
+
+    $position_dots = strripos ($file, '.');
+
+    $name = substr($file, 0, $position_dots) . '[' . hash('ripemd160', $index . time()) . ']' . substr($file, $position_dots, strlen($file) -1);
+    $new_file = $path . '/' . $name;
+    copy($tmp, $new_file);
+
+    return $name;
+  }
 ?>

@@ -81,7 +81,7 @@
                                         <path d="M23.1112 7.1111H12.4445C11.4641 7.1111 10.6667 7.90843 10.6667 8.88888V19.5555C10.6667 20.536 11.4641 21.3333 12.4445 21.3333H23.1112C24.0916 21.3333 24.889 20.536 24.889 19.5555V8.88888C24.889 7.90843 24.0916 7.1111 23.1112 7.1111ZM21.3334 15.1111H18.6667V17.7778H16.889V15.1111H14.2223V13.3333H16.889V10.6667H18.6667V13.3333H21.3334V15.1111Z" fill="#565252"/>
                                     </svg>
                                 </label>
-                                <input class="input-file-first" style="display: none" type="file" name="attachment" id="attachment"/>
+                                <input class="input-file-first" style="display: none" type="file" name="attachment[]" id="attachment"/>
                             </div>
                         </div>
 

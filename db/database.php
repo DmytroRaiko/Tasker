@@ -42,6 +42,9 @@
       }
       $exe = $this->link->prepare($sql);
       $exe->execute($params);
+
+      // if (!is_array($params)) {
+      // }
       $result = $exe->fetchAll(PDO::FETCH_ASSOC);
       if($result === false) {
         return ['error' => 'Ошибка выполнения запроса!'];

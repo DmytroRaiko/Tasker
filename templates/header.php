@@ -1,5 +1,6 @@
 <?php 
-session_start();
+//session_start();
+
 $db = new Database();
 
 $employees_info = $db->query(
@@ -8,8 +9,9 @@ $employees_info = $db->query(
     INNER JOIN `user` ON `employees`.`UserID`=`user`.`UserID` 
     WHERE `employees`.`EmployeeID` = :id ",
     [
-        ':id' => '1'
-    ]);
+        ':id' => 1
+    ]
+);
 ?>
 
 <header class="site-header">
@@ -35,9 +37,7 @@ $employees_info = $db->query(
                 <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.5 25C12.3288 25 13.1237 24.6708 13.7097 24.0847C14.2958 23.4987 14.625 22.7038 14.625 21.875H8.375C8.375 22.7038 8.70424 23.4987 9.29029 24.0847C9.87634 24.6708 10.6712 25 11.5 25ZM13.0547 1.71718C13.0765 1.49992 13.0525 1.2805 12.9843 1.07308C12.9161 0.865651 12.8052 0.674822 12.6587 0.512897C12.5122 0.350973 12.3334 0.221548 12.1339 0.13297C11.9343 0.0443915 11.7184 -0.00137329 11.5 -0.00137329C11.2816 -0.00137329 11.0657 0.0443915 10.8661 0.13297C10.6666 0.221548 10.4878 0.350973 10.3413 0.512897C10.1948 0.674822 10.0839 0.865651 10.0157 1.07308C9.94748 1.2805 9.9235 1.49992 9.94531 1.71718C8.17925 2.0764 6.5916 3.03493 5.45119 4.43046C4.31079 5.826 3.68773 7.57277 3.6875 9.37499C3.6875 11.0906 2.90625 18.75 0.5625 20.3125H22.4375C20.0938 18.75 19.3125 11.0906 19.3125 9.37499C19.3125 5.59374 16.625 2.43749 13.0547 1.71718Z" fill="#F9F9F9"/>
                 </svg>
-                <div id="count-unread-message" class="text text-center">
- 
-                </div>  
+                <div id="count-unread-message" class="text text-center"></div>  
                 
                 <script>
                     $( function () {
@@ -57,19 +57,6 @@ $employees_info = $db->query(
                         });
                     });
                     
-                    /*$(document).ready( function () {
-                        /*$('body').on('click', '.header-project-search', function (e) {
-                            $.ajax({
-                                type: "POST",
-                                url: "./templates/search-project-list.php",
-                                data: 'header-project-search=' + $(this).val(),
-
-                                success: function(data) {
-                                    $('#project-list').html(data);
-                                }
-                            });
-                        });
-                    })*/
                 </script>
             </a>
 
@@ -100,26 +87,10 @@ $employees_info = $db->query(
                                 }
                             });
                         });
-                        
-                        /*$(document).ready( function () {
-                            /*$('body').on('click', '.header-project-search', function (e) {
-                                $.ajax({
-                                    type: "POST",
-                                    url: "./templates/search-project-list.php",
-                                    data: 'header-project-search=' + $(this).val(),
-
-                                    success: function(data) {
-                                        $('#project-list').html(data);
-                                    }
-                                });
-                            });
-                        })*/
                     </script>
                 </div>
             </div>
         </div>
-
-        
             
         <div class="project-list-button list">
             <div class="icon">
@@ -286,3 +257,43 @@ $employees_info = $db->query(
 
 </header>
 
+<script>
+    $(document).ready( function () {
+        $('body').on('click', '.notification-item', function (e) {
+           
+            $.ajax({
+                type: "POST",
+                url: "./templates/view-modal.php",
+                data: 'notification=' + $(this).data('notificationid'),
+                
+                success: function(data) {
+                    $('#modal-output').html(data);
+                    $('#notification-modal').toggleClass('modal-of-show');
+
+                    $.ajax({
+                        type: "POST",
+                        url: "./templates/number-block-notification.php",
+
+                        success: function(dataCount) {
+                            if (dataCount == 0) {
+                                $('#count-unread-message').css('display', 'none');
+                            } else {
+                                $('#count-unread-message').css('display', 'flex');
+                                $('#count-unread-message').html(dataCount);
+                            }
+                        }
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "./templates/block-notification.php",
+
+                        success: function(dataNot) {
+                            $('#notification-list').html(dataNot);
+                        }
+                    });
+                }
+            });
+        })
+    })
+</script>

@@ -13,17 +13,36 @@ $project_list = [
 
 try {
     $project_list = $db->query(
-        "SELECT `taskS`.`Title` AS 'TitleTask', `tasks`.`Descriptions` AS 'Descriptions', 
-                `notifications`.`Status` AS 'statusNot', `notifications`.`NotificationID` AS 'NotificationID', 
-                `notifications`.`ScheduledTime` AS 'ScheduledTime', `notifications`.`NotificationText` AS 'NotificationText'
-        FROM `notifications` INNER JOIN `tasks` ON `notifications`.`TaskID`=`tasks`.`TaskID`
-            INNER JOIN `tasklist` ON `tasklist`.`TaskID`=`tasks`.`TaskID`
-        WHERE `tasklist`.`EmployeeID` = :id AND `notifications`.`Status` IN('unread', 'read')
-        ORDER BY `notifications`.`ScheduledTime` DESC",
+        "SELECT `tasks`.`Title` AS 'TitleTask', `tasks`.`Descriptions` AS 'Descriptions', 
+                `notifications`.`Status` AS 'statusNot', `notifications`.`SenderRead` AS 'SenderRead', 
+                `notifications`.`NotificationID` AS 'NotificationID', `notifications`.`ReplyMessage` AS 'ReplyMessage', 
+                `notifications`.`ScheduledTime` AS 'ScheduledTime', `notifications`.`NotificationText` AS 'NotificationText', EmployeesSenderID
+        FROM `notifications` INNER JOIN `tasklist` ON `notifications`.`TasklistID`=`tasklist`.`TaskListID`
+            INNER JOIN `tasks` ON `tasklist`.`TaskID`=`tasks`.`TaskID`
+        WHERE `tasklist`.`EmployeeID` = :id AND `notifications`.`EmployeesSenderID` != :id AND `notifications`.`Status` IN('unread', 'read')
+
+        UNION ALL SELECT `tasks`.`Title` AS 'TitleTask', `tasks`.`Descriptions` AS 'Descriptions', 
+                `notifications`.`Status` AS 'statusNot', `notifications`.`SenderRead` AS 'SenderRead', 
+                `notifications`.`NotificationID` AS 'NotificationID', `notifications`.`ReplyMessage` AS 'ReplyMessage',
+                `notifications`.`ScheduledTime` AS 'ScheduledTime', `notifications`.`NotificationText` AS 'NotificationText', EmployeesSenderID
+        FROM `notifications` INNER JOIN `tasklist` ON `notifications`.`TasklistID`=`tasklist`.`TaskListID`
+                INNER JOIN `tasks` ON `tasklist`.`TaskID`=`tasks`.`TaskID`
+        WHERE `notifications`.`EmployeesSenderID` = :id AND `notifications`.`SenderRead` IN('unread') AND `notifications`.`Status` IN('unread', 'read')
+
+        UNION ALL SELECT `tasks`.`Title` AS 'TitleTask', `tasks`.`Descriptions` AS 'Descriptions', 
+                `notifications`.`Status` AS 'statusNot', `notifications`.`SenderRead` AS 'SenderRead', 
+                `notifications`.`NotificationID` AS 'NotificationID', `notifications`.`ReplyMessage` AS 'ReplyMessage',
+                `notifications`.`ScheduledTime` AS 'ScheduledTime', `notifications`.`NotificationText` AS 'NotificationText', EmployeesSenderID
+        FROM `notifications` INNER JOIN `tasklist` ON `notifications`.`TasklistID`=`tasklist`.`TaskListID`
+                INNER JOIN `tasks` ON `tasklist`.`TaskID`=`tasks`.`TaskID`
+        WHERE `notifications`.`EmployeesSenderID` = :id AND `notifications`.`SenderRead` IN('unread') AND `notifications`.`Status` NOT IN('unread', 'read')
+        ORDER BY `ScheduledTime` DESC
+        ",
         [
             ':id' => 1
         ]
     );
+
 } catch (Exception $ex) {}
 
 $count = count($project_list);
@@ -32,18 +51,19 @@ if ( $count > 0 ) {
         ?>
         <div class="notification-item " data-notificationId="<?= $project_list[$i]['NotificationID'] ?>" title="Click to open">
         <!-- </?= //$project_list[$i]['statusNot'] == 'unread' ? 'unread-notification' : '' ?> -->
-            <div class="title-notification text">
+            <div class="title-notification text" title=" <?= $project_list[$i]['TitleTask'] ?>">
                 <strong>Task:</strong> <b><?= $project_list[$i]['TitleTask'] ?></b> 
             </div>
             <div class="notification-text text">
                 <?= $project_list[$i]['NotificationText'] ?>
             </div>
-            <div class="notification-time text text-12">
+            <div class="notification-time text text-12" title="<?= Date('d.m.Y H:i', strtotime($project_list[$i]['ScheduledTime'])) ?>">
                 <?= date_format_custom ($project_list[$i]['ScheduledTime']) ?>
             </div>
 
             <?php 
-            if ($project_list[$i]['statusNot'] == 'unread') {
+            if ($project_list[$i]['statusNot'] == 'unread' 
+                    || ($project_list[$i]['EmployeesSenderID'] == 1 && $project_list[$i]['SenderRead'] == 'unread' && $project_list[$i]['statusNot'] != 'read' && $project_list[$i]['statusNot'] != 'unread')) {
                 ?>
                 <div class="point-unread-notification"></div>
                 <?php

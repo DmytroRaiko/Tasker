@@ -10,7 +10,6 @@ include_once("function.php");
 <body>
     <?php
         site_header();
-        //include "templates/modal-create-task.php";
     ?>
     <?php
         site_body();
@@ -20,6 +19,7 @@ include_once("function.php");
     <?php
         site_footer();
     ?>
+    <div id="modal-output"></div>
 </body>
 
 </html>

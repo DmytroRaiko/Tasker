@@ -423,6 +423,13 @@
                 .project-type-list {
                     margin-top: 10px;
                 }
+
+                .project-name-list {
+                    width: 290px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
             }
         }
 
@@ -468,6 +475,8 @@
     display: none;
     position: absolute;
     top: 100%;
+    max-height: 90vh;
+    overflow: auto;
     background: inherit;
     cursor: default;
 

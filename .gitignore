@@ -20,3 +20,4 @@ _thumbs/
 
 templates/select2/
 db/
+.sass-cache
