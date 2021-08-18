@@ -61,7 +61,7 @@ $employees_info = $db->query(
             </a>
 
             <div class="modal-of" id="notification-modal">
-                <div class="notification-list modal">
+                <div class="notification-list modal stretchRight">
                     <div class="modal-header">
                         <div class="title-header text text-20">
                             Notifications

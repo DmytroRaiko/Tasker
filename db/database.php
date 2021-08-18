@@ -3,7 +3,7 @@
     private $link;
 
     public function __construct() {
-      $this->connect();
+        $this->connect();
     }
 
     private function connect() {

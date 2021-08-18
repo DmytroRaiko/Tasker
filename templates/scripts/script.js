@@ -31,19 +31,24 @@ $(document).ready( function () {
         }
     });
 
+  
+
     $('body').on('click', '.modal-of', function (e) {
 
         const target = e.target;
 
         if (target.closest('.x-close')) {
             $(this).parent('.modal-of');
-            modal = $(this).attr('id');
+            modal = $(this).attr('id');           
+
             $('#' + modal).removeClass('modal-of-show');
+            
         }
         
         if (target === target.closest('.modal-of')) {
             modal = $(this).attr('id');
             $('#' + modal).removeClass('modal-of-show');
+            
         }
 
     });  
