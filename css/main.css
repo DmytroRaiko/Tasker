@@ -1395,6 +1395,11 @@ input:checked + .slider:before {
   display: flex;
   margin: auto;
 }
+.body-main .body-cards .card-header .card-time {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 .body-main .body-cards .card-header .card-time .date-start {
   font-family: "Roboto", sans-serif;
   font-size: 10px;
@@ -1402,7 +1407,6 @@ input:checked + .slider:before {
   letter-spacing: 0.18em;
   text-align: right;
   margin-right: 10px;
-  margin-top: 7px;
 }
 .body-main .body-cards .card-header .card-time .date-end {
   font-family: "Roboto", sans-serif;

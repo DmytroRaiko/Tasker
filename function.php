@@ -132,7 +132,7 @@ function upload_documents ($file, $tmp, $dir_type, $recording_id, $index){
   }
 
 function get_info_project()
-{   
+{
     require_once './db/database.php';
     $db = new Database();
     return $db->query(
