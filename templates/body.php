@@ -46,7 +46,7 @@
 
                 <div class="card-footer">
                     <p class="executor">
-                    <?= $sql[$i]['path'] ?>
+                   
                     </p>
                 </div>
             </div>

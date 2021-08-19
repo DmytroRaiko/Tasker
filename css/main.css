@@ -696,10 +696,7 @@ input:checked + .slider:before {
   line-height: 0;
   border-left: 1px solid #a7a7a738;
   transition: 1s;
-
 }
-
-
 .modal-of .modal .modal-header .x-close:hover svg path {
   fill: #989191;
 }
@@ -1478,14 +1475,12 @@ input:checked + .slider:before {
   box-orient: vertical;
 }
 .main-task-body .body-task .add-task {
-  background: #F9F9F9;
-  border: 1px solid #E4E4E4;
+  background: #E4E4E4;
+  border: 1px solid #D5D5D5;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
   font-family: "Roboto", sans-serif;
-  display: grid;
-  grid-template-columns: 0.5fr 1fr 0.5fr;
   height: 90px;
+  border-radius: 28px;
 }
 .main-task-body .body-task .add-task:hover {
   background-color: #f1f1f1;
@@ -1518,52 +1513,6 @@ input:checked + .slider:before {
   display: flex;
   justify-content: center;
   margin: auto;
-}
-.main-task-body .body-task .add-task .add-button2 {
-  border: 1px dashed #DADADA;
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  display: flex;
-  justify-content: flex-end;
-  margin: auto;
-  background: white;
-  margin-top: 3.5px;
-}
-.main-task-body .body-task .add-task .add-button2 svg {
-  display: flex;
-  justify-content: center;
-  margin: auto;
-}
-
-.stretchRight{
-	animation-name: stretchRight;
-	-webkit-animation-name: stretchRight;	
-
-	animation-duration: 0.2s;	
-	-webkit-animation-duration: 0.2s;
-
-	animation-timing-function: ease-out;	
-	-webkit-animation-timing-function: ease-out;	
-
-	transform-origin: 0% 0%;
-	-ms-transform-origin: 0% 0%;
-	-webkit-transform-origin: 0% 0%; 		
-}
-
-@keyframes stretchRight {
-	0% {
-		transform: scaleX(0.85);
-	}
-								
-}
-
-@-webkit-keyframes stretchRight {
-	0% {
-		-webkit-transform: scaleX(0.85);
-	}
-
-
 }
 
 /*# sourceMappingURL=main.css.map */

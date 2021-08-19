@@ -11,7 +11,7 @@
         //include "templates/modal-create-task.php";
     ?>
     <?php
-        site_body();
+        site_body('task');
     ?>
     
 
