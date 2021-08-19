@@ -1,5 +1,7 @@
-<?php include_once("function.php") ?>
-
+<?php 
+require_once "./db/database.php";
+include_once("function.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -18,6 +20,7 @@
     <?php
         site_footer();
     ?>
+    <div id="modal-output"></div>
 </body>
 
 </html>

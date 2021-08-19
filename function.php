@@ -57,6 +57,83 @@ function site_footer($postfix = NULL)
     }
 }
 
+function site_modal ($postfix) {
+    include "templates/modal/". $postfix . ".php";
+}
+
+function date_format_custom ($date) {
+
+    $time = Date('H:i', strtotime($date));
+    $notification_time = strtotime($date);
+    $now = time();
+
+    $notification_date = Date("d.m.Y", $notification_time);
+    $today_date = Date("d.m.Y", $now);
+    $raz = $now - $notification_time;   
+
+    if ($raz < 60) {
+        // output seconds (5 seconds ago)
+        if ($notification_date == $today_date) {
+            return $time = $raz . " seconds ago";
+        } else {
+            return "yesterday, " . $time;
+        }
+    } else if ($raz < 60 * 60) {
+        // output minutes (5 minutes ago)
+        if ($notification_date == $today_date) {
+            return floor($raz/60) . " minutes ago";
+
+        } else {
+            return "yesterday, " . $time;
+        }
+    } else if ($raz < 60 * 60 * 24) {
+        // output today (today, time)
+        if ($notification_date == $today_date) {
+            return floor($raz/60/60) . " hours ago";
+        } else {
+            return "yesterday, " . $time;
+        }
+    } else if ($raz < 60 * 60 * 24 * 2) {
+        // output yesterday (yesterday, time)
+        if ($notification_date == $today_date) {
+            return "yesterday, " . $time;
+        } else {
+            return "1 days ago";
+        }
+    } else if ($raz < 60 * 60 * 24 * 7) {
+        // output days ago (5 days ago)
+        return floor($raz/60/60/24) . " days ago";
+    } else {
+        // output datatime 
+        return  date('d.m.Y', strtotime($date)) . ', ' . $time;
+    }
+}
+
+function upload_documents ($file, $tmp, $dir_type, $recording_id, $index){
+
+    $path = '../../../documents';
+    if (!is_dir($path)) {
+        mkdir($path, 0777, true);
+    }
+
+    $path = '../../../documents/' . $dir_type;
+    if (!is_dir($path)) {
+        mkdir($path, 0777, true);
+    }
+
+    $path = '../../../documents/' . $dir_type . '/' . $recording_id;
+    if (!is_dir($path)) {
+        mkdir($path, 0777, true);
+    }
+
+    $position_dots = strripos ($file, '.');
+
+    $name = substr($file, 0, $position_dots) . '[' . hash('ripemd160', $index . time()) . ']' . substr($file, $position_dots, strlen($file) -1);
+    $new_file = $path . '/' . $name;
+    copy($tmp, $new_file);
+
+    return $name;
+  }
 
 function get_info_project()
 {
