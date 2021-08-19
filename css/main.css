@@ -217,6 +217,87 @@ button:active {
   margin-right: 10px;
   width: fit-content;
 }
+.control-panel #notification-button {
+  margin-right: 15px;
+}
+.control-panel #notification-button {
+  position: relative;
+}
+.control-panel #notification-button #count-unread-message {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: 300;
+  width: 22px;
+  height: 22px;
+  background-color: #ff0000d5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  top: 10px;
+  left: 10px;
+  color: white;
+  font-size: 15px;
+}
+.control-panel .notification-item {
+  width: 100%;
+  height: auto;
+  margin: 5px 0;
+  padding: 4px;
+  border-radius: 3px;
+  border: 1px solid #bdbdbd36;
+  position: relative;
+  background: white;
+  box-shadow: 1px 1px 5px -2px #494747;
+  transition: 0.5s;
+}
+.control-panel .notification-item .title-notification {
+  margin-bottom: 10px;
+  width: calc(100% - 100px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.control-panel .notification-item .notification-text {
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  width: calc(100% - 35px);
+}
+.control-panel .notification-item .notification-time {
+  position: absolute;
+  top: 6px;
+  right: 4px;
+}
+.control-panel .notification-item .point-unread-notification {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #f44646;
+  box-shadow: 0px 0px 2px 1px #c1bcbc;
+  position: absolute;
+  bottom: 50%;
+  top: 50%;
+  right: 10px;
+}
+.control-panel .notification-item.unread-notification {
+  background: #d5d5d5;
+}
+.control-panel .notification-item:hover {
+  transform: scale(0.98);
+}
+
+.notification-list {
+  background-image: -webkit-repeating-radial-gradient(center center, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.08) 0px, transparent 0.7px, transparent 75%);
+  background-image: -moz-repeating-radial-gradient(center center, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.08) 0px, transparent 0.7px, transparent 75%);
+  background-image: -ms-repeating-radial-gradient(center center, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.08) 0px, transparent 0.7px, transparent 75%);
+  background-image: repeating-radial-gradient(center center, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.08) 0px, transparent 0.7px, transparent 75%);
+  -webkit-background-size: 3px 3px;
+  -moz-background-size: 3px 3px;
+  background-size: 3px 3px;
+}
 
 .header-menu {
   display: flex;
@@ -395,16 +476,19 @@ button:active {
   position: relative;
   z-index: 5;
 }
-.list:hover {
+.list:hover, .list.click-target {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-.list:hover .list-under {
+.list:hover .list-under, .list.click-target .list-under {
   display: block;
   z-index: 4;
 }
 
 .project-list-button:hover .list-under {
+  display: flex;
+}
+.project-list-button.click-target .list-under {
   display: flex;
 }
 
@@ -704,7 +788,6 @@ input:checked + .slider:before {
   font-weight: 300 !important;
   line-height: 0;
   border-left: 1px solid #a7a7a738;
-  transition: 1s;
 }
 .modal-of .modal .modal-header .x-close:hover svg path {
   fill: #989191;

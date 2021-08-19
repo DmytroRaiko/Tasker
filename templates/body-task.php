@@ -7,7 +7,7 @@ global $db;
 <div class="main-task-body">
     <div class="body-task">
 
-    <?php for($i=0;$i<$count;$i++) { ?>
+    <?php for ($i=0;$i<$count;$i++) { ?>
 
         <div class="card-task">
             <div class="card-icon">
@@ -19,10 +19,8 @@ global $db;
                     <hr>
                  </div>
                  <div class="project-name text-9">
-                 <?= $sql[$i]['projectname'] ?>
+                    <?= $sql[$i]['projectname'] ?>
                  </div>
-
-                 
 
                  <div class="employee-task">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +54,7 @@ global $db;
                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.5 1.25C4.05375 1.25 1.25 4.05375 1.25 7.5C1.25 10.9462 4.05375 13.75 7.5 13.75C10.9462 13.75 13.75 10.9462 13.75 7.5C13.75 4.05375 10.9462 1.25 7.5 1.25ZM9.55813 10.4419L6.875 7.75875V3.75H8.125V7.24125L10.4419 9.55813L9.55813 10.4419Z" fill="#565252"/>
                         </svg>
-                        <?=date('d.m.Y g:i:s' , $sql[$i]['datastart']) ?> 
+                        <?=date('d.m.Y g:i:s' , strtotime($sql[$i]['datastart'])) ?> 
                     </div>
 
                     <div class="data-time-end text-13">
@@ -64,7 +62,7 @@ global $db;
                             <path d="M7.5 1.25C4.05375 1.25 1.25 4.05375 1.25 7.5C1.25 10.9462 4.05375 13.75 7.5 13.75C10.9462 13.75 13.75 10.9462 13.75 7.5C13.75 4.05375 10.9462 1.25 7.5 1.25ZM9.55813 10.4419L6.875 7.75875V3.75H8.125V7.24125L10.4419 9.55813L9.55813 10.4419Z" fill="#565252"/>
                         </svg>
 
-                        <?=date('d.m.Y g:i:s' , $sql[$i]['dataend']) ?> 
+                        <?=date('d.m.Y g:i:s' , strtotime($sql[$i]['dataend'])) ?> 
                     </div>
 
                     
@@ -76,13 +74,12 @@ global $db;
                  </div>
                  
 
-
              </div>
 
              
 
         </div>
-        <? } ?>
+        <?php } ?>
 
         
     </div>

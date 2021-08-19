@@ -1,8 +1,4 @@
 <?php
-
-require_once './db/database.php';
-$db = new Database();
-
 function head($postfix = NULL)
 {
     if ($postfix == NULL) {
@@ -136,8 +132,9 @@ function upload_documents ($file, $tmp, $dir_type, $recording_id, $index){
   }
 
 function get_info_project()
-{
-    global $db;
+{   
+    require_once './db/database.php';
+    $db = new Database();
     return $db->query(
         "SELECT TaskID as 'id', Title as 'title', Type as 'type', DataTaskStart as 'datastart', DataTaskFinish as 'dataend', Descriptions as 'description', Status as 'status', replyDocuments, replyLinks, ParentTaskID, ProjectID 
         FROM tasks 
@@ -148,7 +145,8 @@ function get_info_project()
 
 function get_info_task()
 {
-    global $db;
+    require_once './db/database.php';
+    $db = new Database();
     return $db->query(
        "SELECT tasks.TaskID as 'id', Title as 'title', Type as 'type', DataTaskStart as 'datastart', DataTaskFinish as 'dataend', ParentTaskID, ProjectID, Status as 'status', Descriptions as 'description', replyDocuments, replyLinks, e.EmployeeID, m.Name as 'mname', m.Surname as 'msurname', e.Name as 'ename', e.Surname as 'esurname', (SELECT Title FROM tasks WHERE ProjectID=1 AND Type='project') as 'projectname' FROM tasks JOIN tasklist ON tasks.TaskID=tasklist.TaskID INNER JOIN employees e ON tasklist.EmployeeID=e.EmployeeID INNER JOIN employees m ON e.ManagerID=m.EmployeeID WHERE ProjectID = 1 AND tasklist.EmployeeID =1"
     );
