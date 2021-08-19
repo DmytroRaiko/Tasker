@@ -82,7 +82,7 @@ global $db;
              
 
         </div>
-        <? } ?>
+        <?php } ?>
 
         
     </div>
