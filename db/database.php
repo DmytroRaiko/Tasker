@@ -11,7 +11,7 @@
         $config = [
           'database'  => 'planning',
           'username'  => 'root',
-          'password'  => '50608173',
+          'password'  => 'root',
           'host'      => 'localhost',
           'charset'   => 'utf8'
         ];

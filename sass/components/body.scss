@@ -71,7 +71,9 @@ $text-letter-spacing: 0.18em;
             }
 
             .card-time{
-
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
                 .date-start{
                     font-family: $body-font-family;
                     font-size: 10px;
@@ -79,7 +81,8 @@ $text-letter-spacing: 0.18em;
                     letter-spacing: $text-letter-spacing;
                     text-align: right;
                     margin-right: 10px;
-                    margin-top: 7px;
+                    
+
                 }
         
                 .date-end{

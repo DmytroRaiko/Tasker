@@ -13,7 +13,7 @@ include_once("function.php");
         //include "templates/modal-create-task.php";
     ?>
     <?php
-        site_body('task');
+        site_body();
     ?>
     
 
