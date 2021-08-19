@@ -138,6 +138,100 @@
         margin-right: 10px;
         width: fit-content;
     }
+
+    #notification-button {
+        margin-right: 15px;
+    }
+
+    #notification-button {
+        position: relative;
+
+        #count-unread-message {    
+            position: absolute;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-weight: 300;
+            width: 22px;
+            height: 22px;
+            background-color: $main-red-99;
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis;
+            top: 10px;
+            left: 10px;
+            color: white;
+            //border: 1px solid $main-blue;
+            font-size: 15px;
+        }
+    }
+
+    .notification-item {
+        width: 100%;
+        height: auto;
+
+        margin: 5px 0;
+        padding: 4px;
+        border-radius: 3px;
+        border: 1px solid $border-notification;
+        position: relative;
+
+        background: white;  
+        box-shadow: 1px 1px 5px -2px $box-shadow-color;
+        transition: .5s;
+
+        .title-notification {
+            margin-bottom: 10px;
+            width: calc(100% - 100px);
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis;
+        }
+
+        .notification-text {
+            font-size: 20px;
+            font-weight: 300;
+            margin-bottom: 10px;
+            width: calc(100% - 35px);
+        }
+
+        .notification-time {
+            position: absolute;
+            top: 6px;
+            right: 4px;
+        }
+
+        .point-unread-notification {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: $point-unread;
+            box-shadow: 0px 0px 2px 1px #c1bcbc;
+            position: absolute;
+            bottom: 50%;
+            top: 50%;
+            right: 10px;
+        }
+
+        &.unread-notification {
+            background: $unread-notification;
+        }
+        
+        &:hover {
+            transform: scale(0.98); 
+        }
+    }
+}
+
+.notification-list {
+    background-image: -webkit-repeating-radial-gradient(center center, rgb(0 0 0 / 0%), rgb(0 0 0 / 8%) 0px, transparent 0.7px, transparent 75%);
+    background-image: -moz-repeating-radial-gradient(center center, rgb(0 0 0 / 0%), rgb(0 0 0 / 8%) 0px, transparent 0.7px, transparent 75%);
+    background-image: -ms-repeating-radial-gradient(center center, rgb(0 0 0 / 0%), rgb(0 0 0 / 8%) 0px, transparent 0.7px, transparent 75%);
+    background-image: repeating-radial-gradient(center center, rgb(0 0 0 / 0%), rgb(0 0 0 / 8%) 0px, transparent 0.7px, transparent 75%);
+    -webkit-background-size: 3px 3px;
+    -moz-background-size: 3px 3px;
+    background-size: 3px 3px;
 }
 
 .header-menu {
@@ -185,6 +279,14 @@
     height: 38px;
     margin-left: 18px;
 
+    .project-none-text {
+        font-weight: bold;
+        color: $main-dark-80;
+        padding: 40px 30px;
+        width: calc(100% - 60px);
+
+    }
+
     div {
         margin: auto;
         height: fit-content;
@@ -203,7 +305,7 @@
     }
 
     .list-under {
-        min-width: 400px;
+        width: 400px;
         left: 0px;
         border-radius: 0px 5px 5px 5px;
         flex-direction: column;
@@ -321,6 +423,13 @@
                 .project-type-list {
                     margin-top: 10px;
                 }
+
+                .project-name-list {
+                    width: 290px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
             }
         }
 
@@ -336,7 +445,8 @@
     position: relative;
     z-index: 5;
 
-    &:hover {
+    &:hover,
+    &.click-target {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
 
@@ -353,12 +463,20 @@
             display: flex;
         }
     }
+
+    &.click-target {
+        .list-under {
+            display: flex;
+        }
+    }
 }
 
 .list-under {
     display: none;
     position: absolute;
     top: 100%;
+    max-height: 90vh;
+    overflow: auto;
     background: inherit;
     cursor: default;
 
