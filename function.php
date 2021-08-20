@@ -131,7 +131,7 @@ function upload_documents ($file, $tmp, $dir_type, $recording_id, $index){
     return $name;
   }
 
-function get_info_project()
+function get_info_project($user)
 {
     require_once './db/database.php';
     $db = new Database();
@@ -139,15 +139,33 @@ function get_info_project()
         "SELECT TaskID as 'id', Title as 'title', Type as 'type', DataTaskStart as 'datastart', DataTaskFinish as 'dataend', Descriptions as 'description', Status as 'status', replyDocuments, replyLinks, ParentTaskID, ProjectID 
         FROM tasks 
         WHERE TaskID 
-        IN (SELECT tasks.ProjectID FROM tasks INNER JOIN tasklist ON tasks.TaskID=tasklist.TaskID WHERE tasklist.EmployeeID=1);"
+        IN (SELECT tasks.ProjectID FROM tasks INNER JOIN tasklist ON tasks.TaskID=tasklist.TaskID WHERE tasklist.EmployeeID=:empId);",
+        [
+            ':empId' => $user
+        ]
     );
 }
 
-function get_info_task()
+function get_info_task($user, $project)
 {
     require_once './db/database.php';
     $db = new Database();
     return $db->query(
-       "SELECT tasks.TaskID as 'id', Title as 'title', Type as 'type', DataTaskStart as 'datastart', DataTaskFinish as 'dataend', ParentTaskID, ProjectID, Status as 'status', Descriptions as 'description', replyDocuments, replyLinks, e.EmployeeID, m.Name as 'mname', m.Surname as 'msurname', e.Name as 'ename', e.Surname as 'esurname', (SELECT Title FROM tasks WHERE ProjectID=1 AND Type='project') as 'projectname' FROM tasks JOIN tasklist ON tasks.TaskID=tasklist.TaskID INNER JOIN employees e ON tasklist.EmployeeID=e.EmployeeID INNER JOIN employees m ON e.ManagerID=m.EmployeeID WHERE ProjectID = 1 AND tasklist.EmployeeID =1"
+       "SELECT tasks.TaskID as 'id', Title as 'title', Type as 'type', DataTaskStart as 'datastart', DataTaskFinish as 'dataend', ParentTaskID, ProjectID as 'projectid', 
+       Status as 'status', Descriptions as 'description', replyDocuments, replyLinks, e.EmployeeID, m.Name as 'mname', m.Surname as 'msurname', 
+       e.Name as 'ename', e.Surname as 'esurname', 
+       (SELECT Title FROM tasks WHERE ProjectID=:pr AND Type='project') as 'projectname' 
+       FROM tasks 
+       JOIN tasklist 
+       ON tasks.TaskID=tasklist.TaskID 
+       INNER JOIN employees e 
+       ON tasklist.EmployeeID=e.EmployeeID 
+       INNER JOIN employees m 
+       ON e.ManagerID=m.EmployeeID 
+       WHERE ProjectID =:pr AND tasklist.EmployeeID =:user AND tasks.type!='project'",
+       [
+           ':pr'   => $project,
+           ':user' => $user
+       ]
     );
 }

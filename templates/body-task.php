@@ -1,7 +1,10 @@
 <?php 
 global $db;
-    $sql= get_info_task();
+    $project=var_export(intval($_GET['project-id']), true);
+    $user=1;
+    $sql= get_info_task($user, $project);
     $count = count($sql);
+    
 
 ?>
 <div class="main-task-body">
@@ -9,14 +12,15 @@ global $db;
 
     <?php for ($i=0;$i<$count;$i++) { ?>
 
-        <div class="card-task">
+        <div class="card-task" data-task-id="<?=$sql[$i]['id']?>">
             <div class="card-icon">
                 <p class="text-icon">VP</p>
             </div>
              <div class="card-info">
                  <div class="info-title text-22">
                     <?= $sql[$i]['title'] ?>
-                    <hr>
+                    <div class="hor-line">
+                    </div>
                  </div>
                  <div class="project-name text-9">
                     <?= $sql[$i]['projectname'] ?>
@@ -48,50 +52,78 @@ global $db;
                     <?=$sql[$i]['esurname']?></p>
                  </div>
              </div>
-             <div class="task-description">
-                <div class="data">
-                    <div class="data-time-start text-13">
-                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.5 1.25C4.05375 1.25 1.25 4.05375 1.25 7.5C1.25 10.9462 4.05375 13.75 7.5 13.75C10.9462 13.75 13.75 10.9462 13.75 7.5C13.75 4.05375 10.9462 1.25 7.5 1.25ZM9.55813 10.4419L6.875 7.75875V3.75H8.125V7.24125L10.4419 9.55813L9.55813 10.4419Z" fill="#565252"/>
-                        </svg>
-                        <?=date('d.m.Y g:i:s' , strtotime($sql[$i]['datastart'])) ?> 
-                    </div>
 
-                    <div class="data-time-end text-13">
-                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.5 1.25C4.05375 1.25 1.25 4.05375 1.25 7.5C1.25 10.9462 4.05375 13.75 7.5 13.75C10.9462 13.75 13.75 10.9462 13.75 7.5C13.75 4.05375 10.9462 1.25 7.5 1.25ZM9.55813 10.4419L6.875 7.75875V3.75H8.125V7.24125L10.4419 9.55813L9.55813 10.4419Z" fill="#565252"/>
-                        </svg>
-
-                        <?=date('d.m.Y g:i:s' , strtotime($sql[$i]['dataend'])) ?> 
-                    </div>
-
-                    
+            <div class="vertical-line">
+                <div class="vertical-line1">
 
                 </div>
-                <hr>
-                 <div class="description">
-                    <p class="task-descript"> <?= $sql[$i]['description'] ?> </p>
-                 </div>
-                 
+                <div class="vertical-line2">
 
-             </div>
+                </div>
+            </div>
+                <?php if (!empty($sql[$i]['datastart']) || !empty($sql[$i]['dataend']) || !empty($sql[$i]['description'])) { ?>
+                    <div class="task-description">
+                        <?php if (!empty($sql[$i]['datastart']) || !empty($sql[$i]['dataend'])) { ?>
+                            <div class="data">
+                            <?php if (!empty($sql[$i]['datastart'])) { ?>
+                                <div class="data-time-start text-13">
+                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.5 1.25C4.05375 1.25 1.25 4.05375 1.25 7.5C1.25 10.9462 4.05375 13.75 7.5 13.75C10.9462 13.75 13.75 10.9462 13.75 7.5C13.75 4.05375 10.9462 1.25 7.5 1.25ZM9.55813 10.4419L6.875 7.75875V3.75H8.125V7.24125L10.4419 9.55813L9.55813 10.4419Z" fill="#565252"/>
+                                    </svg>
+                                    <?=date('d.m.Y g:i:s' , strtotime($sql[$i]['datastart'])) ?> 
+                                </div>
+                            <?php } ?>  
+                            <?php if (!empty($sql[$i]['dataend'])) { ?>
+                                <div class="data-time-end text-13">
+                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.5 1.25C4.05375 1.25 1.25 4.05375 1.25 7.5C1.25 10.9462 4.05375 13.75 7.5 13.75C10.9462 13.75 13.75 10.9462 13.75 7.5C13.75 4.05375 10.9462 1.25 7.5 1.25ZM9.55813 10.4419L6.875 7.75875V3.75H8.125V7.24125L10.4419 9.55813L9.55813 10.4419Z" fill="#565252"/>
+                                    </svg>
 
-             
+                                    <?=date('d.m.Y g:i:s' , strtotime($sql[$i]['dataend'])) ?> 
+                                </div>
 
+                            <?php } ?>  
+                        <?php } ?>  
+                        
+                        
+                            </div>
+                            <div class="hor-line">
+                            </div>
+                        
+                            
+                        
+                        <div class="description">
+                      
+                            <p class="task-descript"> <?= $sql[$i]['description'] ?> </p>
+
+                        </div>
+                        
+
+                    </div>
+                <?php } 
+                else {
+                ?> 
+                    <script>
+                        $('.task-description').css('display', 'none');
+                        $('.card-task').css('grid-template-columns', '100px 1fr');
+                        $('.vertical-line').css('display', 'none');
+                        
+                    </script>
+                <?php } ?>
         </div>
         <?php } ?>
 
         
     </div>
     <div class="task-block-setting">
-    <div class="add-task">
+    <div class="add-task"  data-project-id="<?=$sql[$i]['projectid'] ?>">
             <div class="add-button1">
                 <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.544922 19.8638H19.8959V0.125809H26.0882V19.8638H45.6972V26.0561H26.0882V45.2781H19.8959V26.0561H0.544922V19.8638Z" fill="#C4C4C4" fill-opacity="0.15"/>
                 </svg>
             </div>
             <div class="add-task-text">
-            ADD TASK
+             ADD TASK
             </div>
         </div>
     </div>

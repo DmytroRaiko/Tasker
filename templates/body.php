@@ -1,12 +1,15 @@
 <?php 
-    $sql= get_info_project();
+    $user=1;
+    $sql= get_info_project($user);
     $count = count($sql);
+    
 
 ?>
 <div class="body-main">
     <div class="body-cards">
         <?php for($i=0;$i<$count;$i++) { ?>
             <a class="card-body" href="?project-id=<?= $sql[$i]['id'] ?>">
+            
                 <div class="blurr">
                     <div class="card-header">
 

@@ -77,9 +77,11 @@ body {
 
 a {
     text-decoration: none;
+    color: white !important;
 }
 
-a:active, a:focus { outline: none; }
+a:active, a:focus { outline: none;
+                    color: white !important; }
 
 input,
 textarea,
@@ -100,6 +102,8 @@ textarea:active,
 button:active {
     outline:none;
 }
+
+
 
 @import "components/header.scss";
 @import "components/sign-form.scss";

@@ -3,6 +3,7 @@ $body-font-family: $font-family;
 $head-text-weight: 500;
 $text-letter-spacing: 0.18em;
 
+
 .body-main {
     margin: auto;
     margin-top: 40px;
@@ -33,6 +34,9 @@ $text-letter-spacing: 0.18em;
             height: 220px;
             position: relative;
             border: 1px solid $border-card-color;
+
+
+            
             
 
             &:hover{

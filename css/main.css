@@ -76,10 +76,12 @@ body {
 
 a {
   text-decoration: none;
+  color: white !important;
 }
 
 a:active, a:focus {
   outline: none;
+  color: white !important;
 }
 
 input,
@@ -1516,8 +1518,7 @@ input:checked + .slider:before {
 }
 .main-task-body .body-task .card-task {
   display: grid;
-  grid-template-columns: 100px 1fr 1fr;
-  grid-column-gap: 20px;
+  grid-template-columns: 100px 1fr 10px 1fr;
   border: 1px solid #E4E4E4;
   background-color: #F9F9F9;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
@@ -1525,15 +1526,17 @@ input:checked + .slider:before {
 }
 .main-task-body .body-task .card-task:hover {
   transform: scale(0.98);
-  -webkit-box-shadow: 1px 1px 19px 0px #000000;
-  box-shadow: 1px 1px 19px 0px #000000;
+  -webkit-box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.25);
 }
 .main-task-body .body-task .card-task .card-icon {
   border: 0.5px dashed #565252;
   width: 91px;
   height: 91px;
   border-radius: 14px;
-  margin: 9px 9px 8px 8px;
+  margin-left: 9px;
+  margin-top: 9px;
+  margin-bottom: 9px;
   display: flex;
 }
 .main-task-body .body-task .card-task .card-icon .text-icon {
@@ -1547,12 +1550,9 @@ input:checked + .slider:before {
 }
 .main-task-body .body-task .card-task .card-info {
   margin-top: 9px;
+  margin-left: 20px;
   font-family: "Roboto", sans-serif;
   letter-spacing: 0.18em;
-}
-.main-task-body .body-task .card-task .card-info hr {
-  margin-right: 10px;
-  border: 1px solid #E4E4E4;
 }
 .main-task-body .body-task .card-task .card-info .info-title {
   font-weight: 500;
@@ -1566,6 +1566,10 @@ input:checked + .slider:before {
   margin-top: 4px;
   text-transform: uppercase;
   color: black;
+}
+.main-task-body .body-task .card-task .card-info .hor-line {
+  margin-right: 6px;
+  border-bottom: 1px solid #E4E4E4;
 }
 .main-task-body .body-task .card-task .card-info .employee-task {
   margin-top: 11px;
@@ -1593,10 +1597,29 @@ input:checked + .slider:before {
   margin-left: 8px;
   justify-content: center;
 }
+.main-task-body .body-task .card-task .vertical-line {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+}
+.main-task-body .body-task .card-task .vertical-line .vertical-line1 {
+  margin-top: 11px;
+  height: 19px;
+  border-right: 1px solid #E4E4E4;
+  display: flex;
+}
+.main-task-body .body-task .card-task .vertical-line .vertical-line2 {
+  display: flex;
+  margin-top: 18px;
+  margin-bottom: 8px;
+  border-right: 1px solid #E4E4E4;
+  height: 62px;
+}
 .main-task-body .body-task .card-task .task-description {
   margin-top: 13px;
   margin-bottom: 8px;
   font-family: "Roboto", sans-serif;
+  margin-left: 5px;
 }
 .main-task-body .body-task .card-task .task-description .data {
   display: flex;
@@ -1620,53 +1643,68 @@ input:checked + .slider:before {
 .main-task-body .body-task .card-task .task-description .data .data-time-end svg {
   margin-right: 12px;
 }
-.main-task-body .body-task .card-task .task-description hr {
-  margin-right: 40px;
-  border: 1px solid #E4E4E4;
+.main-task-body .body-task .card-task .task-description .hor-line {
+  margin-right: 10px;
+  border-bottom: 1px solid #E4E4E4;
   margin-top: 6px;
 }
 .main-task-body .body-task .card-task .task-description .task-descript {
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
   width: 80%;
   margin-top: 14px;
   margin-left: 14px;
+  margin-bottom: 14px;
   letter-spacing: 0.08em;
-  line-height: 16px;
+  line-height: 102.19%;
   font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  line-clamp: 3;
-  box-orient: vertical;
 }
-.main-task-body .body-task .add-task {
-  background: #E4E4E4;
+.main-task-body .add-task {
+  background: #F9F9F9;
   border: 1px solid #D5D5D5;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
   font-family: "Roboto", sans-serif;
   height: 90px;
+  width: 120px;
   border-radius: 28px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }
-.main-task-body .body-task .add-task:hover {
-  background-color: #f1f1f1;
+.main-task-body .add-task:hover {
+  background-color: #F9F9F950;
+  transform: scale(1.09);
+  -webkit-box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.25);
 }
-.main-task-body .body-task .add-task .add-task-text {
+.main-task-body .add-task:hover .add-button1 {
+  display: none;
+}
+.main-task-body .add-task:hover .add-task-text {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+  margin-left: 6px;
+  text-align: center;
+  color: #f8f7f7;
+  cursor: default;
+}
+.main-task-body .add-task .add-task-text {
   font-style: normal;
   font-weight: 900;
-  font-size: 32px;
+  font-size: 29px;
   line-height: 37px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  display: flex;
+  display: none;
   justify-content: center;
   color: #F0EFEF;
   margin: auto;
-  -webkit-text-stroke: 2px #DADADA;
+  -webkit-text-stroke: 1.6px #DADADA;
 }
-.main-task-body .body-task .add-task .add-button1 {
+.main-task-body .add-task .add-button1 {
   border: 1px dashed #DADADA;
   border-radius: 50%;
   width: 80px;
@@ -1677,7 +1715,7 @@ input:checked + .slider:before {
   margin: auto;
   margin-top: 3.5px;
 }
-.main-task-body .body-task .add-task .add-button1 svg {
+.main-task-body .add-task .add-button1 svg {
   display: flex;
   justify-content: center;
   margin: auto;
