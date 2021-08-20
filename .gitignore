@@ -1,7 +1,7 @@
 .DS_Store
-/templates/select2/*
-/db/*
-/sass-cache/*
+*/templates/select2/*
+*/db/*
+*/sass-cache/*
 
 # Images
 images/avatars/
