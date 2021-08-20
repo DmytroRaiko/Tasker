@@ -1,4 +1,7 @@
 .DS_Store
+/templates/select2/
+/db/
+/sass-cache/
 
 # Images
 images/avatars/
@@ -17,7 +20,3 @@ sized/
 thumbs/
 _thumbs/
 */expressionengine/cache/*
-
-templates/select2/
-db/
-.sass-cache
