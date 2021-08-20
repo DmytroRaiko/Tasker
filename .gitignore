@@ -1,6 +1,6 @@
 .DS_Store
 */templates/select2/*
-*/db/*
+*db/database.php
 */sass-cache/*
 
 # Images
