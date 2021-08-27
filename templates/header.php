@@ -145,7 +145,15 @@
             
 
             <div class="profile-name text text-18">
-                Ivan Ivanov
+                <?php 
+                    global $employee;
+                    if($employee['Surname']!=null && $employee['Name']!=null){
+                        echo $employee['Name'].' '.$employee['Surname'];
+                    }
+                    else{
+                        echo $employee['Login'];
+                    }
+                ?>
             </div>
 
             <div class="separator-profile">
@@ -174,10 +182,17 @@
 
                     <div class="name-mail-header">
                         <div class="profile-name text text-profile text-14">
-                            Ivan Ivanov
+                            <?php 
+                                if($employee['Surname']!=null && $employee['Name']!=null){
+                                    echo $employee['Name'].' '.$employee['Surname'];
+                                }
+                                else{
+                                    echo $employee['Login'];
+                                }
+                            ?>
                         </div>
                         <div class="profile-mail text text-profile text-12">
-                            ivanovivan@gmail.com
+                            <?php echo $employee['Email'] ?>
                         </div>
                     </div>
                 </li>

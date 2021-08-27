@@ -52,11 +52,12 @@
     }
     else{
         $sql = $db -> query(
-            "SELECT employees.Name, employees.Surname, employees.Phone, user.Email from user join employees on user.UserID = employees.UserID where user.UserID = :userID",
+            "SELECT employees.Name, employees.Surname, employees.Phone, user.Login, user.Email from user join employees on user.UserID = employees.UserID where user.UserID = :userID",
             [
                 ":userID" => $_SESSION['user_id']
             ]
         );
+        global $employee;
         $employee = $sql[0];
     }
 
