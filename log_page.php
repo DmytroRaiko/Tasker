@@ -1,4 +1,5 @@
-<?php include_once("function.php") ?>
+<?php include_once("function.php"); 
+?>
 
 <!DOCTYPE html>
 <html lang="en">

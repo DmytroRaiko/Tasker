@@ -139,7 +139,7 @@ function get_info_project()
         "SELECT TaskID as 'id', Title as 'title', Type as 'type', DataTaskStart as 'datastart', DataTaskFinish as 'dataend', Descriptions as 'description', Status as 'status', replyDocuments, replyLinks, ParentTaskID, ProjectID 
         FROM tasks 
         WHERE TaskID 
-        IN (SELECT tasks.ProjectID FROM tasks INNER JOIN tasklist ON tasks.TaskID=tasklist.TaskID WHERE tasklist.EmployeeID=1);"
+        IN (SELECT tasks.ProjectID FROM tasks INNER JOIN tasklist ON tasks.TaskID=tasklist.TaskID WHERE tasklist.EmployeeID=8);"
     );
 }
 
