@@ -1,5 +1,5 @@
 <?php
-require '../db/database.php';
+require '../../db/database.php';
 
 function check_reg_form_valid($form){
     $error = array();

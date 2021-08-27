@@ -220,8 +220,7 @@
 <script>
     
     var eyes = $(".eye-svg");
-    console.log(eyes);
-   eyes.on('click', function(){
+    eyes.on('click', function(){
        let input = $(this).parent().find("input");
        console.log(input);
        if( $(this).data('open') == 'open'){
@@ -241,7 +240,7 @@
        $('.error-msg').remove();
        $.ajax({
             type: "POST",
-            url: './authenticate/register.php', 
+            url: './functions/authenticate/register.php', 
             data: {'form-data' : $(this).serialize()}, 
             success: function(data) {
                 console.log(data);
@@ -273,7 +272,7 @@
        $('.error-msg').remove();
        $.ajax({
             type: "POST",
-            url: './authenticate/login.php', 
+            url: './functions/authenticate/login.php', 
             data: {'form-data' : $(this).serialize()}, 
             success: function(data) {
                 console.log(data);

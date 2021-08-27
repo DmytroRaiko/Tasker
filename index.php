@@ -1,6 +1,6 @@
 <?php 
     include_once("function.php");
-    require_once './authenticate/check_auth.php';
+    require_once './functions/authenticate/check_auth.php';
 ?>
 
 <!DOCTYPE html>
