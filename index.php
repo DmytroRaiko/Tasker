@@ -14,10 +14,13 @@ include_once("function.php");
     ?>
     <?php
     $body = NULL;
-    
-    if (isset($_GET['project-id']) ) {
+
+    if (isset($_GET['project-id'])) {
         $body = 'task';
-    } 
+    } else if (isset($_GET['office-id'])) {
+        $body = 'office';  
+    }
+   
     site_body($body);
 
     ?>

@@ -153,8 +153,12 @@ $employees_info = $db->query(
     <div class="right-header">
 
         <menu class="header-menu">
-            <a href="http://" class="text text-21">Tasks</a>
-            <a href="http://" class="text text-21">Office</a>
+            <a href="?project-id=<?php if (isset($_GET['project-id'])) echo $_GET['project-id'];
+            else if (isset($_GET['office-id'])) echo $_GET['office-id'];  ?>" class="text text-21">Tasks</a>
+            <?php if (isset($_GET['project-id']) && !empty ($_GET['project-id']) || isset($_GET['office-id']) && !empty($_GET['office-id']) ) : ?>
+                <a href="?office-id=<?php if (isset($_GET['project-id'])) echo $_GET['project-id'];
+                else if (isset($_GET['office-id'])) echo $_GET['office-id'];  ?>" class="text text-21">Office</a>
+            <?php endif; ?>
         </menu>
 
         <div class="profile-button list">

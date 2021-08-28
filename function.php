@@ -35,6 +35,15 @@ function site_task($postfix = NULL)
     }
 }
 
+function site_office($postfix = NULL)
+{
+    if ($postfix == NULL) {
+        include "templates/office.php";
+    } else {
+        include "templates/office-" . $postfix . ".php";
+    }
+}
+
 function sign_form($postfix = NULL)
 {
     if ($postfix == NULL) {
@@ -131,7 +140,7 @@ function upload_documents ($file, $tmp, $dir_type, $recording_id, $index){
     return $name;
   }
 
-function get_info_project($user)
+function get_info_full_project($user)
 {
     require_once './db/database.php';
     $db = new Database();
@@ -139,9 +148,25 @@ function get_info_project($user)
         "SELECT TaskID as 'id', Title as 'title', Type as 'type', DataTaskStart as 'datastart', DataTaskFinish as 'dataend', Descriptions as 'description', Status as 'status', replyDocuments, replyLinks, ParentTaskID, ProjectID 
         FROM tasks 
         WHERE TaskID 
-        IN (SELECT tasks.ProjectID FROM tasks INNER JOIN tasklist ON tasks.TaskID=tasklist.TaskID WHERE tasklist.EmployeeID=:empId);",
+        IN (SELECT tasks.ProjectID FROM tasks INNER JOIN tasklist ON tasks.TaskID=tasklist.TaskID WHERE tasklist.EmployeeID=:empId)",
         [
-            ':empId' => $user
+            ':empId'     => $user
+        ]
+    );
+}
+
+function get_info_project($user, $offset, $size_page)
+{
+    require_once './db/database.php';
+    $db = new Database();
+    return $db->query(
+        "SELECT TaskID as 'id', Title as 'title', Type as 'type', DataTaskStart as 'datastart', DataTaskFinish as 'dataend', Descriptions as 'description', Status as 'status', replyDocuments, replyLinks, ParentTaskID, ProjectID 
+        FROM tasks 
+        WHERE TaskID 
+        IN (SELECT tasks.ProjectID FROM tasks INNER JOIN tasklist ON tasks.TaskID=tasklist.TaskID WHERE tasklist.EmployeeID=:empId)
+        LIMIT ".$offset.", ".$size_page,
+        [
+            ':empId'     => $user
         ]
     );
 }
@@ -168,4 +193,74 @@ function get_info_task($user, $project)
            ':user' => $user
        ]
     );
+}
+
+function ShowTree($project, $ParentID, $user){
+    require_once './db/database.php';
+    global $db;
+    $db = new Database();
+
+    if ($ParentID == NULL) {
+        $sql = $db->query(
+            "SELECT tasks.TaskID as 'id', tasks.Title as 'title', tasks.Type as 'type', tasks.DataTaskStart as 'datastart', tasks.DataTaskFinish as 'dataend', tasks.ParentTaskID as 'pid', tasks.ProjectID as 'projectid', tasks.Status as 'status', tasks.replyDocuments as 'doc', tasks.Descriptions as 'description', tasks.replyLinks as 'links', employees.Name as 'name', employees.Surname as 'surname'
+            FROM tasks INNER JOIN tasklist ON tasks.TaskID=tasklist.TaskID
+            INNER JOIN employees ON tasklist.EmployeeID=employees.EmployeeID
+
+            WHERE  employees.EmployeeID=:user And tasks.ParentTaskID IS NULL AND tasks.ProjectID = :project;
+            ",  
+            [
+                ':user'     => $user,
+                ':project'  => $project
+            ]
+        );
+
+    } else {
+        $sql = $db->query(
+            "SELECT tasks.TaskID as 'id', tasks.Title as 'title', tasks.Type as 'type', tasks.DataTaskStart as 'datastart', tasks.DataTaskFinish as 'dataend', tasks.ParentTaskID as 'pid', tasks.ProjectID as 'projectid', tasks.Status as 'status', tasks.replyDocuments as 'doc', tasks.Descriptions as 'description', tasks.replyLinks as 'links', employees.Name as 'name', employees.Surname as 'surname'
+            FROM tasks INNER JOIN tasklist ON tasks.TaskID=tasklist.TaskID
+            INNER JOIN employees ON tasklist.EmployeeID=employees.EmployeeID
+
+            WHERE  employees.EmployeeID=:user And tasks.ParentTaskID = :pid AND tasks.ProjectID = :project;
+            ",  
+            [
+                ':pid'      => $ParentID,
+                ':user'     => $user,
+                ':project'  => $project
+            ]
+        );
+    }
+
+
+    for($i = 0; $i < count($sql); $i++) : 
+        $k = 0;
+        if ($k == 0 && $ParentID == NULL) echo '<ul class="margin-left-none">  <div class="card-office-block text-9">';
+        else echo '<ul>  <div class="card-office-block text-9">';
+        echo '<li>  
+        <div class="card-office-block-main"> 
+            <div class="card-office-block-title">' . $sql[$i]['title'] .'
+            </div> 
+                <hr> 
+            <div class="card-office-block-executor"> 
+                <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.7645 10.4503C13.4955 10.1773 10.2357 8.87765 9.64424 8.63249C9.05585 8.39161 8.82112 7.7241 8.82112 7.7241C8.82112 7.7241 8.55627 7.87505 8.55627 7.4511C8.55627 7.02662 8.82112 7.7241 9.08597 6.08719C9.08597 6.08719 9.82081 5.87468 9.67488 4.11732H9.49831C9.49831 4.11732 9.93973 2.23845 9.49831 1.60253C9.05533 0.966601 8.88188 0.542651 7.90919 0.238606C6.93806 -0.0649032 7.2912 -0.0044154 6.58597 0.0266314C5.87969 0.057143 5.29182 0.451116 5.29182 0.662556C5.29182 0.662556 4.8504 0.693068 4.67487 0.875066C4.4983 1.05706 4.20436 1.90496 4.20436 2.11694C4.20436 2.32891 4.35133 3.75493 4.4983 4.05683L4.32329 4.11571C4.17632 5.8736 4.91116 6.08665 4.91116 6.08665C5.17601 7.72357 5.44087 7.02608 5.44087 7.45057C5.44087 7.87452 5.17601 7.72357 5.17601 7.72357C5.17601 7.72357 4.94076 8.39054 4.35289 8.63195C3.76502 8.87444 0.501612 10.1773 0.23624 10.4498C-0.0286132 10.7282 0.000987981 12 0.000987981 12H6.25152L6.70749 10.1479L6.30242 9.73037L6.99986 9.0104L7.69731 9.72983L7.29224 10.1474L7.7482 11.9995H13.9987C13.9987 11.9995 14.0315 10.7265 13.7635 10.4487L13.7645 10.4503Z" fill="#565252"/>
+                </svg> 
+                <p class="ex text-9">' . $sql[$i]['name'] . ' ' .$sql[$i]['surname'] . '
+                </p> 
+            </div> 
+            </div>
+        
+        ';
+        
+        echo '</li>
+        <div class="add-task-office text-9" data-parent-id="'.$sql[0]['id'].'"> 
+            Add Sub-Task
+        </div>
+        </div>';
+        ShowTree($project, $sql[$i]['id'],$user);
+        $k++;
+        if ($k > 0) 
+            echo '</ul>';
+    endfor;
+            
+
 }
