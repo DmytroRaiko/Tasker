@@ -56,6 +56,13 @@
                     ":user" => $_SESSION['user_id']
                 ]
             );
+            $sql = $db -> query(
+                "UPDATE employees SET Email = :email WHERE UserID = :user ",
+                [
+                    ":email" => $email,
+                    ":user" => $_SESSION['user_id']
+                ]
+            );
             echo "OK";
         }
         catch (PDOException $e){

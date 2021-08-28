@@ -25,11 +25,11 @@
                     <form action="" id="personal-info-form" class="info-block-form">
                         <div class="info-block-component">
                             <label for="last-name-input" class="info-block-label">Last Name</label>
-                            <input type="text" id="last-name-input" name="last-name-input" value="<?php echo ($employee['Surname'] != null?$employee['Surname']:"") ?>" placeholder="Not Specified">
+                            <input type="text" id="last-name-input" name="last-name-input" value="<?php echo ($employees_info[0]['Surname'] != null?$employees_info[0]['Surname']:"") ?>" placeholder="Not Specified">
                         </div>
                         <div class="info-block-component">
                             <label for="first-name-input" class="info-block-label">First Name</label>
-                            <input type="text" id="first-name-input" name="first-name-input" value="<?php echo ($employee['Name'] != null?$employee['Name']:"") ?>" placeholder="Not Specified">
+                            <input type="text" id="first-name-input" name="first-name-input" value="<?php echo ($employees_info[0]['Name'] != null?$employees_info[0]['Name']:"") ?>" placeholder="Not Specified">
                         </div>
                         <div class="info-form-btns">
                             <button class="confirm-btn" name="bio-btn" id="bio-btn">Change</button>
@@ -45,11 +45,11 @@
                     <form action="" id="contact-form" class="info-block-form">
                         <div class="info-block-component">
                             <label for="contact-tel-input" class="info-block-label">Phone</label>
-                            <input type="text" id="contact-tel-input" name="contact-tel-input" value="<?php echo ($employee['Phone'] != null?$employee['Phone']:"") ?>" placeholder="+380XXXXXXXXX">
+                            <input type="text" id="contact-tel-input" name="contact-tel-input" value="<?php echo ($employees_info[0]['Phone'] != null?$employees_info[0]['Phone']:"") ?>" placeholder="+380XXXXXXXXX">
                         </div>
                         <div class="info-block-component">
                             <label for="contact-email-input" class="info-block-label">Email</label>
-                            <input type="text" id="contact-email-input" name="contact-email-input" value="<?php echo ($employee['Email'] != null?$employee['Email']:"") ?>" placeholder="Not Specified">
+                            <input type="text" id="contact-email-input" name="contact-email-input" value="<?php echo ($employees_info[0]['Email'] != null?$employees_info[0]['Email']:"") ?>" placeholder="Not Specified">
                         </div>
                         <div class="info-form-btns">
                             <button class="confirm-btn" name="contact-btn" id="contact-btn">Change</button>
@@ -219,7 +219,7 @@
             $(this).parent().siblings('.error').remove();
         })
         function add_result_message(msg, type){
-            $('#settings-main-block').before('<div id="response-message-block" class="response-message"></div>');
+            $('#settings-page-main-block').before('<div id="response-message-block" class="response-message"></div>');
             $('#response-message-block').append('<span id="settings-response-message" class="settings-response-message '+type+'">'+msg+'</span>');
             fading_result_message($('#settings-response-message'));
             console.log(msg);

@@ -26,7 +26,7 @@
         if(isset($_COOKIE['remember_token']) && !empty($_COOKIE['remember_token'])){
             
             $sql = $db -> query(
-                "SELECT UserID, Hash1 from user where Hash2 = :hash",
+                "SELECT user.UserID, user.Hash1, employees.EmployeeID from user join employees on user.UserID = employees.UserID where user.Hash2 = :hash",
                 [
                     ":hash" => $_COOKIE['remember_token']
                 ]
@@ -35,6 +35,7 @@
             if(count($sql) != 0){
                 $_SESSION['user_hash'] = $sql[0]['Hash1'];
                 $_SESSION['user_id'] = $sql[0]['UserID'];
+                $_SESSION['emp_id'] = $sql[0]['EmployeeID'];
                 $authorize = true;
             }
             else{
@@ -50,14 +51,5 @@
     if(!$authorize){
         header("Location: ./log_page.php?action=signin");
     }
-    else{
-        $sql = $db -> query(
-            "SELECT employees.Name, employees.Surname, employees.Phone, user.Login, user.Email from user join employees on user.UserID = employees.UserID where user.UserID = :userID",
-            [
-                ":userID" => $_SESSION['user_id']
-            ]
-        );
-        global $employee;
-        $employee = $sql[0];
-    }
+    
 

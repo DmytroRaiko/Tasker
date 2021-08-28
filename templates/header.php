@@ -2,14 +2,13 @@
 //session_start();
 
 $db = new Database();
-
+global $employees_info;
 $employees_info = $db->query(
-    "SELECT * 
-    FROM `employees` 
-    INNER JOIN `user` ON `employees`.`UserID`=`user`.`UserID` 
-    WHERE `employees`.`UserID` = :id ",
+    "SELECT employees.Name, employees.Surname, employees.Phone, user.Login, user.Email
+    from user join employees on user.UserID = employees.UserID
+    where user.UserID = :userID",
     [
-        ':id' => $_SESSION['user_id']
+        ":userID" => $_SESSION['user_id']
     ]
 );
 ?>
@@ -173,7 +172,13 @@ $employees_info = $db->query(
             
 
             <div class="profile-name text text-18">
-                <?= $employees_info[0]['Name'] . ' ' . $employees_info[0]['Surname']?>
+                <?php 
+                if($employees_info[0]['Name'] != null && $employees_info[0]['Surname'] != null){
+                    echo $employees_info[0]['Name'] . ' ' . $employees_info[0]['Surname'];
+                }
+                else{
+                    echo $employees_info[0]['Login'];
+                } ?>
             </div>
 
             <div class="separator-profile">
@@ -202,7 +207,13 @@ $employees_info = $db->query(
 
                     <div class="name-mail-header">
                         <div class="profile-name text text-profile text-14">
-                            <?= $employees_info[0]['Name'] . ' ' . $employees_info[0]['Surname']?>
+                            <?php 
+                            if($employees_info[0]['Name'] != null && $employees_info[0]['Surname'] != null){
+                                echo $employees_info[0]['Name'] . ' ' . $employees_info[0]['Surname'];
+                            }
+                            else{
+                                echo $employees_info[0]['Login'];
+                            }?>
                         </div>
                         <div class="profile-mail text text-profile text-12">
                            <?= $employees_info[0]['Email'] ?>

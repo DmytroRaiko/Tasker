@@ -22,6 +22,7 @@ if(isset($_POST['form-data'])){
         }
         $_SESSION['user_hash'] = $result_array['hash'];
         $_SESSION['user_id'] = $result_array['user-id'];
+        $_SESSION['emp_id'] = $result_array['emp-id'];
         echo "OK";
     }
 

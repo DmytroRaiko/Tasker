@@ -23,7 +23,7 @@ function check_auth_values($values){
     $result = array();
     $db = new Database();
     $sql = $db -> query(
-            "SELECT UserID, Password, Hash1, Login from user where Email = :login or Login = :login",
+            "SELECT user.UserID, user.Password, user.Hash1, user.Login, employees.EmployeeID from user join employees on user.UserId=employees.UserID where user.Email = :login or user.Login = :login",
             [
                 ":login" => $values['signin-login']
             ]
@@ -40,6 +40,7 @@ function check_auth_values($values){
             $result['hash'] = $sql[0]['Hash1'];
             $result['user-id'] = $sql[0]['UserID'];
             $result['user-login'] = $sql[0]['Login'];
+            $result['emp-id'] = $sql[0]['EmployeeID'];
         }
     }
     return $result;

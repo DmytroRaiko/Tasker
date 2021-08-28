@@ -3,6 +3,7 @@
     if(isset($_SESSION['user-id']) && isset($_SESSION['hash'])){
         unset($_SESSION['user-id']);
         unset($_SESSION['hash']);
+        unset($_SESSION['emp_id']);
     }
     if(isset($_COOKIE['remember_token'])){
         setcookie("remember_token", '', time() - 3600, '/');
