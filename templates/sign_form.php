@@ -1,4 +1,5 @@
-<?php 
+<?php
+        
     if(!empty($_GET["action"])){
         $action = $_GET["action"];
     }
@@ -72,7 +73,7 @@
 
                             <input type="password" id="signup-password" name="signup-password" placeholder="Password" required>
 
-                            <img href="#" data-open="open" class="eye-svg" src="./images/eye-icon.svg">
+                            <img href="#" data-open="open" class="eye-svg" src="./inc/images/eye-icon.svg">
                         </div>
                         <div id="repeat-password-block" class="input-block">
                             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +83,7 @@
 
                             <input type="password" id="signup-repeat-password" name="signup-repeat-password" placeholder="Repeat your password" required>
 
-                            <img href="#" data-open="open" class="eye-svg" src="./images/eye-icon.svg">
+                            <img href="#" data-open="open" class="eye-svg" src="./inc/images/eye-icon.svg">
                         </div>
                         <button id="signup-btn">Register</button>
                     </form>
@@ -103,7 +104,7 @@
             </div>
 
             <div class="log-image-side-block">
-                <img src="./images/signup_img.png" alt="signup-img">
+                <img src="./inc/images/signup_img.png" alt="signup-img">
                 <div class="next-sign-form">
                     <a href="./log_page.php?action=signin">I`m already member</a>
                 </div>
@@ -155,7 +156,7 @@
         </div>
         <div class="log-form-wrapper">
             <div class="log-image-side-block">
-                <img src="./images/signin_img.png" alt="signin-img">
+                <img src="./inc/images/signin_img.png" alt="signin-img">
                 <div class="next-sign-form">
                     <a href="./log_page.php?action=signup">Create an account</a>
                 </div>
@@ -170,21 +171,21 @@
                             <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.5 5.5C19.5387 5.5 22 7.96125 22 11C22 14.0387 19.5387 16.5 16.5 16.5C13.4612 16.5 11 14.0387 11 11C11 7.96125 13.4612 5.5 16.5 5.5ZM16.5 27.5C16.5 27.5 27.5 27.5 27.5 24.75C27.5 21.45 22.1375 17.875 16.5 17.875C10.8625 17.875 5.5 21.45 5.5 24.75C5.5 27.5 16.5 27.5 16.5 27.5Z" fill="#565252"/>
                             </svg>
-                            <input type="text" id="signup-login" name="signup-login" placeholder="Login">
+                            <input type="text" id="signin-login" name="signin-login" placeholder="Login or Email" required>
                         </div>
                         <div id="password-block" class="input-block">
                             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17 2.83331C13.0942 2.83331 9.91663 6.0109 9.91663 9.91665V14.1666H8.49996C7.74851 14.1666 7.02784 14.4652 6.49649 14.9965C5.96514 15.5279 5.66663 16.2485 5.66663 17V28.3333C5.66663 29.0848 5.96514 29.8054 6.49649 30.3368C7.02784 30.8681 7.74851 31.1666 8.49996 31.1666H25.5C26.2514 31.1666 26.9721 30.8681 27.5034 30.3368C28.0348 29.8054 28.3333 29.0848 28.3333 28.3333V17C28.3333 16.2485 28.0348 15.5279 27.5034 14.9965C26.9721 14.4652 26.2514 14.1666 25.5 14.1666H24.0833V9.91665C24.0833 6.0109 20.9057 2.83331 17 2.83331ZM12.75 9.91665C12.75 7.57348 14.6568 5.66665 17 5.66665C19.3431 5.66665 21.25 7.57348 21.25 9.91665V14.1666H12.75V9.91665ZM18.4166 25.1076V28.3333H15.5833V25.1076C15.088 24.8239 14.6903 24.3969 14.4426 23.8826C14.195 23.3684 14.1089 22.7912 14.1959 22.2272C14.2829 21.6631 14.5388 21.1386 14.9299 20.7229C15.3209 20.3072 15.8288 20.0197 16.3865 19.8985C16.8008 19.8069 17.2303 19.8094 17.6435 19.906C18.0566 20.0025 18.4428 20.1905 18.7736 20.4562C19.1044 20.7218 19.3713 21.0584 19.5547 21.4409C19.7381 21.8235 19.8333 22.2424 19.8333 22.6666C19.8325 23.1621 19.7011 23.6486 19.4524 24.0771C19.2037 24.5057 18.8464 24.8611 18.4166 25.1076V25.1076Z" fill="#565252"/>
                             </svg>
 
-                            <input type="password" id="signup-password" name="signup-password" placeholder="Password">
+                            <input type="password" id="signin-password" name="signin-password" placeholder="Password" required>
 
-                            <img href="#" data-open="open" class="eye-svg" src="./images/eye-icon.svg">
+                            <img href="#" data-open="open" class="eye-svg" src="./inc/images/eye-icon.svg">
                             
                         </div>
                         <div id="remember-block">
                             <div class="checkbox-block">
-                                <input type="checkbox" id="remember-check" />
+                                <input type="checkbox" id="remember-check" name="remember-check"/>
                                 <label for="remember-check"></label>
                             </div>
                             <span>Remember me</span>
@@ -219,18 +220,17 @@
 <script>
     
     var eyes = $(".eye-svg");
-    console.log(eyes);
-   eyes.on('click', function(){
+    eyes.on('click', function(){
        let input = $(this).parent().find("input");
        console.log(input);
        if( $(this).data('open') == 'open'){
            $(this).data('open', 'close');
-           $(this).attr('src', './images/close-eye-icon.svg')
+           $(this).attr('src', './inc/images/close-eye-icon.svg')
            input.attr('type', 'text');
        }
        else{
            $(this).data('open', 'open');
-           $(this).attr('src', './images/eye-icon.svg')
+           $(this).attr('src', './inc/images/eye-icon.svg')
            input.attr('type', 'password');
        }
    });
@@ -240,13 +240,13 @@
        $('.error-msg').remove();
        $.ajax({
             type: "POST",
-            url: './authenticate/register.php', 
+            url: './functions/authenticate/register.php', 
             data: {'form-data' : $(this).serialize()}, 
             success: function(data) {
                 console.log(data);
                 if(data != "OK"){
                     errors = JSON.parse(data);
-                    console.log(errors.hasOwnProperty('email_error'));
+                    console.log(errors.hasOwnProperty('create_error'));
                     if(errors.hasOwnProperty('email_error')){
                         $('#register-form #email-block').after('<span class="error-msg">'+errors.email_error+'</span>')
                     }
@@ -256,6 +256,37 @@
                     if(errors.hasOwnProperty('rep_pass_error')){
                         $('#register-form #repeat-password-block').after('<span class="error-msg">'+errors.rep_pass_error+'</span>')
                     }
+                    if(errors.hasOwnProperty('create_error')){
+                        $('#register-form #email-block').after('<span class="error-msg">'+errors.create_error+'</span>')
+                    }
+                }
+                else{
+                    $(location).attr('href', './log_page.php?action=signin')
+                }
+            }
+       });
+   });
+
+   $('#login-form').submit(function(event){
+       event.preventDefault();
+       $('.error-msg').remove();
+       $.ajax({
+            type: "POST",
+            url: './functions/authenticate/login.php', 
+            data: {'form-data' : $(this).serialize()}, 
+            success: function(data) {
+                console.log(data);
+                if(data != "OK"){
+                    errors = JSON.parse(data);
+                    if(errors.hasOwnProperty('login_error')){
+                        $('#login-form #login-block').after('<span class="error-msg">'+errors.login_error+'</span>')
+                    }
+                    if(errors.hasOwnProperty('password_error')){
+                        $('#login-form #password-block').after('<span class="error-msg">'+errors.password_error+'</span>')
+                    }
+                }
+                else{
+                    $(location).attr('href', './index.php')
                 }
             }
        });

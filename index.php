@@ -2,7 +2,9 @@
 session_start();
 require_once "./db/database.php";
 include_once("function.php");
+require_once './functions/authenticate/check_auth.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php
