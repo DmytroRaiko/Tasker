@@ -62,7 +62,7 @@
             margin: 0;
         }
 
-        .modal-body {
+        .modal-body {   
             width: 100%;
             min-height: 690px;
             max-height: 740px;
@@ -100,7 +100,7 @@
 
             .block-link-file {
                 label {
-                    width: 33px;
+                    width: 37.65px !important;
                 }
 
                 input {
@@ -239,10 +239,11 @@
                         }
 
                         .input-iteractive {
-                            background: $fill-light;
+                            background: $modal-background-modal;
                             font-weight: 500;
-                            border: none;
-                            width: max-content;
+                            border: 1px solid $modal-background-modal;
+                            height: 30px;
+                            padding-left: 7px;
                             color: $main-dark;
                             margin-right: 12px;
 
@@ -305,6 +306,74 @@
                                 }
                             }
                         }
+                    }
+                }
+            }
+
+            .modal-left-column {
+
+                .block-task-checkbox {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    margin: 0px;
+                    width: max-content;
+                    margin-right: 12px;
+
+                    b {
+                        font-weight: 100;
+                    }
+
+                    .block-task-checkbox-left {
+                        margin-left: 2px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: start;
+                        align-items: center;
+
+                        .block-title-i {
+                            position: relative;
+                            margin-top: 4px;
+
+                            &:hover::after {
+                                content: attr(data-title); /* Выводим текст */
+                                position: absolute; /* Абсолютное позиционирование */
+                                left: 50%; 
+                                top: 50%; /* Положение подсказки */
+                                z-index: 3; /* Отображаем подсказку поверх других элементов */
+                                background: $white-85; /* Полупрозрачный цвет фона */
+                                font-family: Arial, sans-serif; /* Гарнитура шрифта */
+                                font-size: 11px; /* Размер текста подсказки */
+                                padding: 5px 10px; /* Поля */
+                                border: 1px solid #333; /* Параметры рамки */
+                                min-width: 100px;
+                            }
+                        }
+                    
+                        input {
+                            width: 18px;
+                            height: 18px;
+                            background: $white;
+                            border-radius: 7px !important;
+                            margin: auto;
+                            border: 1px solid $main-dark-40 !important;
+
+                            &:checked > body {
+                               
+                                    background: black;
+                        
+                            }
+
+                            &:checked {
+                                content: '✔';
+                                background-color:white;
+                            }
+                        }
+                    }
+
+                    .block-task-checkbox-right {
+                        margin-left: 8px;
+                        white-space: nowrap;
                     }
                 }
             }
@@ -464,6 +533,12 @@
         }
     }
 
+    .task-modal-create {
+        .modal-body .click-input-delete label {
+            width: 100%;
+        }
+    }
+
     .notification-list {  
         position: fixed;  
         width: 400px;     
@@ -495,6 +570,30 @@
                 margin-top: 40px;
                 font-weight: 200;
             }
+        }
+    }
+}
+
+#moreUpload .attachment-block-view,
+#moreUpload-link .attachment-block-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    a {
+        font-family: $font-family;
+        color: $main-dark;
+        display: flex;
+        width: 210px;
+        justify-content: flex-start;
+        align-items: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 5px;
+
+        svg {
+            margin-right: 5px;
         }
     }
 }
@@ -617,6 +716,25 @@
     }
 }
 
+.flatpickr-time {
+    line-height: 32px !important;
+    max-height: 32px !important;
+    height: 32px !important;
+    .numInputWrapper {
+        height: auto !important;
+        .numInput {
+
+            height: auto;
+        }
+    }
+
+    input,
+    .flatpickr-am-pm {
+        font-family: $font-family !important;
+        font-weight: normal !important;
+    }
+}
+
 .notification-modal {
     .modal {
         min-height: 340px;
@@ -702,4 +820,42 @@
             }
         }
     }
+}
+
+.select2-container--default .select2-selection--multiple,
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--single, .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    width: calc(100% - 5px) !important;
+}
+
+.select2-selection__choice__display {
+    font-family: $font-family;
+    color: $main-dark;
+}
+
+.select2-container--default .select2-selection--multiple,
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-color: $modal-line !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover, .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:focus {
+    color: $main-blue !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: $modal-background-modal !important;
+    border: 1px solid $modal-line !important;
+}
+
+.select2-search__field {
+    border: none !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+    background-color: $modal-background-modal !important;
+    border: 1px solid $modal-background-modal !important;
 }

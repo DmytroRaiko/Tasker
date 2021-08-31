@@ -33,4 +33,4 @@ if (count($project_list) > 0 ) {
     $return_value = 0;
 }
 
-//echo $return_value;
+echo $return_value;

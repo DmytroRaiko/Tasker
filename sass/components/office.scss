@@ -1,0 +1,249 @@
+.main-office{
+    margin: auto;
+    margin-top: 40px;
+    background-color: $body-color;
+    font-family: $body-font-family;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-column-gap: 30px;
+    color: $white;
+    width: 1275px;
+    color: $fill-dark;
+    font-family: $font-family;
+
+
+    .office-card{
+        width: 100%;
+        background-color: $fill-light;
+        display: grid;
+        grid-template-rows: 40px 4px 520px;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+        border: 1px solid $border-card-color;
+        border-radius: 4px;
+
+        .office-card-header{
+            display: grid;
+            grid-template-columns: 1fr 1px 350px;
+
+
+
+            .office-card-title{
+                margin-left: 24px;
+                font-weight: 500;
+                letter-spacing: 0.18em;
+                font-size: 22px;
+                margin-top: 9px;
+
+            }
+
+            hr{
+                margin-top: 11px;
+                margin-bottom: 4px;
+                border: 1px solid $border-card-color;
+            }
+
+            .office-card-time{
+                font-family: $body-font-family;
+                display: flex;
+				flex-direction: row;
+                font-weight: 500;
+                margin: auto;
+                margin-left: 25px;
+                justify-content: center;
+                
+
+                .data-time-start{
+                    display: flex;
+                    flex-direction: row;
+                    margin-right: 12px;
+                    justify-content: center;
+
+                    svg{
+                        margin-right: 12px;
+                    }
+            }
+            
+            .data-time-end{
+                    display: flex;
+                    flex-direction: row;
+                    margin-right: 12px;
+                    justify-content: center;
+
+                    svg{
+                        margin-right: 12px;
+                    }
+            
+            }
+            }
+
+        }
+
+        hr{
+            height: 0.5px;
+            border: none;
+            background: $border-card-color;
+            margin-bottom: 4px;
+            margin-left: 14px;
+            margin-right: 14px;
+        }
+
+        .office-block{
+            background-color: $white;
+            box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 3px;
+            margin-left: 5px;
+            margin-bottom: 5px;
+            margin-right: 5px;
+
+            ul {
+                margin-left: 220px;
+                margin-top: 15px;
+
+                &.margin-left-none {
+                    margin-left: 0px;
+                }
+            }
+
+            li {
+                list-style: none;
+                height: 40px;
+            }
+
+            .card-office-block{
+                width: 150px;
+                display: flex;
+                flex-direction: column;
+                margin-left: 20px;
+                background: $background-office;
+                border: 1px solid $fill-dark;
+                border-radius: 3px;
+                letter-spacing: 0.18em;
+                text-transform: capitalize;
+                color: $fill-dark;
+                font-family: $body-font-family;
+                position: relative;
+                
+                &:hover .add-task-office{
+                    display: block;
+                    text-align: center;
+                    cursor: pointer;
+                }
+
+
+                .add-task-office{
+                    position: absolute;
+                    top: 100%;
+                    display: none;
+                    font-weight: 900;
+                    margin-bottom: 1px;
+                    width: 100%;
+                    color: $fill-dark;
+                    font-family: $body-font-family;
+                    border-top: 1px solid $fill-dark;
+                    padding: 2px 0;
+
+                    &:hover {
+                        color: $main-blue
+                    }
+                }
+
+                .card-office-block-title{
+                   
+                    white-space: nowrap; 
+                    overflow: hidden; 
+                    text-overflow: ellipsis;
+                    margin-right: 17px;
+                    margin-left: 9px;
+                    margin-top: 5px;
+                    line-height: 11px;
+                }
+
+                hr{
+                    margin-top: 2px;
+                    margin-bottom: 4px;
+                    height: 0.5px;
+                    border: none;
+                    background: $border-card-color;
+                }
+
+                .card-office-block-executor{
+                    margin-left: 5px;
+                    margin-bottom: 3px;
+                    display: flex;
+
+                    .ex{
+                            letter-spacing: 0.18em;
+                            text-transform: capitalize;
+                            line-height: 11px;
+                            display: flex;
+                            flex-direction: column;
+                            margin-left: 8px;
+                            justify-content: center;
+                    }
+}
+
+            }
+            
+        }
+
+
+    }
+
+    .body-filter {
+        margin-right: 89px;
+        font-weight: $head-text-weight;
+        color: $fill-dark;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 300px;
+        font-size: 15px;
+        position: relative;
+        height:35px;
+
+        .sorting-by{
+          font-weight: bold;
+        }
+        
+        
+    }
+
+    .filter{
+        display: flex;
+        justify-content: flex-end;  
+    
+    }
+
+
+
+    .filter:hover .checker{
+        display: block;
+        position: absolute;
+        z-index: 9999;
+        margin-left: -140px;
+        margin-top: 25px;
+        border-radius: 5px;
+        border: 1px solid $border-card-color;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+    }
+    
+    .checker{
+        display: none;
+        width: 250px;
+        height: 170px;
+        background-color: #f9f9f9;
+        margin-right: 30px;
+        padding-top: 10px;
+        padding-left: 10px;
+
+        .pop{
+            margin-left: 15px;
+            margin-top: 10px;
+        }
+
+        .pop-text{
+            margin-left: 8px;
+            display: unset;
+        }
+    }
+}
