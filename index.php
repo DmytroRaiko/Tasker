@@ -1,6 +1,8 @@
 <?php 
 require_once "./db/database.php";
 include_once("function.php");
+session_start();
+$_SESSION["emp_id"]=1;
 ?>
 <!DOCTYPE html>
 <html lang="en">

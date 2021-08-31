@@ -1,7 +1,7 @@
 <?php
 
 $project = $_GET['office-id'];
-$user = 2;
+$user=$_SESSION["emp_id"];
 
 $sql= get_info_full_project($user);
 ?>

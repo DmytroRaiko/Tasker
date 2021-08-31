@@ -1,7 +1,7 @@
 <?php 
 global $db;
 
-    $user = 1;
+    $user=$_SESSION["emp_id"];
     $project=$_GET['project-id'];
   
     if (isset($_GET['pageno']) && !empty($_GET['pageno'])) {
