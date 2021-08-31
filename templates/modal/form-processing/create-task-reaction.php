@@ -137,6 +137,6 @@ if (isset($_POST['task-name-new']) && !empty(trim($_POST['task-name-new']))) {
         }   
     } else {
         //- error time -
-            echo 2; 
+        echo 2; 
     }
 }
