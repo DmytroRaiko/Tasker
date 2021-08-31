@@ -1,7 +1,7 @@
 <?php
 
 $project = $_GET['office-id'];
-$user = 1;
+$user = 2;
 
 $sql= get_info_full_project($user);
 ?>
@@ -18,7 +18,7 @@ $sql= get_info_full_project($user);
                     <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7.5 1.25C4.05375 1.25 1.25 4.05375 1.25 7.5C1.25 10.9462 4.05375 13.75 7.5 13.75C10.9462 13.75 13.75 10.9462 13.75 7.5C13.75 4.05375 10.9462 1.25 7.5 1.25ZM9.55813 10.4419L6.875 7.75875V3.75H8.125V7.24125L10.4419 9.55813L9.55813 10.4419Z" fill="#565252"/>
                     </svg>
-                    <?=date('d.m.Y g:i:s' , strtotime($sql[0]['datastart'])) ?> 
+                    <?=date('d.m.Y g:i' , strtotime($sql[0]['datastart'])) ?> 
                 </div>
 
                 <div class="office-date-end">
@@ -27,7 +27,7 @@ $sql= get_info_full_project($user);
                             <path d="M7.5 1.25C4.05375 1.25 1.25 4.05375 1.25 7.5C1.25 10.9462 4.05375 13.75 7.5 13.75C10.9462 13.75 13.75 10.9462 13.75 7.5C13.75 4.05375 10.9462 1.25 7.5 1.25ZM9.55813 10.4419L6.875 7.75875V3.75H8.125V7.24125L10.4419 9.55813L9.55813 10.4419Z" fill="#565252"/>
                         </svg>
 
-                        <?=date('d.m.Y g:i:s' , strtotime($sql[0]['dataend'])) ?> 
+                        <?=date('d.m.Y g:i' , strtotime($sql[0]['dataend'])) ?> 
                     </div>
                 </div>
             </div>
