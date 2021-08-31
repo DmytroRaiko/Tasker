@@ -1,5 +1,6 @@
 <?php 
-    $user=1;
+
+    $user=$_SESSION["emp_id"];
     
     if (isset($_GET['pageno']) && !empty($_GET['pageno'])) {
         $pageno = $_GET['pageno'];

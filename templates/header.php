@@ -1,9 +1,8 @@
 <?php 
-//session_start();
 
 $db = new Database();
 
-$user = 1;
+$user = $_SESSION["emp_id"];
 $employees_info = $db->query(
     "SELECT * 
     FROM `employees` 
@@ -117,11 +116,21 @@ $employees_info = $db->query(
                 </li>
 
                 <li id="project-list">
-                    <?php require_once "./templates/search-project-list.php" ?>
+                    
                 </li>
             </ul>
 
             <script>
+                $( function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "./templates/search-project-list.php",
+
+                        success: function(data) {
+                            $('#project-list').html(data);
+                        }
+                    });
+                })
                 $(document).ready( function () {
                     $('body').on('click', '.header-search-icon', function (e) {
                         $.ajax({
@@ -333,7 +342,7 @@ $employees_info = $db->query(
             $.ajax({
                 type: "POST",
                 url: "./templates/view-modal.php",
-                data: 'task-create=' + idElem + '&task-create-project=' + <?= $_GET['office-id'] ?>,
+                data: 'task-create=' + idElem + '&task-create-project=' + <?= isset($_GET['office-id']) ? $_GET['office-id'] : $_GET['project-id']?>,
                 
                 success: function(data) {
                     $('#modal-output').html(data);
@@ -407,7 +416,7 @@ $employees_info = $db->query(
                         $.ajax({
                             type: "POST",
                             url: "./function.php",
-                            data: 'office-block=1&project=<?=$_GET['office-id']?>&employees=<?=$user?>',
+                            data: 'office-block=1&project=<?=isset($_GET['office-id']) ? $_GET['office-id'] : $_GET['project-id']?>&employees=<?=$user?>',
 
                             success: function(data) {
                                 $('.office-block').html(data);

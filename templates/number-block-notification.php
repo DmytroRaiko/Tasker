@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 
 require_once "../db/database.php";
 $db = new Database();
@@ -14,7 +14,7 @@ try {
         FROM `notifications` INNER JOIN `tasklist` ON `notifications`.`TasklistID`=`tasklist`.`TaskListID`
         WHERE `tasklist`.`EmployeeID` = :id AND `notifications`.`Status` IN ('unread') ",
         [
-            ':id' => 1
+            ':id' => $_SESSION["emp_id"]
         ]
     );
 } catch (Exception $ex) {}

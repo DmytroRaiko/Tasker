@@ -1,5 +1,4 @@
 <?php
-//session_start();
 require_once "../db/database.php";
 $db = new Database();
 
@@ -16,7 +15,7 @@ function modal_view_notification ($id) {
     $status_not = $notification[0]['Status'];
 
     $sender = false;
-    if ($notification[0]['EmployeesSenderID'] == 1 
+    if ($notification[0]['EmployeesSenderID'] == $_SESSION["emp_id"] 
             && $status_not != 'unread' 
             && $status_not != 'read'
             && $notification[0]['SenderRead'] == 'unread') {
@@ -243,14 +242,14 @@ function modal_view_notification ($id) {
         </form>
     </div>
     <?php 
-    /*if ($notification[0]['Status'] == 'unread') {
+    if ($notification[0]['Status'] == 'unread') {
         $db->query (
             "UPDATE `notifications` SET `Status`='read' WHERE `NotificationID` = :idNotification",
             [
                 ':idNotification' => $id
             ]
         );
-    } else if ($notification[0]['EmployeesSenderID'] == 1 
+    } else if ($notification[0]['EmployeesSenderID'] == $_SESSION["emp_id"] 
             && $status_not != 'unread' 
             && $status_not != 'read' 
             && $notification[0]['SenderRead'] == 'unread') {
@@ -260,6 +259,6 @@ function modal_view_notification ($id) {
                 ':idNotification' => $id
             ]
         );
-    }*/
+    }
 } 
 ?>

@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require_once "./db/database.php";
 include_once("function.php");
 ?>
@@ -10,7 +11,6 @@ include_once("function.php");
 <body>
     <?php
         site_header();
-        //include "templates/modal-create-task.php";
     ?>
     <?php
     $body = NULL;

@@ -1,17 +1,19 @@
 <?php
-//session_start();
+session_start();
 require_once "../../../function.php";
 require_once "../../../db/database.php";
 $db = new Database();
+
+$id = $_POST['id-notification'];
 
 $notification = $db->query (
     "SELECT * FROM `notifications` WHERE `NotificationID` = :idNotification",
     [
         ':idNotification' => $id
     ]
-);
+);  
 
-if ($notification[0]['EmployeesSenderID'] == 1 
+if ($notification[0]['EmployeesSenderID'] == $_SESSION["emp_id"] 
         && $notification[0]['Status'] != 'unread' && $notification[0]['Status'] != 'canceled'
         && $notification[0]['SenderRead'] == 'unread') {
     $db->query (
