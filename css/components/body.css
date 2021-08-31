@@ -59,4 +59,4 @@ body:before {
 
   font-family: monospace;
   content: "Error: Undefined variable: \"$background-light\".\A         on line 1 of sass/components/body.scss\A \A 1: $body-color: $background-light;\A 2: $body-font-family: $font-family;\A 3: $head-text-weight: 500;\A 4: $text-letter-spacing: 0.18em;\A 5: \A 6: .body-main {"; }
-}
+
