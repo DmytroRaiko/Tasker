@@ -19,7 +19,7 @@ if (isset($_POST['header-project-search'])) {
         ]
     );
 } else {
-    require_once "..    /db/database.php";
+    require_once "../db/database.php";
     $db = new Database();
     $project_list = $db->query(
         "SELECT * 
