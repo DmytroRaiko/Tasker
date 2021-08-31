@@ -13,8 +13,7 @@ if (isset($_POST['task-name-new']) && !empty(trim($_POST['task-name-new']))) {
     $create_time = time();
     $array_rand = [
         0 => mt_rand(1, 99),
-        1 => mt_rand(1, 99),
-        2 => mt_rand(1, 50)
+        1 => mt_rand(1, 99)
     ];
     $task_id = $array_rand[0].$create_time.$array_rand[1];
     $name = $_POST['task-name-new'];
@@ -24,10 +23,10 @@ if (isset($_POST['task-name-new']) && !empty(trim($_POST['task-name-new']))) {
 
         $type = 'sub-task';
     }
-    if (isset($_POST['date-start']) && !empty(trim($_POST['date-start']))) {
+    if (isset($_POST['date-start']) && !empty(trim($_POST['date-start'])) && trim($_POST['date-start']) != 'undefined') {
 
         $date_start = date('Y-m-d G:i:s' , strtotime(trim($_POST['date-start'])));
-        if (isset($_POST['date-end']) && !empty(trim($_POST['date-end']))) {
+        if (isset($_POST['date-end']) && !empty(trim($_POST['date-end'])) && trim($_POST['date-end']) != 'undefined') {
 
             $time_end_hours = '00';
             $time_end_minute = '00';
@@ -95,11 +94,10 @@ if (isset($_POST['task-name-new']) && !empty(trim($_POST['task-name-new']))) {
                 $executor = $_POST['executor-create-task'];
             }   
 
-            $privileges = NULL;     
+            $privileges = NULL;    
 
             for ($executor_i = 0; $executor_i < count($executor); $executor_i++) {
-                $task_list_id = $array_rand[0].$array_rand[2].$create_time.$array_rand[1];
-                
+                $task_list_id = $array_rand[0].$executor_i.$create_time.$array_rand[1];
 
                 $db->query("INSERT INTO `tasklist`(`TaskListID`, `TaskID`, `EmployeeID`) VALUES (:task_list_id, :task_id, :employees)",
                     [
@@ -135,10 +133,10 @@ if (isset($_POST['task-name-new']) && !empty(trim($_POST['task-name-new']))) {
             }
         } else {
             //- error time -
-            
+            echo 2;
         }   
     } else {
         //- error time -
-
+            echo 2; 
     }
 }

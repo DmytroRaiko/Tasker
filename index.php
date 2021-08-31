@@ -30,6 +30,8 @@ include_once("function.php");
         site_footer();
     ?>
     <div id="modal-output"></div>
+
+    <div id="message-block"></div>
 </body>
 
 </html>

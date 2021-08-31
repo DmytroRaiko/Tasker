@@ -166,7 +166,7 @@ function modal_create_task ($id, $project, $empl) {
                                 "locale": {
                                     "firstDayOfWeek": 1
                                 },
-                                defaultDate: ["today", "today"],
+                                //defaultDate: ["today", "today"],
                                 time_24hr: true,
                                 defaultHour: 00,
                                 defaultMinute: 00

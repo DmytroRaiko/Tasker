@@ -17,4 +17,6 @@ $db = new Database();
     <script src="templates/select2/dist/js/i18n/ru.js"></script>
     <script src="https://unpkg.com/flatpickr"></script>
     <title>tasker</title>
+
+    <script src="templates/scripts/message.js"></script>
 </head>

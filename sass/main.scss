@@ -101,6 +101,82 @@ button:active {
     outline:none;
 }
 
+.toasts {
+    z-index: 1000;
+    bottom: 15px;
+}
+
+.toast {
+    max-width: 350px;
+    overflow: hidden;
+    font-size: 0.875rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    display: none;
+    z-index: 1000;
+
+    &.green-class {
+        background-color: rgba(32, 246, 93, 0.5) !important;
+    }
+
+    &.red-class {
+        background-color: rgba(255, 3, 3, 0.5) !important;
+    }
+
+    &.orange-class {
+        background-color: rgba(255, 135, 0, 0.5) !important;
+    }
+  }
+
+.toast__body {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+  .toast:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
+
+  .toast_show {
+    display: block;
+  }
+
+  .toast__header {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 2rem 0.25rem 0.75rem;
+    background-clip: padding-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+
+  .toast__close {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: $main-dark;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.6;
+    appearance: button;
+    margin: 0;
+    font-family: inherit;
+    border-radius: 0;
+  }
+
+  .toast__body {
+    padding: 0.75rem;
+  }
+
 @import "components/header.scss";
 @import "components/sign-form.scss";
 @import "components/modal.scss";

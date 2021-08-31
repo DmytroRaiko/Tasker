@@ -369,8 +369,7 @@ $employees_info = $db->query(
             e.preventDefault();
 
             var modalOfClose = $(this).data('modal-id');
-            console.log($(this));
-            console.log(modalOfClose);
+
             var data = new FormData($(this)[0]),
                 startTaskDate = $('.startRange').attr('aria-label'),
                 endTaskDate = $('.endRange').attr('aria-label'),
@@ -384,23 +383,26 @@ $employees_info = $db->query(
 
             $.ajax({
                 
-                    type: "POST",
-                    url: "./templates/modal/form-processing/create-task-reaction.php",
-                    data: data,
+                type: "POST",
+                url: "./templates/modal/form-processing/create-task-reaction.php",
+                data: data,
 
-                    cache: false, 
-                    contentType: false,
-                    processData: false,
+                cache: false, 
+                contentType: false,
+                processData: false,
 
-                    
-                    success: function(data) {
+                
+                success: function(data) {
 
-                        if (data == 1) {
-                            console.log('#'+modalOfClose);
-                            $('#'+modalOfClose).toggleClass ('modal-of-show');
-                        } else {
-
-                        }
+                    if (data == 1) {
+                        $('#'+modalOfClose).toggleClass('modal-of-show');
+                        Toast.add({
+                            header: 'Adding task',
+                            body: 'Task has been added',
+                            color: 'green',
+                            autohide: true,
+                            delay: 10000
+                        });
 
                         $.ajax({
                             type: "POST",
@@ -411,7 +413,18 @@ $employees_info = $db->query(
                                 $('.office-block').html(data);
                             }
                         });
+                    } else if (data ==2) {
+                        Toast.add({
+                            header: 'Adding task',
+                            body: 'Time is required',
+                            color: 'red',
+                            autohide: true,
+                            delay: 10000
+                        });
                     }
+
+                    
+                }
             });
         }); 
     })
