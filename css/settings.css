@@ -1,0 +1,161 @@
+#settings-page-main-block {
+  width: 100%;
+  font-family: Roboto, sans-serif;
+}
+#settings-page-main-block h1 {
+  font-size: 24pt;
+  font-family: Inter, sans-serif;
+  color: #303030;
+  margin-bottom: 50px;
+  padding: 30px;
+}
+#settings-page-main-block #info-blocks-wrapper {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+#settings-page-main-block #info-blocks-wrapper .info-block {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background-color: #fff;
+  padding: 20px;
+}
+#settings-page-main-block #info-blocks-wrapper .info-block .info-blocks-heading {
+  margin-bottom: 10px;
+}
+#settings-page-main-block #info-blocks-wrapper .info-block .info-blocks-body {
+  border-top: 2px solid #303030;
+}
+#settings-page-main-block #info-blocks-wrapper .info-block .info-blocks-body form .info-block-component {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+#settings-page-main-block #info-blocks-wrapper .info-block .info-blocks-body form .info-block-component label {
+  margin: 20px 0px 10px 0px;
+}
+#settings-page-main-block #info-blocks-wrapper .info-block .info-blocks-body form .info-block-component input {
+  font-size: 15pt;
+  border: 0px;
+  border-bottom: 2px solid #303030;
+  background-color: inherit;
+}
+#settings-page-main-block #info-blocks-wrapper .info-block .info-blocks-body form .info-block-component input.invalid-input {
+  -webkit-box-shadow: inset 0px 5px 35px -16px rgba(255, 0, 0, 0.28);
+  box-shadow: inset 0px 5px 35px -16px rgba(255, 0, 0, 0.28);
+  border-bottom: 2px solid rgba(255, 0, 0, 0.356);
+}
+#settings-page-main-block #info-blocks-wrapper .info-block .info-blocks-body form .info-block-component span.error {
+  color: rgba(255, 0, 0, 0.356);
+  font-size: 10pt;
+}
+#settings-page-main-block #info-blocks-wrapper .info-block .info-blocks-body form .info-form-btns {
+  padding-top: 20px;
+}
+#settings-page-main-block #info-blocks-wrapper .info-block .info-blocks-body form .info-form-btns button {
+  border: 1px solid #5aa1ff;
+  padding: 15px;
+  background-color: #56a1e2;
+  color: white;
+  border-radius: 8px;
+  font-size: 12pt;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.46);
+}
+#settings-page-main-block #info-blocks-wrapper .info-block .info-blocks-body form .info-form-btns button:disabled {
+  background-color: rgba(184, 184, 184, 0.363);
+  color: rgba(95, 95, 95, 0.5);
+  border: 0px;
+  box-shadow: none;
+}
+#settings-page-main-block #info-blocks-wrapper .info-block .info-blocks-body form .info-form-btns button:active {
+  background-color: #2e8ee2;
+}
+#settings-page-main-block #info-blocks-wrapper #security-info .info-blocks-body {
+  display: flex;
+  flex-direction: column;
+}
+#settings-page-main-block #info-blocks-wrapper #security-info .info-blocks-body a {
+  padding: 10px 0px;
+  color: #004875;
+  width: 30%;
+  cursor: pointer;
+}
+#settings-page-main-block #info-blocks-wrapper #security-info .info-blocks-body a:hover {
+  color: #ff4e22;
+}
+
+#response-message-block {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+  font-family: Roboto, sans-serif;
+}
+#response-message-block #settings-response-message {
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  opacity: 0;
+  transition: 1.35s opacity, 1.55s visibility;
+}
+#response-message-block #settings-response-message.success-reply-message {
+  background-color: rgba(1, 153, 102, 0.7);
+  box-shadow: 0px 0px 22px 7px rgba(4, 120, 71, 0.39);
+}
+#response-message-block #settings-response-message.error-reply-message {
+  background-color: rgba(207, 0, 0, 0.7);
+  box-shadow: 0px 0px 22px 7px rgba(141, 22, 22, 0.39);
+}
+
+#change-login-modal .modal, #change-password-modal .modal {
+  width: 420px;
+  min-height: 250px;
+  max-height: 450px;
+}
+#change-login-modal .modal .modal-body, #change-password-modal .modal .modal-body {
+  min-height: 190px;
+  max-height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#change-login-modal .modal .modal-body span.error, #change-password-modal .modal .modal-body span.error {
+  color: rgba(255, 0, 0, 0.356);
+  font-size: 10pt;
+}
+#change-login-modal .modal .modal-body .modal-column, #change-password-modal .modal .modal-body .modal-column {
+  width: 100%;
+}
+#change-login-modal .modal .modal-body .modal-column .modal-row, #change-password-modal .modal .modal-body .modal-column .modal-row {
+  align-items: center;
+}
+#change-login-modal .modal .modal-body .modal-column .modal-row .row-right-side div, #change-password-modal .modal .modal-body .modal-column .modal-row .row-right-side div {
+  display: flex;
+}
+#change-login-modal .modal .modal-body .modal-form-change-btn, #change-password-modal .modal .modal-body .modal-form-change-btn {
+  padding-top: 20px;
+}
+#change-login-modal .modal .modal-body .modal-form-change-btn button, #change-password-modal .modal .modal-body .modal-form-change-btn button {
+  border: 1px solid #5aa1ff;
+  padding: 15px;
+  background-color: #56a1e2;
+  color: white;
+  border-radius: 8px;
+  font-size: 12pt;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.46);
+}
+#change-login-modal .modal .modal-body .modal-form-change-btn button:disabled, #change-password-modal .modal .modal-body .modal-form-change-btn button:disabled {
+  background-color: rgba(184, 184, 184, 0.363);
+  color: rgba(95, 95, 95, 0.5);
+  border: 0px;
+  box-shadow: none;
+}
+#change-login-modal .modal .modal-body .modal-form-change-btn button:active, #change-password-modal .modal .modal-body .modal-form-change-btn button:active {
+  background-color: #2e8ee2;
+}
+
+/*# sourceMappingURL=settings.css.map */

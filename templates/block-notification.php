@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 
 require_once "../function.php";
 require_once "../db/database.php";
@@ -39,7 +39,7 @@ try {
         ORDER BY `ScheduledTime` DESC
         ",
         [
-            ':id' => 1
+            ':id' => $_SESSION["emp_id"]
         ]
     );
 
@@ -63,7 +63,7 @@ if ( $count > 0 ) {
 
             <?php 
             if ($project_list[$i]['statusNot'] == 'unread' 
-                    || ($project_list[$i]['EmployeesSenderID'] == 1 && $project_list[$i]['SenderRead'] == 'unread' && $project_list[$i]['statusNot'] != 'read' && $project_list[$i]['statusNot'] != 'unread')) {
+                    || ($project_list[$i]['EmployeesSenderID'] == $_SESSION["emp_id"] && $project_list[$i]['SenderRead'] == 'unread' && $project_list[$i]['statusNot'] != 'read' && $project_list[$i]['statusNot'] != 'unread')) {
                 ?>
                 <div class="point-unread-notification"></div>
                 <?php

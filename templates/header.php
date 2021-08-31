@@ -1,17 +1,16 @@
 <?php 
-//session_start();
 
 $db = new Database();
-
+global $employees_info;
 $employees_info = $db->query(
-    "SELECT * 
-    FROM `employees` 
-    INNER JOIN `user` ON `employees`.`UserID`=`user`.`UserID` 
-    WHERE `employees`.`EmployeeID` = :id ",
+    "SELECT employees.Name, employees.Surname, employees.Phone, user.Login, user.Email
+    from user join employees on user.UserID = employees.UserID
+    where user.UserID = :userID",
     [
-        ':id' => 1
+        ":userID" => $_SESSION['user_id']
     ]
 );
+
 ?>
 
 <header class="site-header">
@@ -116,11 +115,21 @@ $employees_info = $db->query(
                 </li>
 
                 <li id="project-list">
-                    <?php require_once "./templates/search-project-list.php" ?>
+                    
                 </li>
             </ul>
 
             <script>
+                $( function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "./templates/search-project-list.php",
+
+                        success: function(data) {
+                            $('#project-list').html(data);
+                        }
+                    });
+                })
                 $(document).ready( function () {
                     $('body').on('click', '.header-search-icon', function (e) {
                         $.ajax({
@@ -177,7 +186,13 @@ $employees_info = $db->query(
             
 
             <div class="profile-name text text-18">
-                <?= $employees_info[0]['Name'] . ' ' . $employees_info[0]['Surname']?>
+                <?php 
+                if($employees_info[0]['Name'] != null && $employees_info[0]['Surname'] != null){
+                    echo $employees_info[0]['Name'] . ' ' . $employees_info[0]['Surname'];
+                }
+                else{
+                    echo $employees_info[0]['Login'];
+                } ?>
             </div>
 
             <div class="separator-profile">
@@ -206,7 +221,13 @@ $employees_info = $db->query(
 
                     <div class="name-mail-header">
                         <div class="profile-name text text-profile text-14">
-                            <?= $employees_info[0]['Name'] . ' ' . $employees_info[0]['Surname']?>
+                            <?php 
+                            if($employees_info[0]['Name'] != null && $employees_info[0]['Surname'] != null){
+                                echo $employees_info[0]['Name'] . ' ' . $employees_info[0]['Surname'];
+                            }
+                            else{
+                                echo $employees_info[0]['Login'];
+                            }?>
                         </div>
                         <div class="profile-mail text text-profile text-12">
                            <?= $employees_info[0]['Email'] ?>
@@ -216,15 +237,15 @@ $employees_info = $db->query(
                 <hr>
 
                 <li class="element text text-16">
-                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="23" height="23" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.51025 7.01036C8.89706 7.01036 8.32284 7.24825 7.88808 7.68301C7.45536 8.11778 7.21542 8.692 7.21542 9.30518C7.21542 9.91836 7.45536 10.4926 7.88808 10.9273C8.32284 11.3601 8.89706 11.6 9.51025 11.6C10.1234 11.6 10.6976 11.3601 11.1324 10.9273C11.5651 10.4926 11.8051 9.91836 11.8051 9.30518C11.8051 8.692 11.5651 8.11778 11.1324 7.68301C10.9201 7.46903 10.6673 7.29937 10.3888 7.1839C10.1104 7.06842 9.81171 7.00943 9.51025 7.01036ZM17.9656 11.8399L16.6244 10.6936C16.688 10.3039 16.7208 9.90606 16.7208 9.51026C16.7208 9.11446 16.688 8.71456 16.6244 8.32696L17.9656 7.18057C18.0669 7.09384 18.1394 6.97831 18.1735 6.84937C18.2076 6.72042 18.2016 6.58416 18.1563 6.4587L18.1379 6.40538C17.7688 5.3732 17.2157 4.41644 16.5055 3.58145L16.4685 3.53838C16.3823 3.43698 16.2674 3.36408 16.1389 3.3293C16.0104 3.29452 15.8743 3.29949 15.7487 3.34356L14.0835 3.93623C13.4683 3.43174 12.7833 3.03389 12.0409 2.75704L11.7189 1.01592C11.6946 0.884759 11.631 0.764092 11.5365 0.669951C11.442 0.575811 11.3211 0.512654 11.1898 0.488872L11.1345 0.478618C10.0681 0.285844 8.94423 0.285844 7.87782 0.478618L7.82245 0.488872C7.6912 0.512654 7.57028 0.575811 7.47578 0.669951C7.38127 0.764092 7.31764 0.884759 7.29335 1.01592L6.96933 2.76524C6.23398 3.0443 5.54895 3.44119 4.94111 3.94034L3.26357 3.34356C3.13799 3.29914 3.00187 3.29399 2.87329 3.32879C2.74472 3.36359 2.62978 3.43669 2.54374 3.53838L2.50683 3.58145C1.79786 4.41733 1.24493 5.37385 0.874409 6.40538L0.855952 6.4587C0.763667 6.71504 0.839545 7.00215 1.04667 7.18057L2.40429 8.33926C2.34072 8.72481 2.30996 9.11856 2.30996 9.50821C2.30996 9.90196 2.34072 10.2957 2.40429 10.6772L1.05078 11.8358C0.949458 11.9226 0.876944 12.0381 0.842876 12.167C0.808807 12.296 0.814799 12.4323 0.860053 12.5577L0.87851 12.611C1.2497 13.6426 1.79726 14.5962 2.51093 15.435L2.54785 15.478C2.63409 15.5794 2.74904 15.6523 2.87753 15.6871C3.00603 15.7219 3.14205 15.7169 3.26767 15.6729L4.94521 15.0761C5.55634 15.5785 6.2372 15.9764 6.97343 16.2512L7.29745 18.0005C7.32175 18.1317 7.38537 18.2523 7.47988 18.3465C7.57439 18.4406 7.6953 18.5038 7.82656 18.5275L7.88193 18.5378C8.95882 18.7316 10.0617 18.7316 11.1386 18.5378L11.1939 18.5275C11.3252 18.5038 11.4461 18.4406 11.5406 18.3465C11.6351 18.2523 11.6987 18.1317 11.723 18.0005L12.045 16.2594C12.7874 15.9805 13.4724 15.5847 14.0876 15.0802L15.7528 15.6729C15.8784 15.7173 16.0145 15.7224 16.1431 15.6876C16.2717 15.6528 16.3866 15.5797 16.4726 15.478L16.5096 15.435C17.2232 14.5921 17.7708 13.6426 18.142 12.611L18.1604 12.5577C18.2486 12.3034 18.1727 12.0184 17.9656 11.8399ZM9.51025 12.9105C7.51894 12.9105 5.90497 11.2965 5.90497 9.30518C5.90497 7.31387 7.51894 5.69991 9.51025 5.69991C11.5016 5.69991 13.1155 7.31387 13.1155 9.30518C13.1155 11.2965 11.5016 12.9105 9.51025 12.9105Z" fill="#565252"/>
                     </svg>
 
-                    Settings
+                    <a href="../settings_page.php">Settings</a>
                 </li>
 
                 <li class="element text text-16">
-                    <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="23" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.28125 0.625C1.75911 0.625 1.25835 0.832421 0.889134 1.20163C0.519921 1.57085 0.3125 2.07161 0.3125 2.59375V6.53125C0.3125 7.05339 0.519921 7.55415 0.889134 7.92337C1.25835 8.29258 1.75911 8.5 2.28125 8.5H16.7188C17.2409 8.5 17.7417 8.29258 18.1109 7.92337C18.4801 7.55415 18.6875 7.05339 18.6875 6.53125V2.59375C18.6875 2.07161 18.4801 1.57085 18.1109 1.20163C17.7417 0.832421 17.2409 0.625 16.7188 0.625H2.28125ZM2.28125 11.125C1.75911 11.125 1.25835 11.3324 0.889134 11.7016C0.519921 12.0708 0.3125 12.5716 0.3125 13.0938V14.4062C0.3125 14.9284 0.519921 15.4292 0.889134 15.7984C1.25835 16.1676 1.75911 16.375 2.28125 16.375H6.21875C6.74089 16.375 7.24165 16.1676 7.61087 15.7984C7.98008 15.4292 8.1875 14.9284 8.1875 14.4062V13.0938C8.1875 12.5716 7.98008 12.0708 7.61087 11.7016C7.24165 11.3324 6.74089 11.125 6.21875 11.125H2.28125ZM12.7812 11.125C12.2591 11.125 11.7583 11.3324 11.3891 11.7016C11.0199 12.0708 10.8125 12.5716 10.8125 13.0938V14.4062C10.8125 14.9284 11.0199 15.4292 11.3891 15.7984C11.7583 16.1676 12.2591 16.375 12.7812 16.375H16.7188C17.2409 16.375 17.7417 16.1676 18.1109 15.7984C18.4801 15.4292 18.6875 14.9284 18.6875 14.4062V13.0938C18.6875 12.5716 18.4801 12.0708 18.1109 11.7016C17.7417 11.3324 17.2409 11.125 16.7188 11.125H12.7812Z" fill="#565252"/>
                     </svg>
                     Activity
@@ -253,7 +274,7 @@ $employees_info = $db->query(
                     <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.65 0.150002V2.25H14.75V12.75H12.65V14.85H16.85V0.150002H12.65ZM12.65 8.55V6.45H4.66999L9.18499 1.935L7.71499 0.465001L0.679993 7.5L7.71499 14.535L9.18499 13.065L4.66999 8.55H12.65Z" fill="#565252"/>
                     </svg>
-                    <a href="./log_page.php?action=signin"> Log out </a>
+                    <a href="../functions/authenticate/logout.php"> Log out </a>
                 </li>
             </ul>
         </div>
@@ -268,7 +289,7 @@ $employees_info = $db->query(
             $.ajax({
                 type: "POST",
                 url: "./templates/view-modal.php",
-                data: 'notification=' + $(this).data('notificationid'),
+                data: 'notification-view=' + $(this).data('notificationid'),
                 
                 success: function(data) {
                     $('#modal-output').html(data);
@@ -299,5 +320,182 @@ $employees_info = $db->query(
                 }
             });
         })
+    })
+
+    // View task
+
+    $(document).ready( function () {
+        $('body').on('click', '.card-task', function (e) {
+
+            let idElem  = $(this).data('task-id');
+            $('#view-task-modal-' + idElem).remove();
+
+            $.ajax({
+                type: "POST",
+                url: "./templates/view-modal.php",
+                data: 'task-view=' + $(this).data('task-id'),
+                
+                success: function(data) {
+                    $('#modal-output').html(data);
+                }
+            });
+        })
+    })
+
+    // Create task (office)
+
+    $(document).ready( function () {
+        $('body').on('click', '.add-task-office', function (e) {
+
+            let idElem  = $(this).data('parent-id');
+            $('#create-task-modal-' + idElem).remove();
+
+            $.ajax({
+                type: "POST",
+                url: "./templates/view-modal.php",
+                data: 'task-create=' + idElem + '&task-create-project=' + <?= isset($_GET['office-id']) ? $_GET['office-id'] : $_GET['project-id']?>,
+                
+                success: function(data) {
+                    $('#modal-output').html(data);
+                }
+            });
+        })
+    })
+
+    // Create task
+
+    $(document).ready( function () {
+        $('body').on('click', '.add-task', function (e) {
+           
+            let idElem  = $(this).data('parent-id');
+            $('#create-task-modal-' + idElem).remove();
+
+            $.ajax({
+                type: "POST",
+                url: "./templates/view-modal.php",
+                data: 'task-create=' + idElem,
+                
+                success: function(data) {
+                    $('#modal-output').html(data);
+                }
+            });
+        })
+    })
+
+    // Proccesing of the sudmiting task create form
+
+    $(document).ready( function () {
+        $('body').on('submit','.task-modal-create', function (e) {  
+            e.preventDefault();
+
+            var modalOfClose = $(this).data('modal-id');
+
+            var data = new FormData($(this)[0]),
+                startTaskDate = $('.startRange').attr('aria-label'),
+                endTaskDate = $('.endRange').attr('aria-label'),
+                endTaskHour = $('.flatpickr-hour').val(),
+                endTaskMinute = $('.flatpickr-minute').val();
+
+            data.append('date-start', startTaskDate);
+            data.append('date-end', endTaskDate);
+            data.append('time-end-hour', endTaskHour);
+            data.append('time-end-minute', endTaskMinute);
+
+            $.ajax({
+                
+                type: "POST",
+                url: "./templates/modal/form-processing/create-task-reaction.php",
+                data: data,
+
+                cache: false, 
+                contentType: false,
+                processData: false,
+
+                
+                success: function(data) {
+
+                    if (data == 1) {
+                        $('#'+modalOfClose).toggleClass('modal-of-show');
+                        Toast.add({
+                            header: 'Adding task',
+                            body: 'Task has been added',
+                            color: 'green',
+                            autohide: true,
+                            delay: 10000
+                        });
+
+                        $.ajax({
+                            type: "POST",
+                            url: "./function.php",
+                            data: 'office-block=1&project=<?=isset($_GET['office-id']) ? $_GET['office-id'] : $_GET['project-id']?>&employees=<?=$_SESSION['emp_id']?>',
+
+                            success: function(data) {
+                                $('.office-block').html(data);
+                            }
+                        });
+                    } else if (data ==2) {
+                        Toast.add({
+                            header: 'Adding task',
+                            body: 'Time is required',
+                            color: 'red',
+                            autohide: true,
+                            delay: 10000
+                        });
+                    }
+
+                    
+                }
+            });
+        }); 
+    })
+
+    // View notification list
+
+    $(document).ready( function () {
+        $('body').on('submit','.notification-modal-view', function (e) {  
+            e.preventDefault();
+            var data = new FormData($(this)[0]);
+
+            var modalOfClose = $(this).data('modal-id');
+
+            $.ajax({
+                
+                type: "POST",
+                url: "./templates/modal/form-processing/notification-reaction.php",
+                data: data,
+
+                cache: false, 
+                contentType: false,
+                processData: false,
+
+
+                success: function(data) {
+                    $.ajax({
+                        type: "POST",
+                        url: "./templates/number-block-notification.php",
+
+                        success: function(data) {
+                            if (data == 0) {
+                                $('#count-unread-message').css('display', 'none');
+                            } else {
+                                $('#count-unread-message').css('display', 'flex');
+                                $('#count-unread-message').html(data);
+                            }
+                        }
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "./templates/block-notification.php",
+
+                        success: function(data) {
+                            $('#notification-list').html(data);
+                        }
+                    });
+
+                    $('#'+modalOfClose).toggleClass('modal-of-show');
+                }
+            });
+        }); 
     })
 </script>

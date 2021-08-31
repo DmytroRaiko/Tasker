@@ -1,5 +1,5 @@
 <?php 
-//session_start();
+session_start();
 
 $project_list = [];
 
@@ -14,19 +14,19 @@ if (isset($_POST['header-project-search'])) {
         FROM `tasks` INNER JOIN `tasklist` ON `tasklist`.`TaskID`=`tasks`.`TaskID`
         WHERE `EmployeeID` = :id AND `Title` LIKE :search",
         [
-            ':id' => 1,
+            ':id' => $_SESSION["emp_id"],
             ':search' => $search
         ]
     );
 } else {
-    require_once "./db/database.php";
+    require_once "../db/database.php";
     $db = new Database();
     $project_list = $db->query(
         "SELECT * 
         FROM `tasks` INNER JOIN `tasklist` ON `tasklist`.`TaskID`=`tasks`.`TaskID`
         WHERE `EmployeeID` = :id",
         [
-            ':id' => 1
+            ':id' => $_SESSION["emp_id"],
         ]
     );
 }

@@ -1,9 +1,8 @@
 <?php 
-require_once "./db/database.php";
 include_once("function.php");
-session_start();
-$_SESSION["emp_id"]=1;
+require_once './functions/authenticate/check_auth.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -12,7 +11,6 @@ $_SESSION["emp_id"]=1;
 <body>
     <?php
         site_header();
-        //include "templates/modal-create-task.php";
     ?>
     <?php
     $body = NULL;
@@ -32,6 +30,8 @@ $_SESSION["emp_id"]=1;
         site_footer();
     ?>
     <div id="modal-output"></div>
+
+    <div id="message-block"></div>
 </body>
 
 </html>

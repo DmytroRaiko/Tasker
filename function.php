@@ -1,6 +1,5 @@
 <?php
 $array_tasks = [];
-
 function head($postfix = NULL)
 {
     if ($postfix == NULL) {
@@ -270,4 +269,10 @@ function ShowTree($project, $ParentID, $user){
             echo '</ul>'; 
         }
     endfor; 
+}
+
+if (isset($_POST['office-block']) && $_POST['office-block'] == 1) {
+    $project = $_POST['project'];
+    $user = $_POST['employees'];
+    ShowTree($project, NULL, $user);
 }

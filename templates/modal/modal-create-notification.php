@@ -1,40 +1,6 @@
-<?php
-//session_start();
-require_once "../db/database.php";
-$db = new Database();
 
-function modal_view_task ($id) { 
-    global $db;
-
-    /*$notification = $db->query (
-        "SELECT * FROM `notifications` WHERE `NotificationID` = :idNotification",
-        [
-            ':idNotification' => $id
-        ]
-    );
-
-    $status_not = $notification[0]['Status'];
-
-    $sender = false;
-    if ($notification[0]['EmployeesSenderID'] == 1 
-            && $status_not != 'unread' 
-            && $status_not != 'read'
-            && $notification[0]['SenderRead'] == 'unread') {
-        $sender = true;
-    }
-
-    $task = $db->query(
-        "SELECT * FROM `tasks` INNER JOIN `tasklist` ON `tasks`.`TaskID` = `tasklist`.`TaskID`
-        WHERE `tasklist`.`TaskListID` = :idTasklist",
-        [
-            ':idTasklist' => $notification[0]['TasklistID']
-        ]
-    );*/
-    ?>
-
-    
-<div class="modal-of modal-of-center modal-of-show" id="view-task-modal-<?= $id ?>">
-    <form class="modal task-modal-view" modal-id="view-task-modal-<?= $id ?>">
+<div class="modal-of modal-of-center modal-of-show" id="create-task-modal">
+    <div class="modal">
         <div class="modal-header">
             <div class="title-header text text-20">
                 Create new task
@@ -174,20 +140,6 @@ function modal_view_task ($id) {
                         <input class="calendar__input" >
                     </div>
                     
-                    <script>
-                        $('.calendar__input').flatpickr({
-                            inline: true,
-                            mode: 'range',
-                            enableTime: true,
-                            minDate: "today",
-                            "locale": {
-                                "firstDayOfWeek": 1
-                            },
-                            time_24hr: true,
-                            defaultHour: 00,
-                            defaultMinute: 00
-                        });
-                    </script>
 
                     <div class="modal-row">
                         <div class="modal-icon-row">
@@ -208,7 +160,7 @@ function modal_view_task ($id) {
                     </div>
 
                     <div class="block-right-col">
-                        <select id="executor-create-task" class="js-select2" name="city" multiple="multiple">
+                        <select id="executor-create-task" class="js-select2" name="city" placeholder="Выберите город">
                             <option value=""></option>
                             <option value="367"><div class="option-persone">Antipenko Victoria</div></option>
                             <option value="340">Rauko Dmitry</option>	
@@ -220,7 +172,8 @@ function modal_view_task ($id) {
                         <script>
                             $(document).ready(function() {
                                 $('#executor-create-task').select2({
-                                    placeholder: "Choose executor"
+                                    placeholder: "Choose person",
+                                    maximumSelectionLength: 2
                                 });
                             });
                         </script>
@@ -285,27 +238,5 @@ function modal_view_task ($id) {
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
-
-    <?php 
-    /*if ($notification[0]['Status'] == 'unread') {
-        $db->query (
-            "UPDATE `notifications` SET `Status`='read' WHERE `NotificationID` = :idNotification",
-            [
-                ':idNotification' => $id
-            ]
-        );
-    } else if ($notification[0]['EmployeesSenderID'] == 1 
-            && $status_not != 'unread' 
-            && $status_not != 'read' 
-            && $notification[0]['SenderRead'] == 'unread') {
-        $db->query (
-            "UPDATE `notifications` SET `SenderRead`='read' WHERE `NotificationID` = :idNotification",
-            [
-                ':idNotification' => $id
-            ]
-        );
-    }*/
-} 
-?>
