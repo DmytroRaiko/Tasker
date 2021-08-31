@@ -10,6 +10,7 @@ $employees_info = $db->query(
         ":userID" => $_SESSION['user_id']
     ]
 );
+
 ?>
 
 <header class="site-header">
@@ -426,7 +427,7 @@ $employees_info = $db->query(
                         $.ajax({
                             type: "POST",
                             url: "./function.php",
-                            data: 'office-block=1&project=<?=isset($_GET['office-id']) ? $_GET['office-id'] : $_GET['project-id']?>&employees=<?=$user?>',
+                            data: 'office-block=1&project=<?=isset($_GET['office-id']) ? $_GET['office-id'] : $_GET['project-id']?>&employees=<?=$_SESSION['emp_id']?>',
 
                             success: function(data) {
                                 $('.office-block').html(data);
