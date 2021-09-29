@@ -1,13 +1,14 @@
 <?php 
 session_start();
 
+require_once "../db/database.php";
+$db = new Database();
+
 $project_list = [];
 
-if (isset($_POST['header-project-search'])) {
+if (isset($_POST['header-project-search']) && !empty($_POST['header-project-search'])) {
     $search = '%' . trim($_POST['header-project-search']) . '%';
     
-    require_once "../db/database.php";
-    $db = new Database();
     
     $project_list = $db->query(
         "SELECT * 
@@ -19,12 +20,12 @@ if (isset($_POST['header-project-search'])) {
         ]
     );
 } else {
-    require_once "../db/database.php";
-    $db = new Database();
     $project_list = $db->query(
         "SELECT * 
-        FROM `tasks` INNER JOIN `tasklist` ON `tasklist`.`TaskID`=`tasks`.`TaskID`
-        WHERE `EmployeeID` = :id",
+        FROM `tasks` 
+        WHERE `TaskID` IN (SELECT DISTINCT `ProjectID` 
+            FROM `tasks` INNER JOIN `tasklist` ON `tasklist`.`TaskID`=`tasks`.`TaskID`
+            WHERE `EmployeeID` = :id)",
         [
             ':id' => $_SESSION["emp_id"],
         ]
@@ -33,7 +34,7 @@ if (isset($_POST['header-project-search'])) {
 
 $count_project_list = count($project_list);?>
 
-<a href="" class="project-item">
+<a href="?project-id=0" class="project-item">
     <div class="project-icon">
     </div>
     <div class="project-list-content">
@@ -61,7 +62,7 @@ if ($count_project_list < 1) {
 } else {
     for ($i = 0; $i < $count_project_list; $i++) : ?>
 
-    <a href="?project=<?= $project_list[$i]['TaskListID'] ?>" data-id="?project=<?= $project_list[$i]['TaskListID'] ?>" class="project-item">
+    <a href="?project-id=<?= $project_list[$i]['ProjectID'] ?>" data-id="?project=<?= $project_list[$i]['ProjectID'] ?>" class="project-item">
     
         <div class="project-icon">
         </div>

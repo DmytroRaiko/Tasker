@@ -9,5 +9,5 @@
         setcookie("remember_token", '', time() - 3600, '/');
     }
     session_destroy();
-    header('Location: /log_page.php?action=signin');
+    header('Location: ../../log_page.php?action=signin');
 ?>

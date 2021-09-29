@@ -82,7 +82,6 @@
 
     $(document).ready( function () {
         $('body').on('click', '#security-info a', function (e) {  
-            e.preventDefault();
 
             let modal = $(this).data("modal");
 
@@ -211,7 +210,6 @@
                             form.find('[data-error="'+key+'"]').after('<span class="error">'+errors[key]+'</span>');
                         }
                     }
-                    
                 }
            });
         });

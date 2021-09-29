@@ -98,14 +98,34 @@
             margin-right: 5px;
             min-height: 450px;
             overflow: auto;
+            padding-left: 20px;
             
 
             ul {
                 margin-left: 220px;
                 margin-top: 15px;
+                position: relative;
 
                 &.margin-left-none {
                     margin-left: 0px;
+                }
+
+                .vertical-line {
+                    width: 1px;
+                    position: absolute;
+                    background: $office-line;
+                    left: 75px;
+                    top: 42px;
+                    min-height: calc( 100% - 63px);
+                }
+
+                .horizontal-line {
+                    height: 1px;
+                    position: absolute;
+                    background: $office-line;
+                    left: -145px;
+                    top: 21px;
+                    min-width: 145px;
                 }
             }
 
@@ -118,7 +138,6 @@
                 width: 150px;
                 display: flex;
                 flex-direction: column;
-                margin-left: 20px;
                 background: $background-office;
                 border: 1px solid $fill-dark;
                 border-radius: 3px;
@@ -144,8 +163,10 @@
                     width: 100%;
                     color: $fill-dark;
                     font-family: $body-font-family;
-                    border-top: 1px solid $fill-dark;
                     padding: 2px 0;
+                    background: white;
+                    padding-bottom: 3px;
+                    margin-top: 1px;
 
                     &:hover {
                         color: $main-blue

@@ -9,11 +9,14 @@ $background-light: #EDEDED;
 $box-shadow-color: #494747;
 $border-dark: #383838;
 $main-blue: #65C8F3;
+$main-blue-90: rgb(101, 200, 243, 0.9);
 $main-red: #FF1F1F;
 $main-red-99: #ff0000d5;
 $point-unread: #f44646;
 $border-notification: #bdbdbd36;
 $unread-notification: #d5d5d5;
+
+$office-line: rgba(86, 82, 82, 0.38);
 
 $white-85: rgba(255, 255, 255, 0.80);
 
@@ -38,3 +41,14 @@ $background-office: #f3f3f3;
 
 $font-family: 'Roboto', sans-serif;
 $background-office: #f3f3f3;
+
+// status colors
+
+$status-orange-background: rgba(254, 187, 125, 1);
+$status-orange-color: rgba(215, 77, 0, 1);
+
+$status-red-background: rgba(254, 125, 125, 1);
+$status-red-color: rgba(171, 0, 0, 1);
+
+$status-green-background: rgba(60, 233, 0, 0.5);
+$status-green-color: rgba(0, 90, 42, 1);

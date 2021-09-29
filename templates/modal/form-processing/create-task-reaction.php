@@ -18,25 +18,21 @@ if (isset($_POST['task-name-new']) && !empty(trim($_POST['task-name-new']))) {
     $task_id = $array_rand[0].$create_time.$array_rand[1];
     $name = $_POST['task-name-new'];
 
-    $type = 'task';
+    $type = 'sub-task';
     if (isset($_POST['have-sub-task']) && !empty($_POST['have-sub-task']) && $_POST['have-sub-task'] == 'on') {
 
-        $type = 'sub-task';
+        $type = 'task';
     }
-    if (isset($_POST['date-start']) && !empty(trim($_POST['date-start'])) && trim($_POST['date-start']) != 'undefined') {
-
-        $date_start = date('Y-m-d G:i:s' , strtotime(trim($_POST['date-start'])));
-        if (isset($_POST['date-end']) && !empty(trim($_POST['date-end'])) && trim($_POST['date-end']) != 'undefined') {
-
-            $time_end_hours = '00';
-            $time_end_minute = '00';
+    if ((isset($_POST['date-start']) && !empty(trim($_POST['date-start'])) && trim($_POST['date-start']) != 'undefined')
+            && (isset($_POST['date-end']) && !empty(trim($_POST['date-end'])) && trim($_POST['date-end']) != 'undefined')) {
             
-            if (isset($_POST['time-end-hour']) && !empty(trim($_POST['time-end-hour'])) && isset($_POST['time-end-minute']) && !empty(trim($_POST['time-end-minute']))) {
-                $time_end_hours = trim($_POST['time-end-hour']);
-                $time_end_minute = trim($_POST['time-end-minute']);
-            }
+        if (isset($_POST['time-start-task']) && !empty(trim($_POST['time-start-task'])) && isset($_POST['time-end-task']) && !empty(trim($_POST['time-end-task']))) {
+            $time_start_task = trim($_POST['time-start-task']);
+            $time_end_task = trim($_POST['time-end-task']);
 
-            $date_end = date('Y-m-d G:i:s' , strtotime(trim($_POST['date-end']." ". $time_end_hours . ":" . $time_end_minute)));
+            $date_start = date('Y-m-d G:i:s' , strtotime(trim($_POST['date-start'] . " " . $time_start_task)));
+
+            $date_end = date('Y-m-d G:i:s' , strtotime(trim($_POST['date-end']." ". $time_end_task)));
 
             $description = NULL;
             $documents = NULL;
@@ -133,10 +129,10 @@ if (isset($_POST['task-name-new']) && !empty(trim($_POST['task-name-new']))) {
             }
         } else {
             //- error time -
-            echo 2;
+            echo 3;
         }   
     } else {
-        //- error time -
+        //- error date -
         echo 2; 
     }
 }

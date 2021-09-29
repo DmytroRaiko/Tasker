@@ -13,17 +13,17 @@ $notification = $db->query (
     ]
 );  
 
+print_r($notification);
 if ($notification[0]['EmployeesSenderID'] == $_SESSION["emp_id"] 
-        && $notification[0]['Status'] != 'unread' && $notification[0]['Status'] != 'canceled'
+        && $notification[0]['Status'] != 'unread' && $notification[0]['Status'] != 'canceled' && $notification[0]['Status'] != 'read'
         && $notification[0]['SenderRead'] == 'unread') {
-    $db->query (
+    $db->query (    
         "UPDATE `notifications` SET `SenderRead`='read' WHERE `NotificationID` = :idNotification",
         [
             ':idNotification' => $id
         ]
     );
 } else if (isset($_POST['id-notification']) && !empty($_POST['id-notification'])) {
-    $id = $_POST['id-notification'];
 
     $reaction_time = date('Y-m-d H:i:s', time());
     $description = NULL;
@@ -68,6 +68,8 @@ if ($notification[0]['EmployeesSenderID'] == $_SESSION["emp_id"]
         }
         $links = json_encode($links);
     }
+
+    echo
 
     $sql = $db->query (
         "UPDATE `notifications` 

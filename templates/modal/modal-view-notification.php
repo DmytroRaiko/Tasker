@@ -17,10 +17,11 @@ function modal_view_notification ($id) {
     $sender = false;
     if ($notification[0]['EmployeesSenderID'] == $_SESSION["emp_id"] 
             && $status_not != 'unread' 
-            && $status_not != 'read'
-            && $notification[0]['SenderRead'] == 'unread') {
+            && $status_not != 'read') {
         $sender = true;
     }
+
+    echo ($sender ? '1' : 0 ) . " " . $sender;
 
     $task = $db->query(
         "SELECT * FROM `tasks` INNER JOIN `tasklist` ON `tasks`.`TaskID` = `tasklist`.`TaskID`

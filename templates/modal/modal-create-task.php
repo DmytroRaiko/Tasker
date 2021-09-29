@@ -137,22 +137,6 @@ function modal_create_task ($id, $project, $empl) {
                 </div>
                 <div class="modal-right-column modal-column">
                     <div class="modal-right-top">
-                        <div class="modal-row">
-                            <div class="modal-icon-row">
-                                <label>
-                                    <svg width="20" height="22" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18 18V4C18 2.897 17.103 2 16 2H14V0H12V2H6V0H4V2H2C0.897 2 0 2.897 0 4V18C0 19.103 0.897 20 2 20H16C17.103 20 18 19.103 18 18ZM6 16H4V14H6V16ZM6 12H4V10H6V12ZM10 16H8V14H10V16ZM10 12H8V10H10V12ZM14 16H12V14H14V16ZM14 12H12V10H14V12ZM16 7H2V5H16V7Z" fill="#565252"/>
-                                    </svg>
-                                </label>
-                            </div>
-                            <div class="row-right-side">
-                                <div class="title-block">
-                                    <div class="input-iteractive text-title-modal text text-19">
-                                        Timing
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="calendar" id="calendar-create-<?= $id ?>">
                             <input class="calendar__input" >
                         </div>
@@ -161,17 +145,20 @@ function modal_create_task ($id, $project, $empl) {
                             $('.calendar__input').flatpickr({
                                 inline: true,
                                 mode: 'range',
-                                enableTime: true,
                                 minDate: "today",
                                 "locale": {
                                     "firstDayOfWeek": 1
                                 },
-                                defaultDate: ["today", "today"],
-                                time_24hr: true,
-                                defaultHour: 00,
-                                defaultMinute: 00
+                                defaultDate: ["today", "today"]
                             });
                         </script>
+
+
+                        <div class="modal-row time-to-do-modal">
+                            <input class="text-16" type="time" name="time-start-task" id="time-start-task" value="00:00" placeholder="00:00">
+                            <div class="line-time">-</div>
+                            <input class="text-16" type="time" name="time-end-task" id="time-end-task" value="00:00" placeholder="00:00">
+                        </div>
 
                         <div class="modal-row">
                             <div class="modal-icon-row">
@@ -189,6 +176,9 @@ function modal_create_task ($id, $project, $empl) {
                                 </div>
                                 
                             </div>
+                        </div>
+
+                        <div class="modal-row">
                         </div>
 
                         <div class="block-right-col">

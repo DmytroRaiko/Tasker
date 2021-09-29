@@ -115,7 +115,7 @@ function date_format_custom ($date) {
     }
 }
 
-function upload_documents ($file, $tmp, $dir_type, $recording_id, $index){
+function upload_documents ($file, $tmp, $dir_type, $recording_id, $index, $comment=false){
 
     $path = '../../../documents';
     if (!is_dir($path)) {
@@ -132,8 +132,15 @@ function upload_documents ($file, $tmp, $dir_type, $recording_id, $index){
         mkdir($path, 0777, true);
     }
 
-    $position_dots = strripos ($file, '.');
+    if ($comment) {
+        $path = '../../../documents/' . $dir_type . '/' . $recording_id . '/comments';
+        if (!is_dir($path)) {
+            mkdir($path, 0777, true);
+        }
+    }
 
+    $position_dots = strripos ($file, '.');
+    
     $name = substr($file, 0, $position_dots) . '[' . hash('ripemd160', $index . time()) . ']' . substr($file, $position_dots, strlen($file) -1);
     $new_file = $path . '/' . $name;
     copy($tmp, $new_file);
@@ -209,7 +216,7 @@ function ShowTree($project, $ParentID, $user){
             FROM tasks INNER JOIN tasklist ON tasks.TaskID=tasklist.TaskID 
             INNER JOIN employees ON tasklist.EmployeeID=employees.EmployeeID 
  
-            WHERE  employees.EmployeeID=:user And tasks.Type IN ('sub-task', 'project') AND tasks.ProjectID = :project; 
+            WHERE  employees.EmployeeID=:user And tasks.Type IN ('task', 'project') AND tasks.ProjectID = :project; 
             ",   
             [ 
                 ':user'     => $user, 
@@ -235,10 +242,10 @@ function ShowTree($project, $ParentID, $user){
     for($i = 0; $i < count($sql); $i++) :  
         $k = 0; 
         if ($k == 0 && $ParentID == NULL) {
-            if (!in_array($sql[$i]['id'], $array_tasks)) echo '<ul class="margin-left-none">  <div class="card-office-block text-9">'; 
-        } else if (!in_array($sql[$i]['id'], $array_tasks)) echo '<ul>  <div class="card-office-block text-9">'; 
+            if (!in_array($sql[$i]['id'], $array_tasks)) echo '<ul class="margin-left-none"> <div class="vertical-line"></div>   <div class="card-office-block text-9">'; 
+        } else if (!in_array($sql[$i]['id'], $array_tasks)) echo '<ul> <div class="vertical-line"></div> <div class="horizontal-line"></div>   <div class="card-office-block text-9">'; 
         if (!in_array($sql[$i]['id'], $array_tasks)) {
-            echo '<li>   
+            echo '<li class="view-task" data-task-id="'.$sql[$i]['id'].'">   
                 <div class="card-office-block-main">  
                     <div class="card-office-block-title">' . $sql[$i]['title'] .' 
                     </div>  
@@ -259,10 +266,13 @@ function ShowTree($project, $ParentID, $user){
                 </div> 
             </li> ';
             array_push($array_tasks, $sql[$i]['id']);
-        echo '<div class="add-task-office text-9" data-parent-id="'.$sql[$i]['id'].'">  
-            Add Sub-Task  
-        </div>
-        </div>'; 
+
+        if ($sql[$i]['type'] != 'sub-task') {
+            echo '<div class="add-task-office text-9" data-parent-id="'.$sql[$i]['id'].'">  
+                Add Sub-Task  
+            </div>';
+        }
+        echo '</div>'; 
         ShowTree($project, $sql[$i]['id'],$user); 
         $k++; 
         if ($k > 0)  

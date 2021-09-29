@@ -75,7 +75,7 @@
         if(isset($formData['login-change'])){
             $login = $formData['modal-login-new'];
             $password = $formData['modal-login-new-password'];
-            $loginPattern = '/^[a-zA-Z]([_]?[a-zA-Z0-9]){5,38}$/';
+            $loginPattern = '/^[a-zA-Z]([_]?[a-zA-Z0-9]){4,38}$/';
             if(!preg_match($loginPattern, $login)){
                 $error['login-error'] = 'Login does not match the template';
             }

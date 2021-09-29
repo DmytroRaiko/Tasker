@@ -29,7 +29,7 @@ global $db;
             while ($i < $offset + $size_page && $i < $count_task) {
 
                         ?>
-            <div class="card-task" data-task-id="<?=$sql[$i]['id']?>">
+            <div class="card-task view-task" data-task-id="<?=$sql[$i]['id']?>">
                 <div class="card-icon">
                     <p class="text-icon">
                     <?=mb_substr($sql[$i]['title'] ,0 ,1)?>

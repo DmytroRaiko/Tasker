@@ -81,6 +81,10 @@
         .element {
             margin-left: 11px;
 
+            a {
+                color: $main-dark !important;
+            }
+
             svg {
                 margin-right: 10px;
             }

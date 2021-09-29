@@ -147,9 +147,7 @@
                         white-space: nowrap;
                     }
 
-                    &::-moz-placeholder { 
-                        color: $main-dark-60; 
-                    }
+                    &::-moz-placeholder,
                     &::-webkit-input-placeholder { 
                         color: $main-dark-60; 
                     }
@@ -160,9 +158,7 @@
                         border-radius: 3px;
                         padding-left: 5px;
     
-                        &::-moz-placeholder { 
-                            color: $white; 
-                        }
+                        &::-moz-placeholder,
                         &::-webkit-input-placeholder { 
                             color: $white; 
                         }
@@ -189,7 +185,8 @@
                 overflow-x: hidden;
                 max-height: 740px;
                 
-                .modal-row {
+                .modal-row, 
+                .modal-row   {
                     display: flex;
                     flex-direction: row;
                     justify-content: flex-start;
@@ -200,7 +197,6 @@
                     .modal-icon-row {
                         padding: 2px;
                         padding-right: 10px;
-                        height: 32px;
                         
                         label {
                             height: auto;
@@ -232,6 +228,15 @@
                                 border: none;
                                 background: $modal-line;
                             }
+
+                            .hide-button {
+                                padding-left: 6px;
+                                cursor: pointer;
+
+                                &:hover {
+                                    color: $main-blue;
+                                }
+                            }
                         }
 
                         input {
@@ -243,7 +248,6 @@
                             font-weight: 500;
                             border: 1px solid $modal-background-modal;
                             height: 30px;
-                            padding-left: 7px;
                             color: $main-dark;
                             margin-right: 12px;
 
@@ -274,13 +278,20 @@
                                     color: $white; 
                                 }
                             }
+
+                            &.not-focus:focus {
+                                background: $modal-background-modal;
+                                border-color: $modal-background-modal;
+                            }
                         }
 
                         textarea {
                             border-radius: 3px;
-                            border: none;
-                            resize: none;
+                            border: 1px solid $modal-background-modal;
+                            resize: vertical;
                             padding: 8px 11px;
+                            max-height: 220px;
+                            min-height: 16px;
                             background: none;
                             width: calc(100% - 32px);
 
@@ -292,11 +303,9 @@
                             }
 
                             &:focus {
-                                padding-left: 8px;
                                 background: $white;
                                 border: 1px solid $modal-line;
                                 border-radius: 3px;
-                                padding: 7px 11px;
             
                                 &::-moz-placeholder { 
                                     color: $white; 
@@ -305,6 +314,75 @@
                                     color: $white; 
                                 }
                             }
+
+                            &.not-focus:focus {
+                                background: $modal-background-modal;
+                                border-color: $modal-background-modal;
+                            }
+                        }
+                    }
+
+                    &.time-to-do-modal {
+                        width: 100%;
+                        justify-content: center;
+
+                        &.not-focus {
+                            border-bottom: 1px solid $modal-line;
+                        }
+
+                        input {
+                            height: 25px;
+                            margin-left: 0;
+                            background: $fill-light;
+                            font-weight: 500;
+                            border: 1px solid $modal-background-modal;
+                            padding: 0 1px 0 1px;
+                            color: $main-dark;
+                            margin-right: 0px;
+                            text-align: center;
+
+                            
+
+                            &::-webkit-outer-spin-button,
+                            &::-webkit-inner-spin-button {
+                                /* display: none; <- Crashes Chrome on hover */
+                                -webkit-appearance: none;
+                                margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+                            }
+
+                            &::-moz-placeholder { 
+                                color: $main-dark-60; 
+                            }
+                            &::-webkit-input-placeholder { 
+                                color: $main-dark-60; 
+                            }
+                            
+                            
+                            &:focus {
+                                background: $white;
+                                border: 1px solid $main-dark-60;
+                                border-radius: 3px;
+
+                                &::-moz-placeholder { 
+                                    color: $white; 
+                                }
+                                &::-webkit-input-placeholder { 
+                                    color: $white; 
+                                }
+                            }
+
+                            &.not-focus {
+                                margin-left: 25px
+                            }
+
+                            &.not-focus:focus {
+                                background: $modal-background-modal;
+                                border-color: $modal-background-modal;
+                            }
+                        }
+
+                        .line-time {
+                            margin: 0px 10px;
                         }
                     }
                 }
@@ -391,6 +469,24 @@
 
                     .select2 {
                         width: 100% !important;
+                    }
+
+                    &.executor-view-block {
+
+                        display: flex;
+                        flex-direction: column;
+                        a {
+                            padding: 6px;
+
+                            &:hover,
+                            &:active {
+                                color: $main-blue;
+                            }
+
+                            &:visited {
+                                color: $main-dark;
+                            }
+                        }
                     }
                 }   
 
@@ -517,6 +613,11 @@
                                     color: $white; 
                                 }
                             }
+
+                            &.not-focus:focus {
+                                background: $modal-background-modal;
+                                border-color: $modal-background-modal;
+                            }
                         }
                     }
                 }
@@ -530,6 +631,139 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
+        }
+
+        &.task-modal-view {
+
+            textarea {
+                padding-left: 0px;
+            }
+
+            .modal-left-column .row-right-side.no-border {
+                border-left: 0px !important;
+                padding-left: 0px !important;
+            }
+
+            .modal-left-column .row-right-side .input-iteractive.text-title-modal.yes-padding {
+                padding-left: 8px;
+            }
+        }
+
+
+
+        .modal-status-button {
+            width: calc(100% - 2px) !important;
+            border: 1px solid $main-dark-40;
+            border-radius: 9px;
+            margin-top: 9px !important;
+            margin-bottom: 9px;
+            padding: 4.5px 0;
+            display: inline-block !important;
+            transition: all .5s ease;
+            position: relative;
+
+            &:focus-visible {
+                outline: none;
+            }
+
+            .select {
+                cursor: pointer;
+                display: block;
+            }
+    
+            
+            .select > i {
+                font-size: 13px;
+                color: #888;
+                cursor: pointer;
+                transition: all .3s ease-in-out;
+                float: right;
+                line-height: 20px;
+            }
+
+            &:hover {
+                box-shadow: 0 0 4px rgb(204, 204, 204);
+            }
+
+            &:active {
+                background-color: #f8f8f8;
+            }
+
+            &.active:hover,
+            &.active {
+                box-shadow: 0 0 4px rgb(204, 204, 204);
+                border-bottom-left-radius: 0px;
+                border-bottom-right-radius: 0px;
+                background-color: #f8f8f8;
+            }
+            &.active .select > i {
+                transform: rotate(-90deg);
+            }
+            .dropdown-menu {
+                position: absolute;
+                background-color: #fff;
+                width: calc(100% + 2px);
+                left: -1px;
+                margin-top: 1px;
+                box-shadow: 0 1px 2px rgb(204, 204, 204);
+                border-radius: 0 0 9px 9px;
+                overflow: hidden;
+                display: none;
+                overflow-y: auto;
+                z-index: 9;
+                top: 30px
+            }
+            .dropdown-menu li {
+                padding: 4.5px;
+                transition: all .2s ease-in-out;
+                cursor: pointer;
+                border: 1px solid $main-dark-40;
+                border-top: none;       
+            } 
+            .dropdown-menu {
+                padding: 0;
+                list-style: none;
+            }
+            .dropdown-menu li:hover {
+                background-color: #f2f2f2;
+                color: $main-dark
+            }
+            .dropdown-menu li:active {
+                background-color: #e2e2e2;
+            }
+
+            &.orange,
+            .orange {
+                background: $status-orange-background;
+                color: $status-orange-color;
+
+                &:hover {
+                    background: $status-orange-background;
+                    color: $status-orange-color;
+                }
+            }
+
+            &.red,
+            .red {
+                background: $status-red-background;
+                color: $status-red-color;
+
+                &:hover {
+                    background: $status-red-background;
+                    color: $status-red-color;
+                }
+            }
+
+            &.green, 
+            .green {
+                background: $status-green-background;
+                color: $status-green-color;
+
+                &:hover {
+                    background: $status-green-background;
+                    color: $status-green-color;
+                }
+            }
         }
     }
 
@@ -858,4 +1092,189 @@
 .select2-container--default .select2-selection--multiple {
     background-color: $modal-background-modal !important;
     border: 1px solid $modal-background-modal !important;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator{
+    fill: $main-dark;
+}
+
+.flatpickr-day.inRange.flatpickr-disabled {
+    background: #e6e6e6 !important;
+}
+
+.flatpickr-day.today {
+    border: none !important;
+    border-bottom: 1.5px solid $main-blue !important;
+    border-radius: 0px;
+}
+
+.flatpickr-day.weekend {
+    color: red;
+}
+
+.flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover {
+    cursor: initial !important;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover svg, .flatpickr-months .flatpickr-next-month:hover svg {
+    fill: $main-blue !important;
+}
+
+.comment {
+
+    &.comment-form {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+
+        input {
+            padding-left: 8px;
+            height: 27px;
+            background: $white;
+            border: 1px solid $modal-line;
+            border-radius: 3px;
+            padding-left: 7px;
+
+            &::-moz-placeholder,
+            &::-webkit-input-placeholder { 
+                color: $main-dark-60 !important; 
+            }
+        }
+
+        input[type='submit'] {
+            width: 72px !important;
+            height: 23px;
+            margin: 0px 8px;
+            border: none;
+            background: $main-blue;
+            color: $main-ligth;
+            border-radius: 4px;
+            font-weight: 700;
+            padding-left: 0px;
+
+            &:hover {
+                background: $main-blue-90;
+            }
+        }
+
+        label {
+            height: 21px;
+
+            &:hover {
+                path {
+                    fill: $main-blue;
+                }
+            }
+        }
+    }
+    margin: 4.5px 3px;
+}
+
+
+.comment {
+    display: flex;
+    flex-direction: row;
+
+    &:hover {
+        .delete-comment {
+            visibility: visible !important;
+        }
+    }
+    
+    .comment-icon {
+        padding: 0 3px;
+        margin-right: 4px;
+    }
+
+    .comment-body {
+        border-left: 1px solid $modal-line;
+        padding-left: 7px;
+        width: 100%;
+
+        .comment-header {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            position: relative;
+            width: 100%;
+
+            .header-name {
+                font-weight: 600;
+            }
+
+            a {
+                &:hover {
+                    color: $main-blue;
+                }
+                &:active {
+                    color: $main-dark;
+                }
+            }
+
+            .delete-comment {
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                visibility: hidden;
+                transition: .3s opacity, .3s visibility;
+ 
+
+                &:hover {
+                    path {
+                        fill: $main-blue;
+                    }
+                }
+            }
+
+            .comment-time {
+                margin-left: 4px;
+                border-left: 1px solid $modal-line;
+                padding-left: 4px;
+                font-weight: 100;
+            }
+        }
+
+        .comment-text {
+            padding-top: 4px;
+            font-weight: 300;
+        }
+    }
+
+    &.activity {
+        display: none;
+        align-items: center;
+
+        .comment-body {
+            width: max-content;
+    
+            .comment-header {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                position: relative;
+                width: max-content;
+    
+                .header-name {
+                    font-weight: 600;
+                    text-align: start;
+                }
+    
+                .comment-time {
+                    margin-left: 0;
+                    border-left: none;
+                    padding-left: 0;
+                    text-align: start;
+                }
+            }
+        }
+
+        .comment-text {
+            padding-top: none;
+            padding-left: 10px;
+            margin-left: 6px;
+            border-left: 1px solid $modal-line;
+        }
+    }
 }
