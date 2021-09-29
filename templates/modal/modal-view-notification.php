@@ -171,7 +171,12 @@ function modal_view_notification ($id) {
                                                             <path d="M12.1875 20.8125H20.8125V22.25H12.1875V20.8125Z" fill="#565252"/> <path d="M12.1875 16.5H20.8125V17.9375H12.1875V16.5Z" fill="#565252"/> 
                                                         </svg>
                                                     </label>
-                                                    <a href="./documents/notifications/<?= $notification[0]['NotificationID'] ?>/<?= $array[$i] ?>" target="_blank" title="<?= $array[$i] ?>"> <?= $array[$i] ?> </a>
+
+                                                    <?php
+                                                    $start = explode('[', $array[$i])[0];
+                                                    $end = explode(']', $array[$i]);
+                                                    ?>
+                                                    <a href="./documents/notifications/<?= $notification[0]['NotificationID'] ?>/<?= $array[$i] ?>" target="_blank" title="<?= $start.$end[count($end) - 1] ?>"> <?= $start.$end[count($end) - 1] ?> </a>
                                                 </div>
                                                 <?php
                                             }

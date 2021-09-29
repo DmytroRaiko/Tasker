@@ -49,12 +49,29 @@ if (isset($_POST['adding-comment'])) {
 if (isset($_POST['delete-activity'])) {
 
     if (!empty($_POST['delete-activity'])) {
+
+        $sql = $db->query(
+                "SELECT TaskID, File 
+                FROM Activity
+                WHERE ActivityID = :ActivityID",
+            [
+                ':ActivityID'   => $_POST['delete-activity']
+            ]
+        );
+
         $db->query(
             "DELETE FROM `Activity` WHERE `ActivityID`=:act",
             [
                 ':act' => $_POST['delete-activity']
             ]
         );
+
+        if ($sql[0]['File'] != NULL) {
+            $file = "../../../documents/tasks/".$sql[0]['TaskID']."/comments/".$sql[0]['File'];
+            if (file_exists($file)) {
+                unlink($file);
+            }
+        }
 
         echo 1;
     } else {
